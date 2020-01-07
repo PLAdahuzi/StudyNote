@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)https://www.cnblogs.com/barrywxx/p/6384392.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="origin">
+<title>Eclipse极致性能调优 - BarryW - 博客园</title>
+<meta property="og:description" content="Eclipse极致性能调优">
+<link type="text/css" rel="stylesheet" href="./Eclipse极致性能调优 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Eclipse极致性能调优 - 博客园_files/bundle-gray.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./Eclipse极致性能调优 - 博客园_files/bundle-gray-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/barrywxx/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/barrywxx/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/barrywxx/wlwmanifest.xml">
+<script src="./Eclipse极致性能调优 - 博客园_files/f.txt"></script><script src="https://cdn.ampproject.org/rtv/011811091519050/amp4ads-host-v0.js"></script><script src="./Eclipse极致性能调优 - 博客园_files/pubads_impl_rendering_275.js.下载"></script><script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="./Eclipse极致性能调优 - 博客园_files/jquery-2.2.0.min.js.下载"></script>
+<script type="text/javascript">var currentBlogApp = 'barrywxx', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./Eclipse极致性能调优 - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+<link rel="preload" href="./Eclipse极致性能调优 - 博客园_files/f(1).txt" as="script"><script type="text/javascript" src="./Eclipse极致性能调优 - 博客园_files/f(1).txt"></script><script src="./Eclipse极致性能调优 - 博客园_files/pubads_impl_275.js.下载" async=""></script><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-31/html/container.html"></head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="banner"><div id="bnr_pic">
+<!--done-->
+<div class="header">
+	<div class="headerText">
+		<a id="Header1_HeaderTitle" class="headermaintitle" href="https://www.cnblogs.com/barrywxx/">BarryWang</a><br>
+	</div>
+	<div class="headerDis"></div>
+</div>
+</div></div>
+<div id="main">
+	<!-- left starts -->
+	<div id="left">
+	<div id="left_border">
+		<div id="mystats">
+			<br>
+				<div id="blog_stats">
+<!--done-->
+<div class="blogStats">
+随笔- 311&nbsp;
+文章- 3&nbsp;
+评论- 7&nbsp;
+
+</div></div>
+			
+		</div>
+		<div id="mylinks">
+<!--done-->
+<a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a>&nbsp;&nbsp;<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/barrywxx/">首页</a>&nbsp;&nbsp;<a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a>&nbsp;&nbsp;<a id="MyLinks1_NewArticleLink" class="menu" href="https://www.cnblogs.com/EnterMyBlog.aspx?NewArticle=1">新文章</a>&nbsp;&nbsp;<a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/BarryW">联系</a>&nbsp;&nbsp;<a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a>&nbsp;&nbsp;<a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/barrywxx/rss">订阅</a>&nbsp;<a id="blog_nav_rss_image" href="https://www.cnblogs.com/barrywxx/rss"><img src="./Eclipse极致性能调优 - 博客园_files/xml.gif" alt="订阅"></a></div>
+		<div id="topics">
+			
+<div id="post_detail">
+<!--done-->
+<div class="post">
+	<div class="postTitle">
+		<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/barrywxx/p/6384392.html">Eclipse极致性能调优</a>
+	</div>
+	<div id="cnblogs_post_body" class="blogpost-body"><p><strong>直接复制以下到eclipse.ini里面</strong></p>
+<p>&nbsp;</p>
+<div>
+<div id="highlighter_165062" class="syntaxhighlighter  xml">
+<table border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="gutter">
+<div class="line number1 index0 alt2">1</div>
+<div class="line number2 index1 alt1">2</div>
+<div class="line number3 index2 alt2">3</div>
+<div class="line number4 index3 alt1">4</div>
+<div class="line number5 index4 alt2">5</div>
+<div class="line number6 index5 alt1">6</div>
+<div class="line number7 index6 alt2">7</div>
+<div class="line number8 index7 alt1">8</div>
+<div class="line number9 index8 alt2">9</div>
+<div class="line number10 index9 alt1">10</div>
+<div class="line number11 index10 alt2">11</div>
+<div class="line number12 index11 alt1">12</div>
+<div class="line number13 index12 alt2">13</div>
+<div class="line number14 index13 alt1">14</div>
+<div class="line number15 index14 alt2">15</div>
+<div class="line number16 index15 alt1">16</div>
+<div class="line number17 index16 alt2">17</div>
+<div class="line number18 index17 alt1">18</div>
+<div class="line number19 index18 alt2">19</div>
+<div class="line number20 index19 alt1">20</div>
+<div class="line number21 index20 alt2">21</div>
+<div class="line number22 index21 alt1">22</div>
+<div class="line number23 index22 alt2">23</div>
+<div class="line number24 index23 alt1">24</div>
+<div class="line number25 index24 alt2">25</div>
+<div class="line number26 index25 alt1">26</div>
+</td>
+<td class="code">
+<div class="container">
+<div class="line number1 index0 alt2"><code class="xml plain">-Xverify:none</code></div>
+<div class="line number2 index1 alt1"><code class="xml plain">-Xmn256m</code></div>
+<div class="line number3 index2 alt2"><code class="xml plain">-Xms1024m</code></div>
+<div class="line number4 index3 alt1"><code class="xml plain">-Xmx1024m</code></div>
+<div class="line number5 index4 alt2"><code class="xml plain">-Xss2m</code></div>
+<div class="line number6 index5 alt1"><code class="xml plain">-XX:PermSize=256m</code></div>
+<div class="line number7 index6 alt2"><code class="xml plain">-XX:MaxPermSize=256m</code></div>
+<div class="line number8 index7 alt1"><code class="xml plain">-XX:CompileThreshold=10000</code></div>
+<div class="line number9 index8 alt2"><code class="xml plain">-XX:MaxGCPauseMillis=10</code></div>
+<div class="line number10 index9 alt1"><code class="xml plain">-XX:MaxHeapFreeRatio=70</code></div>
+<div class="line number11 index10 alt2"><code class="xml plain">-XX:+UseFastAccessorMethods</code></div>
+<div class="line number12 index11 alt1"><code class="xml plain">-XX:+FailOverToOldVerifier</code></div>
+<div class="line number13 index12 alt2"><code class="xml plain">-XX:NewSize=280m</code></div>
+<div class="line number14 index13 alt1"><code class="xml plain">-XX:MaxNewSize=280m</code></div>
+<div class="line number15 index14 alt2"><code class="xml plain">-XX:CMSMarkStackSize=8M</code></div>
+<div class="line number16 index15 alt1"><code class="xml plain">-XX:CMSMarkStackSizeMax=32M</code></div>
+<div class="line number17 index16 alt2"><code class="xml plain">-XX:+DisableExplicitGC</code></div>
+<div class="line number18 index17 alt1"><code class="xml plain">-XX:+TraceClassLoading</code></div>
+<div class="line number19 index18 alt2"><code class="xml plain">-XX:+TraceClassUnloading</code></div>
+<div class="line number20 index19 alt1"><code class="xml plain">-XX:+CMSPermGenSweepingEnabled</code></div>
+<div class="line number21 index20 alt2"><code class="xml plain">-XX:CMSInitiatingOccupancyFraction=85</code></div>
+<div class="line number22 index21 alt1"><code class="xml plain">-XX:ReservedCodeCacheSize=64m</code></div>
+<div class="line number23 index22 alt2"><code class="xml plain">-verbose:gc</code></div>
+<div class="line number24 index23 alt1"><code class="xml plain">-XX:+PrintGCDetails</code></div>
+<div class="line number25 index24 alt2"><code class="xml plain">-XX:+PrintGCTimeStamps</code></div>
+<div class="line number26 index25 alt1"><code class="xml plain">-Xloggc:gc.log</code></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>最近项目越来越大，有个项目2G左右。是一个多平台多项目的组合。eclipse启动有些受不了了。而且有些类几千行，改一下卡一下。</p>
+<p>一直用的myeclipse6.5，因为不占内存，启动快。后来想，过几年总要被新产品替代。索性直接用eclipse得了。但是发现最新的eclipse也是慢得很。</p>
+<p>虽然自己以前也有经验调整一些启动参数，但效果不好。于是乎百度求最优解决方案。</p>
+<p>首先把你eclipse不要的启动项，验证什么的都干掉。具体的请百度之。</p>
+<p>&nbsp;</p>
+<p>然后就是eclipse启动参数！启动速度刚刚的啊。。。看加粗的部分。。。</p>
+<p>如果加入后不能启动，试着去掉最下面的几行参数看看，要一行行的试，不要都去掉了。或者将前面的参数值设置小一点。各个参数之前可能会互相影响的。</p>
+<p>-vm<br>D:/java/jdk6/bin<br>-startup<br>plugins/org.eclipse.equinox.launcher_1.3.0.v20120522-1813.jar<br>--launcher.library<br>plugins/org.eclipse.equinox.launcher.win32.win32.x86_1.1.200.v20120522-1813<br>-product<br>org.eclipse.epp.package.jee.product<br>--launcher.defaultAction<br>openFile<br>--launcher.XXMaxPermSize<br>256M<br>-showsplash<br>org.eclipse.platform<br>--launcher.XXMaxPermSize<br>256m<br>--launcher.defaultAction<br>openFile<br>-vmargs<br><strong>-server</strong><br>-Dosgi.requiredJavaVersion=1.5<br><strong>-Xms1024m<br>-Xmx1024m<br>-Xss2m<br>-XX:PermSize=128m<br>-XX:MaxPermSize=128m<br>-XX:+UseParallelGC<br>-Xverify:none&nbsp;<br>-XX:+DisableExplicitGC&nbsp;<br>-Xnoclassgc&nbsp;<br>#-XX:+UseParNewGC&nbsp;<br>#-XX:+UseConcMarkSweepGC&nbsp;<br>-XX:CMSInitiatingOccupancyFraction=85&nbsp;<br>-XX:ReservedCodeCacheSize=150m</strong></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>点击下面的查看：</p>
+<p><a href="http://www.beyondlinux.com/2011/06/25/speed-up-your-eclipse-as-a-super-fast-ide/" target="_blank">老外的方法</a></p>
+<p>&nbsp;</p>
+<p><a href="http://hi.baidu.com/jadmin/item/39be68d3d93b39e4b3f7770e" target="_blank">国内牛人写的方法</a></p>
+<p>&nbsp;</p>
+<p><a href="http://chenchendefeng.iteye.com/blog/455883" target="_blank">具体参数的说明</a></p>
+<p>&nbsp;</p>
+<p>下面是后来看到的一篇文章，转贴在这里。http://www.cnblogs.com/chen77716/archive/2010/06/26/2130807.html</p>
+<p>&nbsp;</p>
+<p>最近因项目存在内存泄漏，故进行大规模的JVM性能调优&nbsp;，&nbsp;现把经验做一记录。</p>
+<p>一、JVM内存模型及垃圾收集算法</p>
+<p>&nbsp;1.根据Java虚拟机规范，JVM将内存划分为：</p>
+<ul>
+<li>New（年轻代）</li>
+<li>Tenured（年老代）</li>
+<li>永久代（Perm）</li>
+
+</ul>
+<p>&nbsp; 其中New和Tenured属于堆内存，堆内存会从JVM启动参数（-Xmx:3G）指定的内存中分配，Perm不属于堆内存，有虚拟机直接分配，但可以通过<strong>-XX:PermSize -XX:MaxPermSize</strong>&nbsp;等参数调整其大小。</p>
+<ul>
+<li>年轻代（New）：年轻代用来存放JVM刚分配的Java对象</li>
+<li>年老代（Tenured)：年轻代中经过垃圾回收没有回收掉的对象将被Copy到年老代</li>
+<li>永久代（Perm）：永久代存放Class、Method元信息，其大小跟项目的规模、类、方法的量有关，一般设置为128M就足够，设置原则是预留30%的空间。</li>
+
+</ul>
+<p>New又分为几个部分：</p>
+<ul>
+<li>Eden：Eden用来存放JVM刚分配的对象</li>
+<li>Survivor1</li>
+<li>Survivro2：两个Survivor空间一样大，当Eden中的对象经过垃圾回收没有被回收掉时，会在两个Survivor之间来回Copy，当满足某个条件，比如Copy次数，就会被Copy到Tenured。显然，Survivor只是增加了对象在年轻代中的逗留时间，增加了被垃圾回收的可能性。</li>
+
+</ul>
+<p>&nbsp;2.垃圾回收算法</p>
+<p>&nbsp; 垃圾回收算法可以分为三类，都基于标记-清除（复制）算法：</p>
+<ul>
+<li>Serial算法（单线程）</li>
+<li>并行算法</li>
+<li>并发算法</li>
+
+</ul>
+<p>&nbsp; JVM会根据机器的硬件配置对每个内存代选择适合的回收算法，比如，如果机器多于1个核，会对年轻代选择并行算法，关于选择细节请参考JVM调优文档。</p>
+<p>&nbsp; 稍微解释下的是，并行算法是用多线程进行垃圾回收，回收期间会暂停程序的执行，而并发算法，也是多线程回收，但期间不停止应用执行。所以，并发算法适用于交互性高的一些程序。经过观察，并发算法会减少年轻代的大小，其实就是使用了一个大的年老代，这反过来跟并行算法相比吞吐量相对较低。</p>
+<p>&nbsp; 还有一个问题是，垃圾回收动作何时执行？</p>
+<ul>
+<li>当年轻代内存满时，会引发一次普通GC，该GC仅回收年轻代。需要强调的时，年轻代满是指Eden代满，Survivor满不会引发GC</li>
+<li>当年老代满时会引发Full GC，Full GC将会同时回收年轻代、年老代</li>
+<li>当永久代满时也会引发Full GC，会导致Class、Method元信息的卸载</li>
+
+</ul>
+<p>&nbsp; 另一个问题是，何时会抛出OutOfMemoryException，并不是内存被耗空的时候才抛出</p>
+<ul>
+<li>JVM98%的时间都花费在内存回收</li>
+<li>每次回收的内存小于2%</li>
+
+</ul>
+<p>&nbsp; 满足这两个条件将触发OutOfMemoryException，这将会留给系统一个微小的间隙以做一些Down之前的操作，比如手动打印Heap Dump。</p>
+<p>二、内存泄漏及解决方法</p>
+<p>&nbsp;1.系统崩溃前的一些现象：</p>
+<ul>
+<li>每次垃圾回收的时间越来越长，由之前的10ms延长到50ms左右，FullGC的时间也有之前的0.5s延长到4、5s</li>
+<li>FullGC的次数越来越多，最频繁时隔不到1分钟就进行一次FullGC</li>
+<li>年老代的内存越来越大并且每次FullGC后年老代没有内存被释放</li>
+
+</ul>
+<p>&nbsp;之后系统会无法响应新的请求，逐渐到达OutOfMemoryError的临界值。</p>
+<p>&nbsp;2.生成堆的dump文件</p>
+<p>&nbsp;通过JMX的MBean生成当前的Heap信息，大小为一个3G（整个堆的大小）的hprof文件，如果没有启动JMX可以通过Java的jmap命令来生成该文件。</p>
+<p>&nbsp;3.分析dump文件</p>
+<p>&nbsp;下面要考虑的是如何打开这个3G的堆信息文件，显然一般的Window系统没有这么大的内存，必须借助高配置的Linux。当然我们可以借助X-Window把Linux上的图形导入到Window。我们考虑用下面几种工具打开该文件：</p>
+<ol>
+<li>Visual VM</li>
+<li>IBM HeapAnalyzer</li>
+<li>JDK 自带的Hprof工具</li>
+
+</ol>
+<p>&nbsp;使用这些工具时为了确保加载速度，建议设置最大内存为6G。使用后发现，这些工具都无法直观地观察到内存泄漏，Visual VM虽能观察到对象大小，但看不到调用堆栈；HeapAnalyzer虽然能看到调用堆栈，却无法正确打开一个3G的文件。因此，我们又选用了Eclipse专门的静态内存分析工具：Mat。</p>
+<p>&nbsp;4.分析内存泄漏</p>
+<p>&nbsp;通过Mat我们能清楚地看到，哪些对象被怀疑为内存泄漏，哪些对象占的空间最大及对象的调用关系。针对本案，在ThreadLocal中有很多的JbpmContext实例，经过调查是JBPM的Context没有关闭所致。</p>
+<p>&nbsp;另，通过Mat或JMX我们还可以分析线程状态，可以观察到线程被阻塞在哪个对象上，从而判断系统的瓶颈。</p>
+<p>&nbsp;5.回归问题</p>
+<p>&nbsp;&nbsp; Q：为什么崩溃前垃圾回收的时间越来越长？</p>
+<p>&nbsp;&nbsp; A:根据内存模型和垃圾回收算法，垃圾回收分两部分：内存标记、清除（复制），标记部分只要内存大小固定时间是不变的，变的是复制部分，因为每次垃圾回收都有一些回收不掉的内存，所以增加了复制量，导致时间延长。所以，垃圾回收的时间也可以作为判断内存泄漏的依据</p>
+<p>&nbsp;&nbsp; Q：为什么Full GC的次数越来越多？</p>
+<p>&nbsp;&nbsp; A：因此内存的积累，逐渐耗尽了年老代的内存，导致新对象分配没有更多的空间，从而导致频繁的垃圾回收</p>
+<p>&nbsp;&nbsp; Q:为什么年老代占用的内存越来越大？</p>
+<p>&nbsp;&nbsp; A:因为年轻代的内存无法被回收，越来越多地被Copy到年老代</p>
+<p>三、性能调优</p>
+<p>&nbsp;除了上述内存泄漏外，我们还发现CPU长期不足3%，系统吞吐量不够，针对8core×16G、64bit的Linux服务器来说，是严重的资源浪费。</p>
+<p>&nbsp;在CPU负载不足的同时，偶尔会有用户反映请求的时间过长，我们意识到必须对程序及JVM进行调优。从以下几个方面进行：</p>
+<ul>
+<li>线程池：解决用户响应时间长的问题</li>
+<li>连接池</li>
+<li>JVM启动参数：调整各代的内存比例和垃圾回收算法，提高吞吐量</li>
+<li>程序算法：改进程序逻辑算法提高性能</li>
+
+</ul>
+<p>&nbsp; 1.Java线程池（java.util.concurrent.ThreadPoolExecutor）</p>
+<p>&nbsp;&nbsp;&nbsp; 大多数JVM6上的应用采用的线程池都是JDK自带的线程池，之所以把成熟的Java线程池进行罗嗦说明，是因为该线程池的行为与我们想象的有点出入。Java线程池有几个重要的配置参数：</p>
+<ul>
+<li>corePoolSize：核心线程数（最新线程数）</li>
+<li>maximumPoolSize：最大线程数，超过这个数量的任务会被拒绝，用户可以通过RejectedExecutionHandler接口自定义处理方式</li>
+<li>keepAliveTime：线程保持活动的时间</li>
+<li>workQueue：工作队列，存放执行的任务</li>
+
+</ul>
+<p>&nbsp;&nbsp;&nbsp; Java线程池需要传入一个Queue参数（workQueue）用来存放执行的任务，而对Queue的不同选择，线程池有完全不同的行为：</p>
+<ul>
+<li><code><a href="http://www.cnblogs.com/chen77716/admin/eclipse-javadoc:%E2%98%82=perth/C:%5C/Program%20Files%5C/Java%5C/jdk1.6.0_10%5C/jre%5C/lib%5C/rt.jar%3Cjava.util.concurrent(ThreadPoolExecutor.class%E2%98%83ThreadPoolExecutor%E2%98%82SynchronousQueue" target="_blank">SynchronousQueue：</a>&nbsp;</code><code>一个无容量的等待队列，一个线程的insert操作必须等待另一线程的remove操作，采用这个Queue线程池将会为每个任务分配一个新线程</code></li>
+<li><code><a href="http://www.cnblogs.com/chen77716/admin/eclipse-javadoc:%E2%98%82=perth/C:%5C/Program%20Files%5C/Java%5C/jdk1.6.0_10%5C/jre%5C/lib%5C/rt.jar%3Cjava.util.concurrent(ThreadPoolExecutor.class%E2%98%83ThreadPoolExecutor%E2%98%82LinkedBlockingQueue" target="_blank">LinkedBlockingQueue</a>&nbsp;：</code>&nbsp;<code>无界队列，采用该Queue，线程池将忽略</code>&nbsp;maximumPoolSize参数，仅用corePoolSize的线程处理所有的任务，未处理的任务便在<code>LinkedBlockingQueue中排队</code></li>
+<li><code><a href="http://www.cnblogs.com/chen77716/admin/eclipse-javadoc:%E2%98%82=perth/C:%5C/Program%20Files%5C/Java%5C/jdk1.6.0_10%5C/jre%5C/lib%5C/rt.jar%3Cjava.util.concurrent(ThreadPoolExecutor.class%E2%98%83ThreadPoolExecutor%E2%98%82ArrayBlockingQueue" target="_blank">ArrayBlockingQueue：</a>&nbsp;有界队列，在有界队列和</code>&nbsp;maximumPoolSize的作用下，程序将很难被调优：更大的Queue和小的maximumPoolSize将导致CPU的低负载；小的Queue和大的池，Queue就没起动应有的作用。</li>
+
+</ul>
+<p>&nbsp;&nbsp;&nbsp; 其实我们的要求很简单，希望线程池能跟连接池一样，能设置最小线程数、最大线程数，当最小数&lt;任务&lt;最大数时，应该分配新的线程处理；当任务&gt;最大数时，应该等待有空闲线程再处理该任务。</p>
+<p>&nbsp;&nbsp;&nbsp; 但线程池的设计思路是，任务应该放到Queue中，当Queue放不下时再考虑用新线程处理，如果Queue满且无法派生新线程，就拒绝该任务。设计导致“先放等执行”、“放不下再执行”、“拒绝不等待”。所以，根据不同的Queue参数，要提高吞吐量不能一味地增大maximumPoolSize。</p>
+<p>&nbsp;&nbsp;&nbsp; 当然，要达到我们的目标，必须对线程池进行一定的封装，幸运的是ThreadPoolExecutor中留了足够的自定义接口以帮助我们达到目标。我们封装的方式是：</p>
+<ul>
+<li>以SynchronousQueue作为参数，使maximumPoolSize发挥作用，以防止线程被无限制的分配，同时可以通过提高maximumPoolSize来提高系统吞吐量</li>
+<li>自定义一个RejectedExecutionHandler，当线程数超过maximumPoolSize时进行处理，处理方式为隔一段时间检查线程池是否可以执行新Task，如果可以把拒绝的Task重新放入到线程池，检查的时间依赖keepAliveTime的大小。</li>
+
+</ul>
+<p>&nbsp; 2.连接池（org.apache.commons.dbcp.BasicDataSource）</p>
+<p>&nbsp;&nbsp;&nbsp; 在使用org.apache.commons.dbcp.BasicDataSource的时候，因为之前采用了默认配置，所以当访问量大时，通过JMX观察到很多Tomcat线程都阻塞在BasicDataSource使用的Apache ObjectPool的锁上，直接原因当时是因为BasicDataSource连接池的最大连接数设置的太小，默认的BasicDataSource配置，仅使用8个最大连接。</p>
+<p>&nbsp;&nbsp;&nbsp; 我还观察到一个问题，当较长的时间不访问系统，比如2天，DB上的<a class="replace_word" title="undefined" href="http://lib.csdn.net/base/14" target="_blank">MySQL</a>会断掉所以的连接，导致连接池中缓存的连接不能用。为了解决这些问题，我们充分研究了BasicDataSource，发现了一些优化的点：</p>
+<ul>
+<li>Mysql默认支持100个链接，所以每个连接池的配置要根据集群中的机器数进行，如有2台服务器，可每个设置为60</li>
+<li>initialSize：参数是一直打开的连接数</li>
+<li>minEvictableIdleTimeMillis：该参数设置每个连接的空闲时间，超过这个时间连接将被关闭</li>
+<li>timeBetweenEvictionRunsMillis：后台线程的运行周期，用来检测过期连接</li>
+<li>maxActive：最大能分配的连接数</li>
+<li>maxIdle：最大空闲数，当连接使用完毕后发现连接数大于maxIdle，连接将被直接关闭。只有initialSize &lt; x &lt; maxIdle的连接将被定期检测是否超期。这个参数主要用来在峰值访问时提高吞吐量。</li>
+<li>initialSize是如何保持的？经过研究代码发现，BasicDataSource会关闭所有超期的连接，然后再打开initialSize数量的连接，这个特性与minEvictableIdleTimeMillis、timeBetweenEvictionRunsMillis一起保证了所有超期的initialSize连接都会被重新连接，从而避免了Mysql长时间无动作会断掉连接的问题。</li>
+
+</ul>
+<p>&nbsp; 3.JVM参数</p>
+<p>&nbsp;&nbsp;&nbsp; 在JVM启动参数中，可以设置跟内存、垃圾回收相关的一些参数设置，默认情况不做任何设置JVM会工作的很好，但对一些配置很好的Server和具体的应用必须仔细调优才能获得最佳性能。通过设置我们希望达到一些目标：</p>
+<ul>
+<li>GC的时间足够的小</li>
+<li>GC的次数足够的少</li>
+<li>发生Full GC的周期足够的长</li>
+
+</ul>
+<p>&nbsp; 前两个目前是相悖的，要想GC时间小必须要一个更小的堆，要保证GC次数足够少，必须保证一个更大的堆，我们只能取其平衡。</p>
+<p>&nbsp;&nbsp; （1）针对JVM堆的设置一般，可以通过-Xms -Xmx限定其最小、最大值，为了防止垃圾收集器在最小、最大之间收缩堆而产生额外的时间，我们通常把最大、最小设置为相同的值<br>&nbsp;&nbsp; （2）年轻代和年老代将根据默认的比例（1：2）分配堆内存，可以通过调整二者之间的比率NewRadio来调整二者之间的大小，也可以针对回收代，比如年轻代，通过 -XX:newSize -XX:MaxNewSize来设置其绝对大小。同样，为了防止年轻代的堆收缩，我们通常会把-XX:newSize -XX:MaxNewSize设置为同样大小</p>
+<p>&nbsp;&nbsp; （3）年轻代和年老代设置多大才算合理？这个我问题毫无疑问是没有答案的，否则也就不会有调优。我们观察一下二者大小变化有哪些影响</p>
+<ul>
+<li>更大的年轻代必然导致更小的年老代，大的年轻代会延长普通GC的周期，但会增加每次GC的时间；小的年老代会导致更频繁的Full GC</li>
+<li>更小的年轻代必然导致更大年老代，小的年轻代会导致普通GC很频繁，但每次的GC时间会更短；大的年老代会减少Full GC的频率</li>
+<li>如何选择应该依赖应用程序对象生命周期的分布情况：如果应用存在大量的临时对象，应该选择更大的年轻代；如果存在相对较多的持久对象，年老代应该适当增大。但很多应用都没有这样明显的特性，在抉择时应该根据以下两点：（A）本着Full GC尽量少的原则，让年老代尽量缓存常用对象，JVM的默认比例1：2也是这个道理 （B）通过观察应用一段时间，看其他在峰值时年老代会占多少内存，在不影响Full GC的前提下，根据实际情况加大年轻代，比如可以把比例控制在1：1。但应该给年老代至少预留1/3的增长空间</li>
+
+</ul>
+<p>&nbsp; （4）在配置较好的机器上（比如多核、大内存），可以为年老代选择并行收集算法：&nbsp;<strong>-XX:+UseParallelOldGC</strong>&nbsp;，默认为Serial收集</p>
+<p>&nbsp; （5）线程堆栈的设置：每个线程默认会开启1M的堆栈，用于存放栈帧、调用参数、局部变量等，对大多数应用而言这个默认值太了，一般256K就足用。理论上，在内存不变的情况下，减少每个线程的堆栈，可以产生更多的线程，但这实际上还受限于操作系统。</p>
+<p>&nbsp; （4）可以通过下面的参数打Heap Dump信息</p>
+<ul>
+<li>-XX:HeapDumpPath</li>
+<li>-XX:+PrintGCDetails</li>
+<li>-XX:+PrintGCTimeStamps</li>
+<li>-Xloggc:/usr/aaa/dump/heap_trace.txt</li>
+
+</ul>
+<p>&nbsp;&nbsp;&nbsp; 通过下面参数可以控制OutOfMemoryError时打印堆的信息</p>
+<ul>
+<li>-XX:+HeapDumpOnOutOfMemoryError</li>
+
+</ul>
+<p>&nbsp;请看一下一个时间的Java参数配置：（服务器：Linux 64Bit，8Core×16G）</p>
+<p>&nbsp;<strong>JAVA_OPTS="$JAVA_OPTS -server -Xms3G -Xmx3G -Xss256k -XX:PermSize=128m -XX:MaxPermSize=128m -XX:+UseParallelOldGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/usr/aaa/dump -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:/usr/aaa/dump/heap_trace.txt -XX:NewSize=1G -XX:MaxNewSize=1G"</strong></p>
+<p>经过观察该配置非常稳定，每次普通GC的时间在10ms左右，Full GC基本不发生，或隔很长很长的时间才发生一次</p>
+<p>通过分析dump文件可以发现，每个1小时都会发生一次Full GC，经过多方求证，只要在JVM中开启了JMX服务，JMX将会1小时执行一次Full GC以清除引用，关于这点请参考附件文档。</p>
+<p>&nbsp;4.程序算法调优：本次不作为重点</p>
+<p>参考资料：</p>
+<p>http://java.sun.com/javase/technologies/hotspot/gc/gc_tuning_6.html</p></div><div id="MySignature" style="display: block;">每天一点成长，欢迎指正！</div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(6384392,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;bf19ea68-786d-e411-b908-9dcfd8948a71&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Eclipse极致性能调优 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Eclipse极致性能调优 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/barrywxx/" target="_blank"><img src="./Eclipse极致性能调优 - 博客园_files/sample_face.gif" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/barrywxx/">BarryW</a><br>
+            <a href="http://home.cnblogs.com/u/barrywxx/followees">关注 - 0</a><br>
+            <a href="http://home.cnblogs.com/u/barrywxx/followers">粉丝 - 33</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;bf19ea68-786d-e411-b908-9dcfd8948a71&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(6384392,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(6384392,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="https://www.cnblogs.com/barrywxx/p/6343303.html" class="p_n_p_prefix">« </a> 上一篇：<a href="https://www.cnblogs.com/barrywxx/p/6343303.html" title="发布于2017-01-23 09:37">连接池c3p0 ,Proxool ,Druid ,Tomcat Jdbc Pool对比测试</a><br><a href="https://www.cnblogs.com/barrywxx/p/JwPlayer.html" class="p_n_p_prefix">» </a> 下一篇：<a href="https://www.cnblogs.com/barrywxx/p/JwPlayer.html" title="发布于2017-03-08 16:02">官方JwPlayer去水印步骤</a><br></div>
+</div>
+
+
+	<div class="postDesc"><img src="./Eclipse极致性能调优 - 博客园_files/speech.gif" align="absmiddle">&nbsp;posted on <span id="post-date">2017-02-09 22:03</span> <a href="https://www.cnblogs.com/barrywxx/">BarryW</a> 阅读(<span id="post_view_count">5286</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=6384392" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/barrywxx/p/6384392.html#" onclick="AddToWz(6384392);return false;">收藏</a></div>
+</div>
+<script type="text/javascript">var allowComments=true,cb_blogId=205095,cb_entryId=6384392,cb_blogApp=currentBlogApp,cb_blogUserGuid='bf19ea68-786d-e411-b908-9dcfd8948a71',cb_entryCreatedDate='2017/2/9 22:03:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/barrywxx/p/6384392.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/barrywxx/p/6384392.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】超50万VC++源码: 大型组态工控、电力仿真CAD与GIS源码库！</a><br><a href="http://clickc.admaster.com.cn/c/a116493,b2949399,c1705,i0,m101,8a1,8b3,h" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-华为云&#39;)">【活动】申请成为华为云云享专家 尊享9大权益</a><br><a href="https://www.grapecity.com.cn/developer/spreadjs?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=SpreadJS&amp;utm_campaign=community" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-SpreadJS&#39;)">【工具】SpreadJS纯前端表格控件，可嵌入应用开发的在线Excel</a><br><a href="https://cloud.tencent.com/act/group/amd/index?fromSource=gwzcw.1608278.1608278.1608278" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-腾讯云&#39;)">【腾讯云】拼团福利，AMD云服务器8元/月</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="https://cloud.tencent.com/act/double11?fromSource=gwzcw.1608279.1608279.1608279" target="_blank"><img width="300" height="250" src="./Eclipse极致性能调优 - 博客园_files/24442-20181116205423366-85420768.jpg" alt="qcloud" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;C1&#39;);"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>相关博文：</b><br>·  <a href="https://www.cnblogs.com/jinzhiming/p/5358355.html" target="_blank" onclick="clickRecomItmem(5358355,&#39;jZOFcQR+lkITii7pK1OKEZprrwpfMYnuD39O7ipbvwKmjTJFvWm5JKVTDfxX9PDk7jCyqr7mo+LnCKES4h2oORga/asgNkLpf6Os9a4dxIN/tXv3KZU9TUtWwlYPt7JsS+gu/RUd8Ufl12YXtmA=&#39;)">eclipse 出现内存溢出问题解决办法</a><br>·  <a href="https://www.cnblogs.com/feiyuanxing/p/5282746.html" target="_blank" onclick="clickRecomItmem(5282746,&#39;Wrx9l+S0MJDwefWlXUUOnfZsLi4cE+qp3/71etrIObCZK3FoAqYNtxQX3HOSTUpT3ZTHu7Q7AfrPYRMljNqpXR1fEXE5C3F2xKwSAolRIX+c/5uqDPJL/mpUpDiEZ2jmobl7hUeCHTmEh6130uQ=&#39;)">myeclipse 配置堆内存</a><br>·  <a href="https://www.cnblogs.com/simbachen/p/4105922.html" target="_blank" onclick="clickRecomItmem(4105922,&#39;MdtbXQlV9cZjN06cJkdQdtmjj9CdHA/FAa7HQ/knv3hCanuu2NT280M/IeZ2+oY32C0/8O3NlcxitMKRayE81x7va1Zl7swPNzTJz4conZnd1/+y0JKg1NuT2Zc9covnN/dGpcMTzRUQpWtV7sM=&#39;)">Eclipse : fail to create java virtual machine 解决方法</a><br>·  <a href="https://www.cnblogs.com/liuhaixu/p/5069633.html" target="_blank" onclick="clickRecomItmem(5069633,&#39;ONN/XRgOwyqc4hJDkLhpMKOvc9WpY1IbdLEtpG9KleGMotfTOqvO6MhdFl6OG9MAG5JPmBhJLWJqGiHwQ3bpw6rDpS7Dpty+kdz5A+jFDLFajJeB3hM3vasUL5lxCAOIcvMvgVtTyx1YYG+7ooE=&#39;)">window7 64bit解决tomcat内存不足问题</a><br>·  <a href="https://www.cnblogs.com/hupolinglong/p/7524415.html" target="_blank" onclick="clickRecomItmem(7524415,&#39;+V8ALDpZNds5QvPc9PtIU5qvnKjWOsdtFgeBz6vw3ilPi+9kETmCKtPVr4Q7nCG1slFlPVzNePys3VT++Xqr8RjC2Z6SFdMtoj8ASuxxflrsSpCwiEMwhbFnATF+T1eqfVqE3nA6Sz6pN6xXJGM=&#39;)">eclipse.ini 优化</a><br></div></div>
+<script async="async" src="./Eclipse极致性能调优 - 博客园_files/gpt.js.下载"></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+<div id="cnblogs_c2" class="c_ad_block">
+    <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;" data-google-query-id="CPCpze_-894CFZUJvAodVYIHrw">
+    <script>
+    if (new Date() >= new Date(2018, 9, 13)) {
+        googletag.cmd.push(function() { googletag.display('div-gpt-ad-1539008685004-0'); });
+    }
+    </script>
+    <div id="google_ads_iframe_/1090369/C2_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C2_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C2_0" width="468" height="60" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" data-google-container-id="1" data-load-complete="true" src="./Eclipse极致性能调优 - 博客园_files/saved_resource.html"></iframe></div></div>
+</div>
+<div id="under_post_kb"><div class="itnews c_ad_block"><b>最新新闻</b>：<br> ·  <a href="https://news.cnblogs.com/n/613354/" target="_blank">谷歌涂鸦纪念首位哈佛医学院女学生菲·德尔·蒙多109岁冥诞</a><br> ·  <a href="https://news.cnblogs.com/n/613353/" target="_blank">微软重推面向Windows 10 1809的KB4469342累积更新</a><br> ·  <a href="https://news.cnblogs.com/n/613352/" target="_blank">莱斯大学：对参与基因编辑婴儿事件教职员展开调查</a><br> ·  <a href="https://news.cnblogs.com/n/613350/" target="_blank">京东：“大面积裁员”为谣言 已报案</a><br> ·  <a href="https://news.cnblogs.com/n/613349/" target="_blank">Facebook出bug：多年前的旧信息毫无缘由重新出现</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+		</div>
+	</div>
+	</div>
+	<!-- left ends -->
+	<!-- right starts -->
+	<div id="right">
+		<!-- 右侧工具部分 -->
+		<div id="right_content">
+	
+			
+<!--done-->
+<h1 class="listtitle" style="padding-top:14px;padding-left:42px;">公告</h1>
+<div class="newsItem">
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/barrywxx/">BarryW</a><br>园龄：<a href="https://home.cnblogs.com/u/barrywxx/" title="入园时间：2014-11-16">4年</a><br>粉丝：<a href="https://home.cnblogs.com/u/barrywxx/followers/">33</a><br>关注：<a href="https://home.cnblogs.com/u/barrywxx/followees/">0</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;bf19ea68-786d-e411-b908-9dcfd8948a71&#39;)">+加关注</a></div><script>getFollowStatus('bf19ea68-786d-e411-b908-9dcfd8948a71')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+	
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/10/01&#39;);return false;">&lt;</a></td><td align="center">2018年11月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/12/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td class="CalWeekendDay" align="center">3</td></tr><tr><td class="CalWeekendDay" align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center"><a href="https://www.cnblogs.com/barrywxx/archive/2018/11/09.html"><u>9</u></a></td><td class="CalWeekendDay" align="center">10</td></tr><tr><td class="CalWeekendDay" align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td class="CalWeekendDay" align="center"><a href="https://www.cnblogs.com/barrywxx/archive/2018/11/17.html"><u>17</u></a></td></tr><tr><td class="CalWeekendDay" align="center"><a href="https://www.cnblogs.com/barrywxx/archive/2018/11/18.html"><u>18</u></a></td><td align="center">19</td><td align="center">20</td><td align="center"><a href="https://www.cnblogs.com/barrywxx/archive/2018/11/21.html"><u>21</u></a></td><td align="center"><a href="https://www.cnblogs.com/barrywxx/archive/2018/11/22.html"><u>22</u></a></td><td align="center"><a href="https://www.cnblogs.com/barrywxx/archive/2018/11/23.html"><u>23</u></a></td><td class="CalWeekendDay" align="center">24</td></tr><tr><td class="CalWeekendDay" align="center">25</td><td align="center">26</td><td class="CalTodayDay" align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td class="CalOtherMonthDay" align="center">1</td></tr><tr><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+				<div id="leftcontentcontainer">
+					<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="https://www.cnblogs.com/barrywxx/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="https://www.cnblogs.com/barrywxx/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="https://www.cnblogs.com/barrywxx/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="https://www.cnblogs.com/barrywxx/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="https://www.cnblogs.com/barrywxx/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<h3 class="catListTitle">我的标签</h3>
+<div id="MyTag">
+<ul>
+<li><a href="https://www.cnblogs.com/barrywxx/tag/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">项目管理</a>(36)</li><li><a href="https://www.cnblogs.com/barrywxx/tag/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>(24)</li><li><a href="https://www.cnblogs.com/barrywxx/tag/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/">Java多线程</a>(21)</li><li><a href="https://www.cnblogs.com/barrywxx/tag/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%88%96%E7%AE%97%E6%B3%95/">数据结构或算法</a>(19)</li><li><a href="https://www.cnblogs.com/barrywxx/tag/Redis/">Redis</a>(18)</li><li><a href="https://www.cnblogs.com/barrywxx/tag/JVM%E8%B0%83%E4%BC%98/">JVM调优</a>(14)</li><li><a href="https://www.cnblogs.com/barrywxx/tag/Java%E6%8A%80%E6%9C%AF/">Java技术</a>(14)</li><li><a href="https://www.cnblogs.com/barrywxx/tag/%E6%9E%B6%E6%9E%84/">架构</a>(14)</li><li><a href="https://www.cnblogs.com/barrywxx/tag/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>(13)</li><li><a href="https://www.cnblogs.com/barrywxx/tag/%E4%BA%92%E8%81%94%E7%BD%91%E5%8A%A8%E6%80%81/">互联网动态</a>(11)</li><li><a href="https://www.cnblogs.com/barrywxx/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<!--done-->
+
+		<h1 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(311)</span></h1>
+		
+				<div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_0" class="listitem" href="https://www.cnblogs.com/barrywxx/archive/2018/11.html">2018年11月 (11)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_1" class="listitem" href="https://www.cnblogs.com/barrywxx/archive/2018/09.html">2018年9月 (2)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_2" class="listitem" href="https://www.cnblogs.com/barrywxx/archive/2018/04.html">2018年4月 (7)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_3" class="listitem" href="https://www.cnblogs.com/barrywxx/archive/2018/03.html">2018年3月 (122)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_4" class="listitem" href="https://www.cnblogs.com/barrywxx/archive/2018/02.html">2018年2月 (14)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_5" class="listitem" href="https://www.cnblogs.com/barrywxx/archive/2017/11.html">2017年11月 (1)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_6" class="listitem" href="https://www.cnblogs.com/barrywxx/archive/2017/10.html">2017年10月 (1)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_7" class="listitem" href="https://www.cnblogs.com/barrywxx/archive/2017/08.html">2017年8月 (2)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_8" class="listitem" href="https://www.cnblogs.com/barrywxx/archive/2017/06.html">2017年6月 (5)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_9" class="listitem" href="https://www.cnblogs.com/barrywxx/archive/2017/04.html">2017年4月 (2)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_10" class="listitem" href="https://www.cnblogs.com/barrywxx/archive/2017/03.html">2017年3月 (2)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_11" class="listitem" href="https://www.cnblogs.com/barrywxx/archive/2017/02.html">2017年2月 (1)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_12" class="listitem" href="https://www.cnblogs.com/barrywxx/archive/2017/01.html">2017年1月 (3)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_13" class="listitem" href="https://www.cnblogs.com/barrywxx/archive/2015/09.html">2015年9月 (2)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_14" class="listitem" href="https://www.cnblogs.com/barrywxx/archive/2015/08.html">2015年8月 (1)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_15" class="listitem" href="https://www.cnblogs.com/barrywxx/archive/2015/07.html">2015年7月 (1)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_16" class="listitem" href="https://www.cnblogs.com/barrywxx/archive/2015/06.html">2015年6月 (19)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_17" class="listitem" href="https://www.cnblogs.com/barrywxx/archive/2015/05.html">2015年5月 (8)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_18" class="listitem" href="https://www.cnblogs.com/barrywxx/archive/2015/04.html">2015年4月 (58)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_19" class="listitem" href="https://www.cnblogs.com/barrywxx/archive/2015/03.html">2015年3月 (40)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_20" class="listitem" href="https://www.cnblogs.com/barrywxx/archive/2015/01.html">2015年1月 (6)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_21" class="listitem" href="https://www.cnblogs.com/barrywxx/archive/2014/12.html">2014年12月 (2)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_22" class="listitem" href="https://www.cnblogs.com/barrywxx/archive/2014/11.html">2014年11月 (1)</a>
+				</div>
+			
+				</div>
+			
+	
+		<h1 class="catListTitle">技术文章</h1>
+		
+	
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<h3>积分与排名</h3>
+<ul>
+	<li>
+		积分 -
+		126201
+	</li><li>
+		排名 -
+		2965
+	</li>
+</ul>
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/barrywxx/p/8533363.html#4117553">1. Re:阿里微服务架构下的分布式事务解决方案-GTS</a></li>
+        <li class="recent_comment_body">越来越喜欢cnblogs， 没有csdn那么多的广告。</li>
+        <li class="recent_comment_author">--hisay</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/barrywxx/p/8522152.html#4045653">2. Re:OSGi解决的问题</a></li>
+        <li class="recent_comment_body">哥们，OSGI中，一个事务里面如何处理不同模块的实体？ 有什么好的方法吗</li>
+        <li class="recent_comment_author">--饿狼在跳舞</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/barrywxx/p/8678698.html#4037184">3. Re:深入介绍Java中的锁[原理、锁优化、CAS、AQS]</a></li>
+        <li class="recent_comment_body">很细致呢，想转载啊。。。</li>
+        <li class="recent_comment_author">--VoctrALs</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/barrywxx/p/8687704.html#4000412">4. Re:Linux命令及架构部署大全</a></li>
+        <li class="recent_comment_body">写的真好！</li>
+        <li class="recent_comment_author">--xiegan110</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/barrywxx/p/8591840.html#3926316">5. Re:CAS实现单点登录SSO执行原理及部署</a></li>
+        <li class="recent_comment_body">感谢，多谢，学习了。</li>
+        <li class="recent_comment_author">--IT人的故事</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/barrywxx/p/4779911.html#3259731">6. Re:SQL性能优化注意事项</a></li>
+        <li class="recent_comment_body">谢谢分享</li>
+        <li class="recent_comment_author">--沈赟</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/barrywxx/p/4779913.html#3259730">7. Re:编写高性能SQL的注意事项</a></li>
+        <li class="recent_comment_body">谢谢分享</li>
+        <li class="recent_comment_author">--沈赟</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="https://www.cnblogs.com/barrywxx/p/4351901.html">1. 数据库索引类型及实现方式(20332)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/4257166.html">2. 开源大数据查询分析引擎(8063)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8482214.html">3. 最新Java技术(7937)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/6384392.html">4. Eclipse极致性能调优(5285)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/4343043.html">5. 常用几种Java Web容器(5070)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/7723122.html">6. MySQL 使用自增ID主键和UUID 作为主键的优劣比较详细过程（从百万到千万表记录测试）(4483)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/4561797.html">7. Redmine数据库备份及搬家(3974)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/7016927.html">8. Html5视频播放器-VideoJS+Audio标签实现视频，音频及字幕同步播放(3712)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/6964423.html">9. Java 三种方式实现接口校验(3598)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/6260252.html">10. 国内下载比较快的Maven仓库镜像(3582)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8533363.html">11. 阿里微服务架构下的分布式事务解决方案-GTS(3342)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8525907.html">12. Java 延迟队列使用(3327)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/4390156.html">13. 项目规模估计方法介绍(3273)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/4779913.html">14. 编写高性能SQL的注意事项(3105)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/7778363.html">15. Linux安装Gradle(3008)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8678698.html">16. 深入介绍Java中的锁[原理、锁优化、CAS、AQS](2910)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8506548.html">17. Dubbo 分布式事务一致性实现(2775)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8476320.html">18. Redis缓存实现排序功能(2503)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/6343303.html">19. 连接池c3p0 ,Proxool ,Druid ,Tomcat Jdbc Pool对比测试(2393)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/4414786.html">20. 数据持久层框架iBatis, Hibernate 与 JPA 比较(2392)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8570735.html">21. 所有加密算法及对称加密和非对称加密分类(2331)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/JwPlayer.html">22. 官方JwPlayer去水印步骤(2317)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8563062.html">23. 分布式mysql中间件（mycat）(2230)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/4257261.html">24. 如何安装使用Impala(2229)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8506512.html">25. 微服务间保持事务一致性(2187)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8430790.html">26. BIO,NIO与AIO的区别(2153)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8524935.html">27. 支付系统,支付流程及实现介绍(2122)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8563533.html">28. Redis两种方式实现限流(1800)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8570558.html">29. 使用Java 线程池的利弊及JDK自带六种创建线程池的方法(1784)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8570821.html">30. Redis线程模型(1730)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8506529.html">31. 微服务实现事务一致性实例(1624)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/4358190.html">32. 嵌套循环注意事项(1556)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8593378.html">33. Mycat对MySQL进行垂直水平分表分库，读写分离(1440)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8487444.html">34. Java中CAS原理详解(1407)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/4390952.html">35. 项目管理（六）- 选择合适的团队成员(1325)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8546203.html">36. Dubbo+zookeeper构建高可用分布式集群（一）-单机部署(1308)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8528849.html">37. Dubbo架构设计及原理详解(1288)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/4526660.html">38. Jdon框架开发指南(1137)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/6964257.html">39. Spring AOP实现 Bean字段合法性校验(1096)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/6560413.html">40. 版本号严格遵守semver语义化标准(1023)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="https://www.cnblogs.com/barrywxx/p/8533363.html">1. 阿里微服务架构下的分布式事务解决方案-GTS(1)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8522152.html">2. OSGi解决的问题(1)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8687704.html">3. Linux命令及架构部署大全(1)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8678698.html">4. 深入介绍Java中的锁[原理、锁优化、CAS、AQS](1)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8591840.html">5. CAS实现单点登录SSO执行原理及部署(1)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/4779913.html">6. 编写高性能SQL的注意事项(1)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/4779911.html">7. SQL性能优化注意事项(1)</a></li></ul></div>
+</div></div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="https://www.cnblogs.com/barrywxx/p/4351901.html">1. 数据库索引类型及实现方式(3)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/4351816.html">2. 各种排序算法的分析及java实现(1)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/4351517.html">3. Java性能优化技巧(1)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/4390973.html">4. 敏捷开发（一）- 搜集故事(1)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8525907.html">5. Java 延迟队列使用(1)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8487444.html">6. Java中CAS原理详解(1)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8482214.html">7. 最新Java技术(1)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8687704.html">8. Linux命令及架构部署大全(1)</a></li><li><a href="https://www.cnblogs.com/barrywxx/p/8678698.html">9. 深入介绍Java中的锁[原理、锁优化、CAS、AQS](1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+				</div>
+			
+		</div>
+		<!-- //右侧工具部分 -->
+	</div>
+	<!-- right ends -->
+	<div class="clear"></div>
+</div>
+<div id="footer">
+<!--done-->
+Copyright ©2018 BarryW</div>
+
+
+
+<iframe id="google_osd_static_frame_5699738726836" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;" src="./Eclipse极致性能调优 - 博客园_files/saved_resource(1).html"></iframe></body></html>

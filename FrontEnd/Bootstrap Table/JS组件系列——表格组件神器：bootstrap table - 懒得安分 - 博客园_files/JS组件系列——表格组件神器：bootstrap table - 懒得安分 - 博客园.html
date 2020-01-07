@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://www.cnblogs.com/landeanfen/p/4976838.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/bundle-darkgreentrip.css">
+<link type="text/css" rel="stylesheet" href="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/131448.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/bundle-darkgreentrip-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/landeanfen/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/landeanfen/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/landeanfen/wlwmanifest.xml">
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/encoder.js.下载"></script><script src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/jquery-2.2.0.min.js.下载"></script>
+<script type="text/javascript">var currentBlogApp = 'landeanfen', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+<link rel="shortcut icon" href="https://files.cnblogs.com/files/landeanfen/landeanfen.ico"></head>
+<body>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<a href="https://github.com/landeanfen2" target="_blank">
+　　<img style="position: fixed; top: 0; right: 0; border: 0;" src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/o_github.bmp">
+</a>
+<!--PageBeginHtml Block End-->
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/landeanfen/"><img id="blogLogo" src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/landeanfen/">懒得安分</a></h1>
+<h2><div style="width:1200px;">每一次想到未来掌握在自己手中，就忍不住笑了~~  <b>项目合作，联系博主！技术交流，欢迎加群！</b>群一、二、三、四、五、六已满！群七(前端)：615273153；群八(后端)：702549620。</div></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/landeanfen/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E6%87%92%E5%BE%97%E5%AE%89%E5%88%86">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/landeanfen/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/landeanfen/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 104&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 2751</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/landeanfen/p/4976838.html">JS组件系列——表格组件神器：bootstrap table</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>前言：之前一直在忙着各种什么效果，殊不知最基础的Bootstrap Table用法都没有涉及，罪过，罪过。今天补起来吧。上午博主由零开始自己从头到尾使用了一遍Bootstrap Table ，遇到不少使用方面的问题，也做了一部分笔记，在此分享出来供需要使用的园友参考。还记得前两天有园友加群问我Bootstrap Table的使用问题，呵呵，巧了，今天博主也遇到同样的问题了，在此还是要表示抱歉，没有将这篇提前发出来。</p>
+<p>bootstrap table系列：</p>
+<ul>
+<li><a href="http://www.cnblogs.com/landeanfen/p/4976838.html" target="_blank">JS组件系列——表格组件神器：bootstrap table</a></li>
+<li><a id="homepage1_HomePageDays_DaysList_ctl00_DayList_TitleUrl_0" class="postTitle2" href="http://www.cnblogs.com/landeanfen/p/4993979.html">JS组件系列——表格组件神器：bootstrap table（二：父子表和行列调序）</a></li>
+<li><a href="http://www.cnblogs.com/landeanfen/p/5005367.html" target="_blank">JS组件系列——表格组件神器：bootstrap table（三：终结篇，最后的干货福利）</a></li>
+</ul>
+<h2>一、相关文档和技术网站小结</h2>
+<p>&nbsp;关于流式布局的bootstrap，博主也是最近半年才开始使用，用过之后才知道其实开源的东西挺不错的，还是为bootstrap开源工作者点一个大大的赞！老规矩，贴出相关文档：</p>
+<p>Bootstrap中文网：<a href="http://www.bootcss.com/" target="_blank">http://www.bootcss.com/</a>&nbsp; &nbsp; &nbsp; &nbsp;</p>
+<p>Bootstrap Table Demo：<a href="http://issues.wenzhixin.net.cn/bootstrap-table/index.html" target="_blank">http://issues.wenzhixin.net.cn/bootstrap-table/index.html</a></p>
+<p>Bootstrap Table API：<a href="http://bootstrap-table.wenzhixin.net.cn/zh-cn/documentation/" target="_blank">http://bootstrap-table.wenzhixin.net.cn/zh-cn/documentation/</a></p>
+<p>Bootstrap Table源码：<a href="https://github.com/wenzhixin/bootstrap-table" target="_blank">https://github.com/wenzhixin/bootstrap-table</a></p>
+<p>Bootstrap DataPicker：<a href="http://www.bootcss.com/p/bootstrap-datetimepicker/" target="_blank">http://www.bootcss.com/p/bootstrap-datetimepicker/</a></p>
+<p>Boostrap Table 扩展API：<a href="http://bootstrap-table.wenzhixin.net.cn/extensions/" target="_blank">http://bootstrap-table.wenzhixin.net.cn/extensions/</a></p>
+<p><a href="http://pan.baidu.com/s/1kTERYsf" target="_blank">Bootstrap离线API</a></p>
+<p><a href="http://pan.baidu.com/s/1c0G3Fu4" target="_blank">&nbsp;Bootstrap Table 离线API</a></p>
+<p>这里要说明一点：Bootstrap Table的离线API是博主自己在官网上面保存下来的，样式可能存在问题。博主也不想使用这种看起来乖乖的离线文档，但没办法，<a href="http://bootstrap-table.wenzhixin.net.cn/zh-cn/documentation/" target="_blank">http://bootstrap-table.wenzhixin.net.cn/zh-cn/documentation/</a>这网站经常性的打不开，貌似有被墙的可能性。下一步是不是要FQ了，O(∩_∩)O~。</p>
+<h2>二、Bootstrap Table的引入</h2>
+<p>&nbsp;关于Bootstrap Table的引入，一般来说还是两种方法：</p>
+<h3>1、直接下载源码，添加到项目里面来。</h3>
+<p>由于Bootstrap Table是Bootstrap的一个组件，所以它是依赖Bootstrap的，我们首先需要添加Bootstrap的引用。Bootstrap的包直接在&nbsp;<a href="http://v3.bootcss.com/" target="_blank">http://v3.bootcss.com/</a>&nbsp;里面可以找到，版本已经出来4的预览版，但还是建议使用比较稳定的Bootstrap3，目前最新的3.3.5。然后就是Bootstrap Table的包了，由于它是开源的，我们直接进到它的源码<a href="https://github.com/wenzhixin/bootstrap-table" target="_blank">https://github.com/wenzhixin/bootstrap-table</a>里面git下来就好了。然后把这两个包分别加入到项目中。</p>
+<h3>2、使用我们神奇的Nuget</h3>
+<p>打开Nuget，搜索这两个包</p>
+<p><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/459756-20151119143050280-232259495.png" alt=""></p>
+<p>Bootstrap已经是最新的3.3.5了，我们直接安装即可。</p>
+<p><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/459756-20151119143126390-699506224.png" alt=""></p>
+<p>而Bootstrap Table的版本竟然是0.4，这也太坑爹了。所以博主建议Bootstrap Table的包就直接在源码里面去下载吧。Bootstrap Table最新的版本好像是1.9.0。</p>
+<h2>三、代码详解</h2>
+<p>&nbsp;当然，组件引用进来了，使用就简单了，只不过这里面涉及很多细节需要我们处理，具体我们待会再说，先来看看使用方法。</p>
+<h3>1、在cshtml页面引用相关组件，并定义好一个空的表格。</h3>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;">@{
+    Layout = null;
+}
+</span><span style="color: #0000ff;">&lt;!</span><span style="color: #ff00ff;">DOCTYPE html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">meta </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="viewport"</span><span style="color: #ff0000;"> content</span><span style="color: #0000ff;">="width=device-width"</span> <span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>BootStrap Table使用<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+    @*1、Jquery组件引用*@
+    </span><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="~/Scripts/jquery-1.10.2.js"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+
+    @*2、bootstrap组件引用*@
+    </span><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="~/Content/bootstrap/bootstrap.js"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">link </span><span style="color: #ff0000;">href</span><span style="color: #0000ff;">="~/Content/bootstrap/bootstrap.css"</span><span style="color: #ff0000;"> rel</span><span style="color: #0000ff;">="stylesheet"</span> <span style="color: #0000ff;">/&gt;</span><span style="color: #000000;">
+    
+    @*3、bootstrap table组件以及中文包的引用*@
+    </span><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="~/Content/bootstrap-table/bootstrap-table.js"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">link </span><span style="color: #ff0000;">href</span><span style="color: #0000ff;">="~/Content/bootstrap-table/bootstrap-table.css"</span><span style="color: #ff0000;"> rel</span><span style="color: #0000ff;">="stylesheet"</span> <span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="~/Content/bootstrap-table/locale/bootstrap-table-zh-CN.js"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+    
+    @*4、页面Js文件的引用*@
+    </span><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="~/Scripts/Home/Index.js"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="panel-body"</span><span style="color: #ff0000;"> style</span><span style="color: #0000ff;">="padding-bottom:0px;"</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="panel panel-default"</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="panel-heading"</span><span style="color: #0000ff;">&gt;</span>查询条件<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="panel-body"</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">form </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="formSearch"</span><span style="color: #ff0000;"> class</span><span style="color: #0000ff;">="form-horizontal"</span><span style="color: #0000ff;">&gt;</span>
+                    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="form-group"</span><span style="color: #ff0000;"> style</span><span style="color: #0000ff;">="margin-top:15px"</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">label </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="control-label col-sm-1"</span><span style="color: #ff0000;"> for</span><span style="color: #0000ff;">="txt_search_departmentname"</span><span style="color: #0000ff;">&gt;</span>部门名称<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">label</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="col-sm-3"</span><span style="color: #0000ff;">&gt;</span>
+                            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="text"</span><span style="color: #ff0000;"> class</span><span style="color: #0000ff;">="form-control"</span><span style="color: #ff0000;"> id</span><span style="color: #0000ff;">="txt_search_departmentname"</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">label </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="control-label col-sm-1"</span><span style="color: #ff0000;"> for</span><span style="color: #0000ff;">="txt_search_statu"</span><span style="color: #0000ff;">&gt;</span>状态<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">label</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="col-sm-3"</span><span style="color: #0000ff;">&gt;</span>
+                            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="text"</span><span style="color: #ff0000;"> class</span><span style="color: #0000ff;">="form-control"</span><span style="color: #ff0000;"> id</span><span style="color: #0000ff;">="txt_search_statu"</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="col-sm-4"</span><span style="color: #ff0000;"> style</span><span style="color: #0000ff;">="text-align:left;"</span><span style="color: #0000ff;">&gt;</span>
+                            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="button"</span><span style="color: #ff0000;"> style</span><span style="color: #0000ff;">="margin-left:50px"</span><span style="color: #ff0000;"> id</span><span style="color: #0000ff;">="btn_query"</span><span style="color: #ff0000;"> class</span><span style="color: #0000ff;">="btn btn-primary"</span><span style="color: #0000ff;">&gt;</span>查询<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+                    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">form</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>       
+
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="toolbar"</span><span style="color: #ff0000;"> class</span><span style="color: #0000ff;">="btn-group"</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="btn_add"</span><span style="color: #ff0000;"> type</span><span style="color: #0000ff;">="button"</span><span style="color: #ff0000;"> class</span><span style="color: #0000ff;">="btn btn-default"</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">span </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="glyphicon glyphicon-plus"</span><span style="color: #ff0000;"> aria-hidden</span><span style="color: #0000ff;">="true"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">span</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">新增
+            </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="btn_edit"</span><span style="color: #ff0000;"> type</span><span style="color: #0000ff;">="button"</span><span style="color: #ff0000;"> class</span><span style="color: #0000ff;">="btn btn-default"</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">span </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="glyphicon glyphicon-pencil"</span><span style="color: #ff0000;"> aria-hidden</span><span style="color: #0000ff;">="true"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">span</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">修改
+            </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="btn_delete"</span><span style="color: #ff0000;"> type</span><span style="color: #0000ff;">="button"</span><span style="color: #ff0000;"> class</span><span style="color: #0000ff;">="btn btn-default"</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">span </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="glyphicon glyphicon-remove"</span><span style="color: #ff0000;"> aria-hidden</span><span style="color: #0000ff;">="true"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">span</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">删除
+            </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">table </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="tb_departments"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">table</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>引入需要的文件之后，我们最重要的就是定义一个空的table，如上的 &nbsp;&lt;table id="tb_departments"&gt;&lt;/table&gt; &nbsp;。当然Bootstrap table还提供了一种简介的用法，直接在table标签里面定义类似“data-...”等相关属性，就不用再js里面注册了，但博主觉得这种用法虽然简单，但不太灵活，遇到父子表等这些高级用法的时候就不太好处理了，所以咱们还是统一使用在js里面初始化的方式来使用table组件。</p>
+<h3>2、Js初始化</h3>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>$(<span style="color: #0000ff;">function</span><span style="color: #000000;"> () {
+
+    </span><span style="color: #008000;">//</span><span style="color: #008000;">1.初始化Table</span>
+    <span style="color: #0000ff;">var</span> oTable = <span style="color: #0000ff;">new</span><span style="color: #000000;"> TableInit();
+    oTable.Init();
+
+    </span><span style="color: #008000;">//</span><span style="color: #008000;">2.初始化Button的点击事件</span>
+    <span style="color: #0000ff;">var</span> oButtonInit = <span style="color: #0000ff;">new</span><span style="color: #000000;"> ButtonInit();
+    oButtonInit.Init();
+
+});
+
+
+</span><span style="color: #0000ff;">var</span> TableInit = <span style="color: #0000ff;">function</span><span style="color: #000000;"> () {
+    </span><span style="color: #0000ff;">var</span> oTableInit = <span style="color: #0000ff;">new</span><span style="color: #000000;"> Object();
+    </span><span style="color: #008000;">//</span><span style="color: #008000;">初始化Table</span>
+    oTableInit.Init = <span style="color: #0000ff;">function</span><span style="color: #000000;"> () {
+        $(</span>'#tb_departments'<span style="color: #000000;">).bootstrapTable({
+            url: </span>'/Home/GetDepartment',         <span style="color: #008000;">//</span><span style="color: #008000;">请求后台的URL（*）</span>
+            method: 'get',                      <span style="color: #008000;">//</span><span style="color: #008000;">请求方式（*）</span>
+            toolbar: '#toolbar',                <span style="color: #008000;">//</span><span style="color: #008000;">工具按钮用哪个容器</span>
+            striped: <span style="color: #0000ff;">true</span>,                      <span style="color: #008000;">//</span><span style="color: #008000;">是否显示行间隔色</span>
+            cache: <span style="color: #0000ff;">false</span>,                       <span style="color: #008000;">//</span><span style="color: #008000;">是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）</span>
+            pagination: <span style="color: #0000ff;">true</span>,                   <span style="color: #008000;">//</span><span style="color: #008000;">是否显示分页（*）</span>
+            sortable: <span style="color: #0000ff;">false</span>,                     <span style="color: #008000;">//</span><span style="color: #008000;">是否启用排序</span>
+            sortOrder: "asc",                   <span style="color: #008000;">//</span><span style="color: #008000;">排序方式</span>
+            queryParams: oTableInit.queryParams,<span style="color: #008000;">//</span><span style="color: #008000;">传递参数（*）</span>
+            sidePagination: "server",           <span style="color: #008000;">//</span><span style="color: #008000;">分页方式：client客户端分页，server服务端分页（*）</span>
+            pageNumber:1,                       <span style="color: #008000;">//</span><span style="color: #008000;">初始化加载第一页，默认第一页</span>
+            pageSize: 10,                       <span style="color: #008000;">//</span><span style="color: #008000;">每页的记录行数（*）</span>
+            pageList: [10, 25, 50, 100],        <span style="color: #008000;">//</span><span style="color: #008000;">可供选择的每页的行数（*）</span>
+            search: <span style="color: #0000ff;">true</span>,                       <span style="color: #008000;">//</span><span style="color: #008000;">是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大</span>
+            strictSearch: <span style="color: #0000ff;">true</span><span style="color: #000000;">,
+            showColumns: </span><span style="color: #0000ff;">true</span>,                  <span style="color: #008000;">//</span><span style="color: #008000;">是否显示所有的列</span>
+            showRefresh: <span style="color: #0000ff;">true</span>,                  <span style="color: #008000;">//</span><span style="color: #008000;">是否显示刷新按钮</span>
+            minimumCountColumns: 2,             <span style="color: #008000;">//</span><span style="color: #008000;">最少允许的列数</span>
+            clickToSelect: <span style="color: #0000ff;">true</span>,                <span style="color: #008000;">//</span><span style="color: #008000;">是否启用点击选中行</span>
+            height: 500,                        <span style="color: #008000;">//</span><span style="color: #008000;">行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度</span>
+            uniqueId: "ID",                     <span style="color: #008000;">//</span><span style="color: #008000;">每一行的唯一标识，一般为主键列</span>
+            showToggle:<span style="color: #0000ff;">true</span>,                    <span style="color: #008000;">//</span><span style="color: #008000;">是否显示详细视图和列表视图的切换按钮</span>
+            cardView: <span style="color: #0000ff;">false</span>,                    <span style="color: #008000;">//</span><span style="color: #008000;">是否显示详细视图</span>
+            detailView: <span style="color: #0000ff;">false</span>,                   <span style="color: #008000;">//</span><span style="color: #008000;">是否显示父子表</span>
+<span style="color: #000000;">            columns: [{
+                checkbox: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">
+            }, {
+                field: </span>'Name'<span style="color: #000000;">,
+                title: </span>'部门名称'<span style="color: #000000;">
+            }, {
+                field: </span>'ParentName'<span style="color: #000000;">,
+                title: </span>'上级部门'<span style="color: #000000;">
+            }, {
+                field: </span>'Level'<span style="color: #000000;">,
+                title: </span>'部门级别'<span style="color: #000000;">
+            }, {
+                field: </span>'Desc'<span style="color: #000000;">,
+                title: </span>'描述'<span style="color: #000000;">
+            }, ]
+        });
+    };
+
+    </span><span style="color: #008000;">//</span><span style="color: #008000;">得到查询的参数</span>
+    oTableInit.queryParams = <span style="color: #0000ff;">function</span><span style="color: #000000;"> (params) {
+        </span><span style="color: #0000ff;">var</span> temp = {   <span style="color: #008000;">//</span><span style="color: #008000;">这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的</span>
+            limit: params.limit,   <span style="color: #008000;">//</span><span style="color: #008000;">页面大小</span>
+            offset: params.offset,  <span style="color: #008000;">//</span><span style="color: #008000;">页码</span>
+            departmentname: $("#txt_search_departmentname"<span style="color: #000000;">).val(),
+            statu: $(</span>"#txt_search_statu"<span style="color: #000000;">).val()
+        };
+        </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> temp;
+    };
+    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> oTableInit;
+};
+
+
+</span><span style="color: #0000ff;">var</span> ButtonInit = <span style="color: #0000ff;">function</span><span style="color: #000000;"> () {
+    </span><span style="color: #0000ff;">var</span> oInit = <span style="color: #0000ff;">new</span><span style="color: #000000;"> Object();
+    </span><span style="color: #0000ff;">var</span> postdata =<span style="color: #000000;"> {};
+
+    oInit.Init </span>= <span style="color: #0000ff;">function</span><span style="color: #000000;"> () {
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">初始化页面上面的按钮事件</span>
+<span style="color: #000000;">    };
+
+    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> oInit;
+};</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>表格的初始化也很简单，定义相关的参数即可。<span style="color: #c43ac4;"><strong>上面一些博主觉得重要的参数都加了注释，并且初始化Table必须的几个参数博主也用（*）做了标记，如果你的表格也有太多的页面需求，直接用必须的参数就能解决。</strong><span style="color: #000000;">同样，在</span></span>columns参数里面其实也有很多的参数需要设置，比如列的排序，对齐，宽度等等。这些博主觉得比较简单，不会涉及表格的功能，看看API就能搞定。</p>
+<h3>3、在Controller里面对应的方法</h3>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre> 　　　　<span style="color: #0000ff;">public</span> JsonResult GetDepartment(<span style="color: #0000ff;">int</span> limit, <span style="color: #0000ff;">int</span> offset, <span style="color: #0000ff;">string</span> departmentname, <span style="color: #0000ff;">string</span><span style="color: #000000;"> statu)
+        {
+            </span><span style="color: #0000ff;">var</span> lstRes = <span style="color: #0000ff;">new</span> List&lt;Department&gt;<span style="color: #000000;">();
+            </span><span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">var</span> i = <span style="color: #800080;">0</span>; i &lt; <span style="color: #800080;">50</span>; i++<span style="color: #000000;">)
+            {
+                </span><span style="color: #0000ff;">var</span> oModel = <span style="color: #0000ff;">new</span><span style="color: #000000;"> Department();
+                oModel.ID </span>=<span style="color: #000000;"> Guid.NewGuid().ToString();
+                oModel.Name </span>= <span style="color: #800000;">"</span><span style="color: #800000;">销售部</span><span style="color: #800000;">"</span> +<span style="color: #000000;"> i ;
+                oModel.Level </span>=<span style="color: #000000;"> i.ToString();
+                oModel.Desc </span>= <span style="color: #800000;">"</span><span style="color: #800000;">暂无描述信息</span><span style="color: #800000;">"</span><span style="color: #000000;">;
+                lstRes.Add(oModel);
+            }
+
+            </span><span style="color: #0000ff;">var</span> total =<span style="color: #000000;"> lstRes.Count;
+            </span><span style="color: #0000ff;">var</span> rows =<span style="color: #000000;"> lstRes.Skip(offset).Take(limit).ToList();
+            </span><span style="color: #0000ff;">return</span> Json(<span style="color: #0000ff;">new</span> { total = total, rows =<span style="color: #000000;"> rows }, JsonRequestBehavior.AllowGet);
+        }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><strong><span style="color: #bb31cd;">这里有一点需要注意：如果是服务端分页，返回的结果必须包含total、rows两个参数。漏写或错写都会导致表格无法显示数据。相反，如果是客户端分页，这里要返回一个集合对象到前端。</span></strong></p>
+<h3><span style="color: #000000;">4、效果及说明</span></h3>
+<p><a href="http://images2015.cnblogs.com/blog/459756/201511/459756-20151119161059390-397683124.png" target="_blank"><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/459756-20151119161059390-397683124.png" alt=""></a></p>
+<p>&nbsp;</p>
+<p>还是贴几张效果图出来：</p>
+<p><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/459756-20151120095245624-1492388740.png" alt=""></p>
+<p><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/459756-20151120095302452-966429731.png" alt=""></p>
+<p><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/459756-20151120095311655-940471945.png" alt=""></p>
+<p><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/459756-20151120095321327-186330297.png" alt=""></p>
+<h2>四、问题小结</h2>
+<p>由于是从零开始开发的以上功能，博主遇到一个问题可以和园友们分享一下，这应该也是今天这篇想表达的重点。</p>
+<h3>1、上面说过，如果在js里面初始化的参数&nbsp;sidePagination: "server" 设置为在服务端分页，那么我们的返回值必须告诉前端总记录的条数和当前页的记录数，然后前端才知道如何分页。并且最重要的一点，这两个参数的名字必须为total和rows。最开始博主也不知道这个，写成了total和row，结果是请求可以进到后台的GetDepartment方法，返回值total和row也都有值，可是前端就是显示如下：</h3>
+<p><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/459756-20151119150916718-1166394678.png" alt=""></p>
+<h3>找了好半天原因。原来是row写错了，应该写成rows。可能这也是前天园友遇到的问题的原因。</h3>
+<h3>2、第二个问题就是关于bootstrap页面样式的问题，我们使用过bootstrap的朋友应该知道，它里面所有的图标都是通过class = "glyphicon glyphicon-plus"这种方式去写的。博主按要求这样做了，可是新增、修改、删除前面的图标怎么都出不来。如下：</h3>
+<p><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/459756-20151119151943311-792049199.png" alt=""></p>
+<h3>怎么回事呢？然后各种百度，最后发现原来是fonts文件夹的问题。我们在新建一个MVC项目的时候，会自动创建一个fonts文件夹，里面内容如下：</h3>
+<p><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/459756-20151119151502108-1310055933.png" alt=""></p>
+<h3>而我们的bootstrap.css是放在Content文件夹里面的，这样就导致找不到这些样式文件。最终通过谷歌浏览器查看控制台<img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/459756-20151119151901140-926416415.png" alt=""></h3>
+<h3>原来它自动去Content里面找fonts文件夹了。这下就好办了，把我们的fonts文件夹拷贝到Content下不就行了吗。呵呵，原来真是这样，问题顺利解决。</h3>
+<h3>3、关于中文。刚开始，博主没有引用 &nbsp;&nbsp;&lt;script src="~/Content/bootstrap-table/locale/bootstrap-table-zh-CN.js"&gt;&lt;/script&gt; &nbsp; 这个包，所以界面找不到记录是显示的是英文，如下：</h3>
+<p><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/459756-20151119152342499-1047451157.png" alt=""></p>
+<h3>后来也是查资料了解到，bootstrap table里面原来还有一个中文包，把它添加进来就好了。</h3>
+<h3>4、第四点要说说表格自带的搜索功能，有上可知，在初始化表格的时候，通过设置search: true可以设置表格的搜索框出现并且可以进行模糊搜索。之前博主一直以为只有客户端分页才能使用这个搜索，多谢园友指出，其实服务端分页也可以使用这个搜索功能。只不过需要在对应的方法里加上search参数。比如<span style="font-size: 1.17em; line-height: 1.5;"><br></span></h3>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>oTableInit.queryParams = <span style="color: #0000ff;">function</span><span style="color: #000000;"> (params) {
+        </span><span style="color: #0000ff;">var</span> temp = {   <span style="color: #008000;">//</span><span style="color: #008000;">这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的</span>
+            limit: params.limit,   <span style="color: #008000;">//</span><span style="color: #008000;">页面大小</span>
+            offset: params.offset,  <span style="color: #008000;">//</span><span style="color: #008000;">页码</span>
+            departmentname: $("#txt_search_departmentname"<span style="color: #000000;">).val(),
+            statu: $(</span>"#txt_search_statu"<span style="color: #000000;">).val(),
+            search:params.search
+        };
+        </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> temp;
+    };</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<h3>然后后端</h3>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre> <span style="color: #0000ff;">public</span> JsonResult GetDepartment(<span style="color: #0000ff;">int</span> limit, <span style="color: #0000ff;">int</span> offset, <span style="color: #0000ff;">string</span> departmentname, <span style="color: #0000ff;">string</span> statu, <span style="color: #0000ff;">string</span><span style="color: #000000;"> search)
+        {
+            </span><span style="color: #0000ff;">var</span> lstRes = <span style="color: #0000ff;">new</span> List&lt;Department&gt;<span style="color: #000000;">();
+            </span><span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">var</span> i = <span style="color: #800080;">0</span>; i &lt; <span style="color: #800080;">50</span>; i++<span style="color: #000000;">)
+            {
+                </span><span style="color: #0000ff;">var</span> oModel = <span style="color: #0000ff;">new</span><span style="color: #000000;"> Department();
+                oModel.ID </span>=<span style="color: #000000;"> Guid.NewGuid().ToString();
+                oModel.Name </span>= <span style="color: #800000;">"</span><span style="color: #800000;">销售部</span><span style="color: #800000;">"</span> +<span style="color: #000000;"> i ;
+                oModel.Level </span>=<span style="color: #000000;"> i.ToString();
+                oModel.Desc </span>= <span style="color: #800000;">"</span><span style="color: #800000;">暂无描述信息</span><span style="color: #800000;">"</span><span style="color: #000000;">;
+                lstRes.Add(oModel);
+            }
+
+            </span><span style="color: #0000ff;">var</span> total =<span style="color: #000000;"> lstRes.Count;
+            </span><span style="color: #0000ff;">var</span> rows =<span style="color: #000000;"> lstRes.Skip(offset).Take(limit).ToList();
+            </span><span style="color: #0000ff;">return</span> Json(<span style="color: #0000ff;">new</span> { total = total, rows =<span style="color: #000000;"> rows }, JsonRequestBehavior.AllowGet);
+        }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<h3>这样，每次用户在搜索框里面输入都会进到后台的方法，并且将用户输入的值传到search参数。但是如果你需要对多个字段进行模糊匹配，那么就意味着你的后台需要去对多个数据字段进行like操作，这样查询效率肯定低下。所以，如果需要模糊匹配的字段很多，这个search在实际项目中是用不上的。综上，博主还是觉得只有在客户端分页的时候，这个搜索的作用比较明显。</h3>
+<h3>5、关于Bootstrap Table的排序，由于一般这种BS系统肯定会采用服务端分页，我们如果仅仅在js里面设置sortable和sortOrder等属性信息，表格是不会有效排序的。原因很简单，服务端分页的方式，排序本页数据意义不大。所以，一般的排序需要将排序方式和排序字段发送到后台，在后台排序比较合适。比如我们这里可以再参数里面增加两个：</h3>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>oTableInit.queryParams = <span style="color: #0000ff;">function</span><span style="color: #000000;"> (params) {
+        </span><span style="color: #0000ff;">var</span> temp = {   <span style="color: #008000;">//</span><span style="color: #008000;">这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的</span>
+            limit: params.limit,   <span style="color: #008000;">//</span><span style="color: #008000;">页面大小</span>
+            offset: params.offset,  <span style="color: #008000;">//</span><span style="color: #008000;">页码</span>
+<span style="color: #000000;">            order: params.order,
+            ordername: params.sort,
+            departmentname: $(</span>"#txt_search_departmentname"<span style="color: #000000;">).val(),
+            statu: $(</span>"#txt_search_statu"<span style="color: #000000;">).val()
+        };
+        </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> temp;
+    };</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<h2>五、总结</h2>
+<p>在之前的几年开发经历中，博主也使用Jqgrid、EasyUI等表格组件。相比而言，bootstrap Table有自己的优势：</p>
+<p>1、界面采用扁平化的风格，用户体验比较好，更好兼容各种客户端。这点也是最重要的。</p>
+<p>2、开源、免费。国人最喜欢的就是免费了。呵呵。</p>
+<p>3、相对Jqgrid、easyUI而言，比较轻量级。功能不能说最全面，但基本够用。</p>
+<p>至此，本篇就结束了，欢迎园友们拍砖。<a href="http://pan.baidu.com/s/1i3hh9OT" target="_blank">源码下载</a>。</p>
+<p>最近打算做点自己的东西出来，将博客里面的一些好的技术融合进去。有项目合作的小伙伴赶快联系博主吧！</p>
+<p>本文原创出处：<a href="http://www.cnblogs.com/landeanfen/" target="_blank">http://www.cnblogs.com/landeanfen/</a></p>
+<p>欢迎各位转载，但是未经作者本人同意，转载文章之后<strong>必须在文章页面明显位置给出作者和原文连接</strong>，否则保留追究法律责任的权利！</p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/landeanfen/category/709198.html" target="_blank">BS</a>,<a href="http://www.cnblogs.com/landeanfen/category/709196.html" target="_blank">JS</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/landeanfen/tag/js/">js</a>, <a href="http://www.cnblogs.com/landeanfen/tag/bootstrap/">bootstrap</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(4976838,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;19347013-e91c-e211-aa8f-842b2b196315&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/landeanfen/" target="_blank"><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/20150629145137.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/landeanfen/">懒得安分</a><br>
+            <a href="http://home.cnblogs.com/u/landeanfen/followees">关注 - 22</a><br>
+            <a href="http://home.cnblogs.com/u/landeanfen/followers">粉丝 - 2437</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;19347013-e91c-e211-aa8f-842b2b196315&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(4976838,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">192</span>
+    </div>
+    <div class="buryit" onclick="votePost(4976838,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">6</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/landeanfen/p/4971211.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/landeanfen/p/4971211.html" title="发布于2015-11-17 14:34">JS组件系列——JsPlumb流程图及相关效果详解（二：附源码）</a><br><a href="http://www.cnblogs.com/landeanfen/p/4993979.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/landeanfen/p/4993979.html" title="发布于2015-11-25 12:39">JS组件系列——表格组件神器：bootstrap table（二：父子表和行列调序）</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2015-11-19 16:00</span> <a href="http://www.cnblogs.com/landeanfen/">懒得安分</a> 阅读(<span id="post_view_count">247308</span>) 评论(<span id="post_comment_count">166</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=4976838" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/landeanfen/p/4976838.html#" onclick="AddToWz(4976838);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=131448,cb_entryId=4976838,cb_blogApp=currentBlogApp,cb_blogUserGuid='19347013-e91c-e211-aa8f-842b2b196315',cb_entryCreatedDate='2015/11/19 16:00:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"><div class="pager"><a href="https://www.cnblogs.com/landeanfen/p/4976838.html#!comments" onclick="commentManager.renderComments(3,50);return false;">&lt; Prev</a><a href="https://www.cnblogs.com/landeanfen/p/4976838.html#!comments" onclick="commentManager.renderComments(1,50);return false;">1</a><a href="https://www.cnblogs.com/landeanfen/p/4976838.html#!comments" onclick="commentManager.renderComments(2,50);return false;">2</a><a href="https://www.cnblogs.com/landeanfen/p/4976838.html#!comments" onclick="commentManager.renderComments(3,50);return false;">3</a><span class="current">4</span></div></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/landeanfen/p/4976838.html#3723588" class="layer">#151楼</a><a name="3723588" id="comment_anchor_3723588"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2017-06-27 13:59</span> <a id="a_comment_author_3723588" href="http://www.cnblogs.com/landeanfen/" target="_blank">懒得安分</a> <a href="http://msg.cnblogs.com/send/%E6%87%92%E5%BE%97%E5%AE%89%E5%88%86" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3723588" class="blog_comment_body"><a href="https://www.cnblogs.com/landeanfen/p/4976838.html#3710608" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3710608);">@</a>
+胖坨坨<br>这个不难吧。使用formatter，自定义click事件，然后处理你想要的逻辑。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3723588,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3723588,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3723588_avatar" style="display:none;">http://pic.cnblogs.com/face/459756/20150629145137.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/landeanfen/p/4976838.html#3744122" class="layer">#152楼</a><a name="3744122" id="comment_anchor_3744122"></a>  <span class="comment_date">2017-07-26 18:48</span> <a id="a_comment_author_3744122" href="http://www.cnblogs.com/dyf123/" target="_blank">foeverlove</a> <a href="http://msg.cnblogs.com/send/foeverlove" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3744122" class="blog_comment_body">再次新增一个可编辑行的时候，他会初始化数据，会把之前新增的数据给清除。这个怎么办。<br><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/1153595-20170726184842062-978376213.png" alt="" border="0" "=""></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3744122,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3744122,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/landeanfen/p/4976838.html#3748913" class="layer">#153楼</a><a name="3748913" id="comment_anchor_3748913"></a>  <span class="comment_date">2017-08-02 11:14</span> <a id="a_comment_author_3748913" href="http://home.cnblogs.com/u/1211701/" target="_blank">Leon569</a> <a href="http://msg.cnblogs.com/send/Leon569" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3748913" class="blog_comment_body">请问嵌套的JSON怎么处理？比如表格是id  name  grade  class四列  后台返回的json是{"id":1，"name":sss,"type":{"grade":1，"class":1}}</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3748913,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3748913,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/landeanfen/p/4976838.html#3772254" class="layer">#154楼</a><a name="3772254" id="comment_anchor_3772254"></a>  <span class="comment_date">2017-08-31 20:18</span> <a id="a_comment_author_3772254" href="http://www.cnblogs.com/hlm750908/" target="_blank">网络来者</a> <a href="http://msg.cnblogs.com/send/%E7%BD%91%E7%BB%9C%E6%9D%A5%E8%80%85" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3772254" class="blog_comment_body">感觉js代码太多<br>不爽</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3772254,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3772254,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/landeanfen/p/4976838.html#3777858" class="layer">#155楼</a><a name="3777858" id="comment_anchor_3777858"></a>  <span class="comment_date">2017-09-07 17:41</span> <a id="a_comment_author_3777858" href="http://www.cnblogs.com/jiangxiaoxu/" target="_blank">僵小徐</a> <a href="http://msg.cnblogs.com/send/%E5%83%B5%E5%B0%8F%E5%BE%90" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3777858" class="blog_comment_body">大神，能给看下<br>JsPlumb流程图及相关效果详解（二：附源码）<br>这篇文章么</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3777858,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3777858,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/landeanfen/p/4976838.html#3788220" class="layer">#156楼</a><a name="3788220" id="comment_anchor_3788220"></a>  <span class="comment_date">2017-09-18 14:10</span> <a id="a_comment_author_3788220" href="http://home.cnblogs.com/u/1196332/" target="_blank">宋小蚕</a> <a href="http://msg.cnblogs.com/send/%E5%AE%8B%E5%B0%8F%E8%9A%95" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3788220" class="blog_comment_body">请问下，新增和删除按钮点击后不弹框是什么原因啊</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3788220,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3788220,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/landeanfen/p/4976838.html#3821884" class="layer">#157楼</a><a name="3821884" id="comment_anchor_3821884"></a>  <span class="comment_date">2017-10-26 10:35</span> <a id="a_comment_author_3821884" href="http://home.cnblogs.com/u/1006930/" target="_blank">涛涛不坏</a> <a href="http://msg.cnblogs.com/send/%E6%B6%9B%E6%B6%9B%E4%B8%8D%E5%9D%8F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3821884" class="blog_comment_body">后端是什么语言啊？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3821884,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3821884,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/landeanfen/p/4976838.html#3828903" class="layer">#158楼</a><a name="3828903" id="comment_anchor_3828903"></a>  <span class="comment_date">2017-11-02 14:34</span> <a id="a_comment_author_3828903" href="http://www.cnblogs.com/supercjj/" target="_blank">星尘之泪</a> <a href="http://msg.cnblogs.com/send/%E6%98%9F%E5%B0%98%E4%B9%8B%E6%B3%AA" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3828903" class="blog_comment_body">楼主，你查询的button的type应该改成submit吧，不然点查询没反应，不过我改完还是有问题，参数传不进去。<br> &lt;button type="submit" style="margin-left:50px" id="btn_query" class="btn btn-primary"&gt;查询&lt;/button&gt;</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3828903,&#39;Digg&#39;,this)">支持(4)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3828903,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3828903_avatar" style="display:none;">http://pic.cnblogs.com/face/1170009/20170526114915.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/landeanfen/p/4976838.html#3861961" class="layer">#159楼</a><a name="3861961" id="comment_anchor_3861961"></a>  <span class="comment_date">2017-12-09 23:31</span> <a id="a_comment_author_3861961" href="http://home.cnblogs.com/u/1296717/" target="_blank">Dazen3</a> <a href="http://msg.cnblogs.com/send/Dazen3" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3861961" class="blog_comment_body">大神，厉害</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3861961,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3861961,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/landeanfen/p/4976838.html#3892879" class="layer">#160楼</a><a name="3892879" id="comment_anchor_3892879"></a>  <span class="comment_date">2018-01-18 16:40</span> <a id="a_comment_author_3892879" href="http://www.cnblogs.com/leibo/" target="_blank">昵称咋这么难起</a> <a href="http://msg.cnblogs.com/send/%E6%98%B5%E7%A7%B0%E5%92%8B%E8%BF%99%E4%B9%88%E9%9A%BE%E8%B5%B7" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3892879" class="blog_comment_body">大神，这个例子有源码吗？能分享一下吗</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3892879,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3892879,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/landeanfen/p/4976838.html#3908111" class="layer">#161楼</a><a name="3908111" id="comment_anchor_3908111"></a>  <span class="comment_date">2018-02-13 20:51</span> <a id="a_comment_author_3908111" href="http://home.cnblogs.com/u/1282888/" target="_blank">老王比较瘦</a> <a href="http://msg.cnblogs.com/send/%E8%80%81%E7%8E%8B%E6%AF%94%E8%BE%83%E7%98%A6" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3908111" class="blog_comment_body">楼主，问题总结第一点的rows应该是table的json格式吧，不是你上面写的当前页的记录数吧？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3908111,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3908111,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/landeanfen/p/4976838.html#3942278" class="layer">#162楼</a><a name="3942278" id="comment_anchor_3942278"></a>  <span class="comment_date">2018-04-04 11:41</span> <a id="a_comment_author_3942278" href="http://www.cnblogs.com/lindaxin/" target="_blank">深度学习1</a> <a href="http://msg.cnblogs.com/send/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A01" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3942278" class="blog_comment_body">楼主，为什么下面红笔圈起来的地方按了没有反应啊<br><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/1202980-20180404114121971-1356414604.png" alt="" border="0" "=""></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3942278,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3942278,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/landeanfen/p/4976838.html#3945057" class="layer">#163楼</a><a name="3945057" id="comment_anchor_3945057"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2018-04-08 13:57</span> <a id="a_comment_author_3945057" href="http://www.cnblogs.com/landeanfen/" target="_blank">懒得安分</a> <a href="http://msg.cnblogs.com/send/%E6%87%92%E5%BE%97%E5%AE%89%E5%88%86" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3945057" class="blog_comment_body"><a href="https://www.cnblogs.com/landeanfen/p/4976838.html#3942278" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3942278);">@</a>
+深度学习1<br>你得看下按钮的点击事件有没有注册，这个按钮的事件是单独注册的，和表格组件没有任何关系。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3945057,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3945057,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3945057_avatar" style="display:none;">http://pic.cnblogs.com/face/459756/20150629145137.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/landeanfen/p/4976838.html#3953449" class="layer">#164楼</a><a name="3953449" id="comment_anchor_3953449"></a>  <span class="comment_date">2018-04-17 09:43</span> <a id="a_comment_author_3953449" href="http://home.cnblogs.com/u/1370590/" target="_blank">为草有竹心</a> <a href="http://msg.cnblogs.com/send/%E4%B8%BA%E8%8D%89%E6%9C%89%E7%AB%B9%E5%BF%83" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3953449" class="blog_comment_body">页面Js文件的引用<br>src="~/Scripts/Home/Index.js<br>这个Index.js在哪里啊，没有可以吗</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3953449,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3953449,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/landeanfen/p/4976838.html#3963687" class="layer">#165楼</a><a name="3963687" id="comment_anchor_3963687"></a>  <span class="comment_date">2018-04-28 16:43</span> <a id="a_comment_author_3963687" href="http://home.cnblogs.com/u/1388354/" target="_blank">wmq09501</a> <a href="http://msg.cnblogs.com/send/wmq09501" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3963687" class="blog_comment_body">toolbar工具条和表格搜索框、刷新按钮等不在一水平上怎么办呢？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3963687,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3963687,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/landeanfen/p/4976838.html#3974340" class="layer">#166楼</a><a name="3974340" id="comment_anchor_3974340"></a><span id="comment-maxId" style="display:none;">3974340</span><span id="comment-maxDate" style="display:none;">2018/5/15 8:39:23</span>  <span class="comment_date">2018-05-15 08:39</span> <a id="a_comment_author_3974340" href="http://home.cnblogs.com/u/1154792/" target="_blank">RE3UME</a> <a href="http://msg.cnblogs.com/send/RE3UME" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3974340" class="blog_comment_body">楼主你好，能不能给BootstrapTable的search：true的那个框添加id，或者通过选择器选中它，给他添加自定义的事件或动作。<br>或者获取他文本改变后的动作函数。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3974340,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3974340,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"><div class="pager"><a href="https://www.cnblogs.com/landeanfen/p/4976838.html#!comments" onclick="commentManager.renderComments(3,50);return false;">&lt; Prev</a><a href="https://www.cnblogs.com/landeanfen/p/4976838.html#!comments" onclick="commentManager.renderComments(1,50);return false;">1</a><a href="https://www.cnblogs.com/landeanfen/p/4976838.html#!comments" onclick="commentManager.renderComments(2,50);return false;">2</a><a href="https://www.cnblogs.com/landeanfen/p/4976838.html#!comments" onclick="commentManager.renderComments(3,50);return false;">3</a><span class="current">4</span></div></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/landeanfen/p/4976838.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/landeanfen/p/4976838.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】超50万VC++源码: 大型组态工控、电力仿真CAD与GIS源码库！</a><br><a href="https://www.yunqi2050.com/" target="_blank">【活动】2050 大会 - 年青人因科技而团聚（5.26-5.27 杭州·云栖小镇）</a><br><a href="http://clickc.admaster.com.cn/c/a105960,b2436452,c1705,i0,m101,8a1,8b2,h" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-DevCloud&#39;)">【推荐】华为云7大明星产品0元免费使用</a><br><a href="https://cloud.tencent.com/product/tac?fromSource=gwzcw.926333.926333.926333" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-腾讯云&#39;)">【推荐】腾讯云如何降低移动开发成本</a><br><a href="http://challenge.xfyun.cn/?ch=bk" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-xfyun&#39;)">【大赛】2018首届“顶天立地”AI开发者大赛</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;C1&#39;);" href="https://cloud.tencent.com/solution/la?fromSource=gwzcw.926335.926335.926335" target="_blank"><img width="300" height="250" src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/24442-20180520213658559-918592692.jpg" alt="腾讯云0518"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/597291/" target="_blank">移动流失242万4G用户 员工：灭掉大王卡就可止血</a><br> ·  <a href="https://news.cnblogs.com/n/597297/" target="_blank">百度向海龙：从未在医疗广告领域和陆奇有过冲突</a><br> ·  <a href="https://news.cnblogs.com/n/597296/" target="_blank">CPU新漏洞Spectre variants 3a和4</a><br> ·  <a href="https://news.cnblogs.com/n/597294/" target="_blank">NASA公布宇航员训练照 SpaceX也有份参与</a><br> ·  <a href="https://news.cnblogs.com/n/597295/" target="_blank">微软资深程序员：notepad.exe其实也并不简单 有专人维护</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/34770/" target="_blank"><img src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/TB1gBPhgZLJ8KJjy0FnXXcFDpXa-468-60.jpg" alt="" style="width: 468px; height: 60px;"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/576411/" target="_blank">你可以把编程当做一项托付终身的职业</a><br> ·  <a href="http://kb.cnblogs.com/page/596164/" target="_blank">评审的艺术——谈谈现实中的代码评审</a><br> ·  <a href="http://kb.cnblogs.com/page/577233/" target="_blank">如何高效学习</a><br> ·  <a href="http://kb.cnblogs.com/page/578689/" target="_blank">如何成为优秀的程序员？</a><br> ·  <a href="http://kb.cnblogs.com/page/594930/" target="_blank">菜鸟工程师的超神之路 -- 从校园到职场</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div>
+  <div>
+我的微信公众号
+    <a href="http://www.cnblogs.com/landeanfen/"><img style="width: 210px;" alt="我的微信公众号" src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/qrcode_for_gh_4e40c9ed0626_258.bmp"></a>
+  </div>
+ <div>
+友情链接：摄影人最爱公众号
+    <a href="http://www.cnblogs.com/landeanfen/"><img style="width: 210px;" alt="摄影公众号" src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/qrcode_for_gh_81e2ef076bce_344.bmp"></a>
+  </div>
+  <div style="float:left;margin-top:15px;margin-bottom:10px;">
+    <span>项目合作通道：</span>
+  </div>
+  <div style="float:left;width:100px;margin-top:-7px;">
+    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=464050960&amp;site=qq&amp;menu=yes">
+　　  <img align="absmiddle" border="0" src="./JS组件系列——表格组件神器：bootstrap table - 懒得安分 - 博客园_files/pa" alt="欢迎与我联系" title="欢迎与博主联系">
+    </a>
+  </div>
+  <div style="clear:left;"></div>
+<hr>
+</div>
+<script type="text/javascript">window['__document_write_ajax_callbacks__']['4']();</script><script>window['__document_write_ajax_callbacks__']['1']();</script>
+<div style="display: none" id="__document_write_ajax_div-2"></div><script>window['__document_write_ajax_callbacks__']['2']();</script><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/landeanfen/">懒得安分</a><br>园龄：<a href="https://home.cnblogs.com/u/landeanfen/" title="入园时间：2012-10-23">5年6个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/landeanfen/followers/">2437</a><br>关注：<a href="https://home.cnblogs.com/u/landeanfen/followees/">22</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;19347013-e91c-e211-aa8f-842b2b196315&#39;)">+加关注</a></div><script type="text/javascript">window['__document_write_ajax_callbacks__']['5']();</script><script>window['__document_write_ajax_callbacks__']['3']();</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/04/01&#39;);return false;">&lt;</a></td><td align="center">2018年5月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/06/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td class="CalWeekendDay" align="center">5</td></tr><tr><td class="CalWeekendDay" align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td class="CalWeekendDay" align="center">12</td></tr><tr><td class="CalWeekendDay" align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td class="CalWeekendDay" align="center">19</td></tr><tr><td class="CalWeekendDay" align="center">20</td><td align="center">21</td><td class="CalTodayDay" align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td class="CalWeekendDay" align="center">26</td></tr><tr><td class="CalWeekendDay" align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td></tr><tr><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/landeanfen/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/landeanfen/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/landeanfen/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/landeanfen/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/landeanfen/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/landeanfen/tag/js/">js</a>(41)</li><li><a href="http://www.cnblogs.com/landeanfen/tag/bootstrap/">bootstrap</a>(28)</li><li><a href="http://www.cnblogs.com/landeanfen/tag/DDD/">DDD</a>(7)</li><li><a href="http://www.cnblogs.com/landeanfen/tag/WebApi/">WebApi</a>(6)</li><li><a href="http://www.cnblogs.com/landeanfen/tag/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/">软件设计</a>(4)</li><li><a href="http://www.cnblogs.com/landeanfen/tag/%E6%9D%BE%E8%80%A6%E5%90%88%E8%AE%BE%E8%AE%A1/">松耦合设计</a>(4)</li><li><a href="http://www.cnblogs.com/landeanfen/tag/MEF/">MEF</a>(4)</li><li><a href="http://www.cnblogs.com/landeanfen/tag/%E5%A7%94%E6%89%98/">委托</a>(2)</li><li><a href="http://www.cnblogs.com/landeanfen/tag/DataGridView/">DataGridView</a>(2)</li><li><a href="http://www.cnblogs.com/landeanfen/tag/Winform/">Winform</a>(2)</li><li><a href="http://www.cnblogs.com/landeanfen/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/landeanfen/category/709200.html">.Net(26)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/landeanfen/category/709198.html">BS(24)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/landeanfen/category/709195.html">C#(49)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/landeanfen/category/709199.html">CS(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/landeanfen/category/709201.html">HTML(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/landeanfen/category/709196.html">JS(43)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/landeanfen/category/709197.html">数据库(1)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/landeanfen/archive/2018/02.html">2018年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/landeanfen/archive/2018/01.html">2018年1月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/landeanfen/archive/2017/12.html">2017年12月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/landeanfen/archive/2017/11.html">2017年11月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/landeanfen/archive/2017/10.html">2017年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/landeanfen/archive/2017/09.html">2017年9月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/landeanfen/archive/2017/08.html">2017年8月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/landeanfen/archive/2017/07.html">2017年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/landeanfen/archive/2017/06.html">2017年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/landeanfen/archive/2017/05.html">2017年5月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/landeanfen/archive/2017/04.html">2017年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/landeanfen/archive/2017/03.html">2017年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/landeanfen/archive/2017/02.html">2017年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/landeanfen/archive/2017/01.html">2017年1月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/landeanfen/archive/2016/12.html">2016年12月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/landeanfen/archive/2016/11.html">2016年11月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/landeanfen/archive/2016/10.html">2016年10月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/landeanfen/archive/2016/09.html">2016年9月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/landeanfen/archive/2016/08.html">2016年8月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/landeanfen/archive/2016/07.html">2016年7月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/landeanfen/archive/2016/06.html">2016年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/landeanfen/archive/2016/05.html">2016年5月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/landeanfen/archive/2016/04.html">2016年4月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_23" href="http://www.cnblogs.com/landeanfen/archive/2016/03.html">2016年3月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_24" href="http://www.cnblogs.com/landeanfen/archive/2016/02.html">2016年2月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_25" href="http://www.cnblogs.com/landeanfen/archive/2016/01.html">2016年1月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_26" href="http://www.cnblogs.com/landeanfen/archive/2015/12.html">2015年12月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_27" href="http://www.cnblogs.com/landeanfen/archive/2015/11.html">2015年11月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_28" href="http://www.cnblogs.com/landeanfen/archive/2015/10.html">2015年10月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_29" href="http://www.cnblogs.com/landeanfen/archive/2015/09.html">2015年9月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_30" href="http://www.cnblogs.com/landeanfen/archive/2015/08.html">2015年8月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_31" href="http://www.cnblogs.com/landeanfen/archive/2015/07.html">2015年7月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_32" href="http://www.cnblogs.com/landeanfen/archive/2015/06.html">2015年6月 (3)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	321099
+	</li>
+	<li class="liRank">
+		排名 -	569
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/landeanfen/p/5005367.html#3979618">1. Re:JS组件系列——表格组件神器：bootstrap table（三：终结篇，最后的干货福利）</a></li>
+        <li class="recent_comment_body">想问一下,编辑单元格的时候,怎么关联旁边的单元格也相应的改变,,,比如说充值金额改成200元,那么赠送金额就是20元,,,是根据修改的金额实时变动的.这种操作可以实现吗?</li>
+        <li class="recent_comment_author">--简单的博客</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/landeanfen/p/7601880.html#3975350">2. Re:JS组件系列——基于Bootstrap Ace模板的菜单Tab页效果优化</a></li>
+        <li class="recent_comment_body">博主，你好，急需一份源码，1769568731@qq.com，十分感谢</li>
+        <li class="recent_comment_author">--Budapest</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/landeanfen/p/5888973.html#3974695">3. Re:C#组件系列——又一款Excel处理神器Spire.XLS，你值得拥有</a></li>
+        <li class="recent_comment_body">第一行[HttpPost]和最后一行 return Json(new object { }, JsonRequestBehavior.AllowGet); 是不是矛盾了 [HttpPost] ..........</li>
+        <li class="recent_comment_author">--愚人吃盐</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/landeanfen/p/4976838.html#3974340">4. Re:JS组件系列——表格组件神器：bootstrap table</a></li>
+        <li class="recent_comment_body">楼主你好，能不能给BootstrapTable的search：true的那个框添加id，或者通过选择器选中它，给他添加自定义的事件或动作。<br>或者获取他文本改变后的动作函数。</li>
+        <li class="recent_comment_author">--RE3UME</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/landeanfen/p/7601880.html#3973901">5. Re:JS组件系列——基于Bootstrap Ace模板的菜单Tab页效果优化</a></li>
+        <li class="recent_comment_body">博主你好，感谢你的博文。已经打赏过，希望能获得一份菜单Tab页效果的页面源码，邮箱949474720@qq.com，希望您百忙中抽取一点时间发送一下邮件。</li>
+        <li class="recent_comment_author">--Terry蒋</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/landeanfen/p/4976838.html">1. JS组件系列——表格组件神器：bootstrap table(247277)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5005367.html">2. JS组件系列——表格组件神器：bootstrap table（三：终结篇，最后的干货福利）(185789)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5007400.html">3. JS组件系列——Bootstrap文件上传组件：bootstrap fileinput(106648)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5337072.html">4. C#进阶系列——WebApi 接口参数不再困惑：传参详解(105933)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5821192.html">5. JS组件系列——BootstrapTable 行内编辑解决方案：x-editable(101792)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/4993979.html">6. JS组件系列——表格组件神器：bootstrap table（二：父子表和行列调序）(83817)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5099332.html">7. JS组件系列——Bootstrap Select2组件使用小结(81526)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5124913.html">8. JS组件系列——Bootstrap 树控件使用经验分享(77184)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5013452.html">9. JS组件系列——两种bootstrap multiselect组件大比拼(61440)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5989092.html">10. MVC系列——MVC源码学习：打造自己的MVC框架（一：核心原理）(56931)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5177176.html">11. C#进阶系列——WebApi 跨域问题解决方案：CORS(54826)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5287064.html">12. C#进阶系列——WebApi 身份认证解决方案：Basic基础认证(54335)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5501487.html">13. C#进阶系列——WebApi 接口返回值不困惑：返回值类型详解(44939)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5035608.html">14. JS组件系列——Form表单验证神器： BootstrapValidator(44442)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5210356.html">15. C#进阶系列——WebApi 接口测试工具：WebApiTestClient(43303)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/landeanfen/p/5337072.html">1. C#进阶系列——WebApi 接口参数不再困惑：传参详解(170)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/4976838.html">2. JS组件系列——表格组件神器：bootstrap table(166)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5287064.html">3. C#进阶系列——WebApi 身份认证解决方案：Basic基础认证(133)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5005367.html">4. JS组件系列——表格组件神器：bootstrap table（三：终结篇，最后的干货福利）(120)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5043253.html">5. JS组件系列——基于Bootstrap Ace模板的菜单和Tab页效果分享（你值得拥有）(111)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5210356.html">6. C#进阶系列——WebApi 接口测试工具：WebApiTestClient(84)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/4955891.html">7. 面试干货——年底干货大放送，你准备好了吗？(82)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5461849.html">8. JS组件系列——Bootstrap组件福利篇：几款好用的组件推荐(78)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5888973.html">9. C#组件系列——又一款Excel处理神器Spire.XLS，你值得拥有(62)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5007400.html">10. JS组件系列——Bootstrap文件上传组件：bootstrap fileinput(61)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5603790.html">11. JS组件系列——Bootstrap组件福利篇：几款好用的组件推荐（二）(60)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5501487.html">12. C#进阶系列——WebApi 接口返回值不困惑：返回值类型详解(57)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5022188.html">13. JS组件系列——Bootstrap寒冬暖身篇：弹出框和提示框效果以及代码展示(55)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5177176.html">14. C#进阶系列——WebApi 跨域问题解决方案：CORS(54)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/4993979.html">15. JS组件系列——表格组件神器：bootstrap table（二：父子表和行列调序）(50)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/landeanfen/p/5337072.html">1. C#进阶系列——WebApi 接口参数不再困惑：传参详解(415)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5461849.html">2. JS组件系列——Bootstrap组件福利篇：几款好用的组件推荐(222)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5501490.html">3. C#进阶系列——WebApi 路由机制剖析：你准备好了吗？(203)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/4976838.html">4. JS组件系列——表格组件神器：bootstrap table(192)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5287064.html">5. C#进阶系列——WebApi 身份认证解决方案：Basic基础认证(163)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/4955891.html">6. 面试干货——年底干货大放送，你准备好了吗？(162)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5989092.html">7. MVC系列——MVC源码学习：打造自己的MVC框架（一：核心原理）(153)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5501487.html">8. C#进阶系列——WebApi 接口返回值不困惑：返回值类型详解(143)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5603790.html">9. JS组件系列——Bootstrap组件福利篇：几款好用的组件推荐（二）(143)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5210356.html">10. C#进阶系列——WebApi 接口测试工具：WebApiTestClient(121)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/6054654.html">11. JS组件系列——又一款MVVM组件：Vue（一：30分钟搞定前端增删改查）(119)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5177176.html">12. C#进阶系列——WebApi 跨域问题解决方案：CORS(115)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5888973.html">13. C#组件系列——又一款Excel处理神器Spire.XLS，你值得拥有(110)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5022188.html">14. JS组件系列——Bootstrap寒冬暖身篇：弹出框和提示框效果以及代码展示(107)</a></li><li><a href="http://www.cnblogs.com/landeanfen/p/5005367.html">15. JS组件系列——表格组件神器：bootstrap table（三：终结篇，最后的干货福利）(103)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2018 懒得安分
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<script type="text/javascript" language="javascript"> 
+//为右下角推荐推荐区域添加关注按钮
+window.onload = function () {
+    $('#div_digg').prepend('<div style="padding-bottom: 5px"><span class="icon_favorite" style="padding-top: 2px"></span><a onclick="cnblogs.UserManager.FollowBlogger(\'19347013-e91c-e211-aa8f-842b2b196315\');" href="javascript:void(0);" style="font-weight: bold; padding-left:5px;">关注一下楼主吧</a> </div>');
+
+    //添加文章最后面的东西
+$('#cnblogs_post_body').append('<br/><hr style="border-top-width:2px;"/>');
+$('#MySignature').append('欢迎大家关注我的微信号公众号，公众号名称：Bootstrap前端交流。扫下面的二维码或者收藏下面的二维码关注吧（长按下面的二维码图片、并选择识别图中的二维码）<br/><img src="https://files.cnblogs.com/files/landeanfen/qrcode_for_gh_4e40c9ed0626_344.bmp" alt="Bootstrap前端交流">').css('margin-top', '20px').show();
+}
+
+var linkObject = document.createElement('link');
+　　linkObject.rel = "shortcut icon";
+　　linkObject.href = "https://files.cnblogs.com/files/landeanfen/landeanfen.ico";
+　　document.getElementsByTagName("head")[0].appendChild(linkObject);
+
+
+//生成目录索引列表
+function GenerateContentList()
+{
+    var mainContent = $('#cnblogs_post_body');
+    var h2_list = $('#cnblogs_post_body h1');//如果你的章节标题不是h2,只需要将这里的h2换掉即可
+ 
+    if(mainContent.length < 1)
+        return;
+  
+    if(h2_list.length>0)
+    {
+        var content = '<a name="_labelTop"></a>';
+        content += '<div id="navCategory">';
+        content += '<p style="font-size:18px"><b>阅读目录</b></p>';
+        content += '<ul>';
+        for(var i=0; i<h2_list.length; i++)
+        {
+            var go_to_top = '<div style="text-align: right"><a href="#_labelTop">回到顶部</a><a name="_label' + i + '"></a></div>';
+            $(h2_list[i]).before(go_to_top);
+             
+            var h3_list = $(h2_list[i]).nextAll("h2");
+            var li3_content = '';
+            for(var j=0; j<h3_list.length; j++)
+            {
+                var tmp = $(h3_list[j]).prevAll('h1').first();
+                if(!tmp.is(h2_list[i]))
+                    break;
+                var li3_anchor = '<div style="text-align: right;"><a href="#_labelTop">回到顶部</a><a name="_label' + i + '_' + j + '"></a></div>';
+                $(h3_list[j]).before(li3_anchor);
+                li3_content += '<li><a href="#_label' + i + '_' + j + '">' + $(h3_list[j]).text() + '</a></li>';
+            }
+             
+            var li2_content = '';
+            if(li3_content.length > 0)
+                li2_content = '<li><a href="#_label' + i + '">' + $(h2_list[i]).text() + '</a><ul>' + li3_content + '</ul></li>';
+            else
+                li2_content = '<li><a href="#_label' + i + '">' + $(h2_list[i]).text() + '</a></li>';
+            content += li2_content;
+        }
+        content += '</ul>';
+        content += '</div><p>&nbsp;</p>';
+        content += '<p style="font-size:18px"><b>正文</b></p>';
+        if($('#cnblogs_post_body').length != 0 )
+        {
+            $($('#cnblogs_post_body')[0]).prepend(content);
+        }
+    }  
+ }
+ 
+GenerateContentList();
+</script>
+<!--PageEndHtml Block End-->
+
+
+<script type="text/javascript">
+window.tctipConfig = {
+        //staticPrefix:   "http://static.tctip.com",
+	imagePrefix: "https://files.cnblogs.com/files/landeanfen/",
+        cssPrefix:     "https://files.cnblogs.com/files/landeanfen/",
+        buttonImageId:  2,
+        buttonTip:  "赞助",
+        list:{
+            alipay: {qrimg: "https://files.cnblogs.com/files/landeanfen/Myalipay.bmp"},
+            weixin:{qrimg: "https://files.cnblogs.com/files/landeanfen/weixinzhuanzhang.bmp"},
+        }
+};
+</script><script type="text/javascript">getFollowStatus('19347013-e91c-e211-aa8f-842b2b196315')</script></body></html>

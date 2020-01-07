@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)https://www.cnblogs.com/c-xiaohai/p/6796116.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>(5)微信二次开发 之 XML格式数据解析 - C小海 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./(5)微信二次开发 之 XML格式数据解析_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./(5)微信二次开发 之 XML格式数据解析_files/bundle-CodingLife.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./(5)微信二次开发 之 XML格式数据解析_files/bundle-CodingLife-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/c-xiaohai/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/c-xiaohai/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/c-xiaohai/wlwmanifest.xml">
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="./(5)微信二次开发 之 XML格式数据解析_files/encoder.js.下载"></script><script src="./(5)微信二次开发 之 XML格式数据解析_files/jquery-2.2.0.min.js.下载"></script>
+<script type="text/javascript">var currentBlogApp = 'c-xiaohai', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./(5)微信二次开发 之 XML格式数据解析_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/c-xiaohai/"><img id="blogLogo" src="./(5)微信二次开发 之 XML格式数据解析_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/c-xiaohai/">C小海</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/c-xiaohai/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/C%E5%B0%8F%E6%B5%B7">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/c-xiaohai/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/c-xiaohai/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 38&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 5</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/c-xiaohai/p/6796116.html">(5)微信二次开发 之 XML格式数据解析</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><h2>1、首先理解一下html</h2>
+<p><span style="font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; html的全名是：HyperText Transfer markup language 超级文本标记语言，html本质上是一门标记（符合）语言，在html里，这些标记是事先定义（规则）好的，并且赋予了其特定的含义。有一套 固定的标记的集合。</span></p>
+<p><span style="font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 网页文件的扩展名是 .html或者 .htm,都是可行的。</span></p>
+<p><span style="font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 文档声明:&lt;!doctype html&gt;&nbsp; 这里的doctype不管是大小写都是可以的，并且兼容html4/html5。</span></p>
+<p><span style="font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; html中的标记一般都是有开始标签和结束标签，例如:&lt;html&gt;...&lt;/html&gt;、&lt;body&gt;...&lt;/body&gt;等标签。但是也有一些标签是没有内容主体的，可以直接写成：&lt;br /&gt;、&lt;hr /&gt;.</span></p>
+<p><span style="font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在html里的所有标签都是有固定含义的，不能自己随便去定义，虽然有一些是自定义的标签，但是最终还是继承和使用html的固定标签。</span></p>
+<p><span style="font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 需要学习html4、html5、css2、css3等前段的开发，基础入门网站：http://www.w3school.com.cn/</span></p>
+<p><span style="font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 编写html的时候使用的一些编辑器，例如：notepad++、editplus、hbuilder等。</span></p>
+<h2>2、理解XML</h2>
+<p><span style="font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xml的全名是：Extensible Markup Language 可扩展标记语言，在xml文件里的所有标签都是可以自由定于的。</span></p>
+<p><span style="font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xml的扩展名为：.xml</span></p>
+<p><span style="font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xml文件头部信息为：&lt;?xml version="1.0" ?&gt;</span></p>
+<p><span style="font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xml文件有且只有一个跟节点</span></p>
+<p><span style="font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xml中的节点与节点之间可以允许嵌套</span></p>
+<h2>3、微信二次开发中使用XML的理解</h2>
+<p><span style="font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 由于微信协议数据传输其实就是采用xml格式进行传输，所以我们必须要了解xml的格式以及传输数据的解析和生成。</span></p>
+<p><span style="font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 当微信A用户 -&gt; 发送数据消息 -&gt; 给B用户，中间需要微信服务器进行中转。例如：微信文本消息协议格式（该功能的数据传输是基于xml格式）</span></p>
+<p><span style="font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 微信公众号开发文档地址：https://mp.weixin.qq.com/wiki</span></p>
+<p><span style="font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 文本消息格式(用户发送给服务，服务器接收的格式)如下：</span><span style="font-size: 15px">　</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./(5)微信二次开发 之 XML格式数据解析_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="font-size: 15px"><span style="color: #008080">1</span> <span style="color: #0000ff">&lt;</span><span style="color: #800000">xml</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">2</span>  <span style="color: #0000ff">&lt;</span><span style="color: #800000">ToUserName</span><span style="color: #0000ff">&gt;</span><span style="color: #0000ff">&lt;![CDATA[</span><span style="color: #808080">toUser</span><span style="color: #0000ff">]]&gt;</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">ToUserName</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">3</span>  <span style="color: #0000ff">&lt;</span><span style="color: #800000">FromUserName</span><span style="color: #0000ff">&gt;</span><span style="color: #0000ff">&lt;![CDATA[</span><span style="color: #808080">fromUser</span><span style="color: #0000ff">]]&gt;</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">FromUserName</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">4</span>  <span style="color: #0000ff">&lt;</span><span style="color: #800000">CreateTime</span><span style="color: #0000ff">&gt;</span>1348831860<span style="color: #0000ff">&lt;/</span><span style="color: #800000">CreateTime</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">5</span>  <span style="color: #0000ff">&lt;</span><span style="color: #800000">MsgType</span><span style="color: #0000ff">&gt;</span><span style="color: #0000ff">&lt;![CDATA[</span><span style="color: #808080">text</span><span style="color: #0000ff">]]&gt;</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">MsgType</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">6</span>  <span style="color: #0000ff">&lt;</span><span style="color: #800000">Content</span><span style="color: #0000ff">&gt;</span><span style="color: #0000ff">&lt;![CDATA[</span><span style="color: #808080">你好</span><span style="color: #0000ff">]]&gt;</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">Content</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">7</span>  <span style="color: #0000ff">&lt;</span><span style="color: #800000">MsgId</span><span style="color: #0000ff">&gt;</span>1234567890123456<span style="color: #0000ff">&lt;/</span><span style="color: #800000">MsgId</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">8</span>  <span style="color: #0000ff">&lt;/</span><span style="color: #800000">xml</span><span style="color: #0000ff">&gt;</span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./(5)微信二次开发 之 XML格式数据解析_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="font-size: 15px">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;如图解析：</span></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<img src="./(5)微信二次开发 之 XML格式数据解析_files/785859-20170502144131476-402787918.png" alt=""></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 15px">&nbsp;　　根据上面的xml格式，&lt;![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ]]&gt;这类型的数据是指字符数据，CDATA是由character（字符）和data（数据）的简称缩写。</span></p>
+<p><span style="font-size: 15px">&nbsp; &nbsp; &nbsp; &nbsp;每个微信用户是通过openid来加以区分的，而openid就是根据个人的微信号进行一定的加密算法锁构成的，openid是由字母、数字、构成的一串字符串(该长度是28位)。在我们自己的微信服务器上收到的还是与原来的微信服务器所转发过来的xml格式串还是一致的。所以我们就需要在我们自己的服务器的程序里进行解析 xml格式串。</span></p>
+<p>&nbsp;</p>
+<h2>4、xml格式解析</h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 15px"> 目前在java里面对xml解析有4种方法：</span></p>
+<p><span style="font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1、DOM(Documemt Object Model)文档对象模型，Dom是一次性读取整个文档，如果xml文档比较大，节点比较多的情况下，解析的时候比较消耗资源、内存，性能比较低，不建议使用。</span></p>
+<p><span style="font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2、SAX(Simple API for XML)。使用SAX解析，是基于事件驱动方式来解析xml。解析器在读取xml文件根据读取的数据产生相应的事件，解析速度快，占用内存少，性能比较好。</span></p>
+<p><span style="font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3、DOM4J是第三方类库，对SAX解析进行了封装。</span></p>
+<p><span style="font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4、JDOM也是第三方类库，也是对SAX解析进行了封装。</span></p>
+<p><span style="font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+<p><span style="font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DOM与SAX解析方式是java自带的，不需要第三方额外的jar包。二DOM4J和JDOM都是第三方开源的，使用的时候需要下载支持第三方支持的jar包。</span></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<img src="./(5)微信二次开发 之 XML格式数据解析_files/785859-20170502144227132-1562205462.png" alt=""></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>5、声明一个xml文件使用4种方式进行解析</h2>
+<p><span style="font-size: 15px">　　创建一个parseXml的java项目，将创建以一个studentMsg.xml文件，</span></p>
+<p><span style="font-size: 15px">&nbsp;</span></p>
+<p><span style="font-size: 15px">　　如图显示：</span></p>
+<p><span style="font-size: 15px">　　<img src="./(5)微信二次开发 之 XML格式数据解析_files/785859-20170502144308476-68851267.png" alt=""></span></p>
+<p>　　</p>
+<p><span style="font-size: 15px">　　编辑xml文件：</span></p>
+<p>　　</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./(5)微信二次开发 之 XML格式数据解析_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> <span style="color: #0000ff">&lt;?</span><span style="color: #ff00ff">xml version="1.0" </span><span style="color: #0000ff">?&gt;</span>
+<span style="color: #008080"> 2</span> <span style="color: #008000">&lt;!--</span><span style="color: #008000"> 所在部门标签 </span><span style="color: #008000">--&gt;</span>
+<span style="color: #008080"> 3</span> <span style="color: #0000ff">&lt;</span><span style="color: #800000">department</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080"> 4</span>     <span style="color: #008000">&lt;!--</span><span style="color: #008000"> 员工标签:属性number是工号 </span><span style="color: #008000">--&gt;</span>
+<span style="color: #008080"> 5</span>     <span style="color: #0000ff">&lt;</span><span style="color: #800000">employee </span><span style="color: #ff0000">number</span><span style="color: #0000ff">="001"</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080"> 6</span>         <span style="color: #008000">&lt;!--</span><span style="color: #008000"> 员工的个人信息 </span><span style="color: #008000">--&gt;</span>
+<span style="color: #008080"> 7</span>         <span style="color: #0000ff">&lt;</span><span style="color: #800000">name</span><span style="color: #0000ff">&gt;</span>小海<span style="color: #0000ff">&lt;/</span><span style="color: #800000">name</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080"> 8</span>         <span style="color: #0000ff">&lt;</span><span style="color: #800000">sex</span><span style="color: #0000ff">&gt;</span>男<span style="color: #0000ff">&lt;/</span><span style="color: #800000">sex</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080"> 9</span>         <span style="color: #0000ff">&lt;</span><span style="color: #800000">profession</span><span style="color: #0000ff">&gt;</span>java开发<span style="color: #0000ff">&lt;/</span><span style="color: #800000">profession</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">10</span>         <span style="color: #0000ff">&lt;</span><span style="color: #800000">hobby</span><span style="color: #0000ff">&gt;</span>足球<span style="color: #0000ff">&lt;/</span><span style="color: #800000">hobby</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">11</span>     <span style="color: #0000ff">&lt;/</span><span style="color: #800000">employee</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">12</span>     <span style="color: #0000ff">&lt;</span><span style="color: #800000">employee </span><span style="color: #ff0000">number</span><span style="color: #0000ff">="002"</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">13</span>         <span style="color: #008000">&lt;!--</span><span style="color: #008000"> 员工的个人信息 </span><span style="color: #008000">--&gt;</span>
+<span style="color: #008080">14</span>         <span style="color: #0000ff">&lt;</span><span style="color: #800000">name</span><span style="color: #0000ff">&gt;</span>婷菲<span style="color: #0000ff">&lt;/</span><span style="color: #800000">name</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">15</span>         <span style="color: #0000ff">&lt;</span><span style="color: #800000">sex</span><span style="color: #0000ff">&gt;</span>女<span style="color: #0000ff">&lt;/</span><span style="color: #800000">sex</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">16</span>         <span style="color: #0000ff">&lt;</span><span style="color: #800000">profession</span><span style="color: #0000ff">&gt;</span>C#开发<span style="color: #0000ff">&lt;/</span><span style="color: #800000">profession</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">17</span>         <span style="color: #0000ff">&lt;</span><span style="color: #800000">hobby</span><span style="color: #0000ff">&gt;</span>跑步<span style="color: #0000ff">&lt;/</span><span style="color: #800000">hobby</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">18</span>     <span style="color: #0000ff">&lt;/</span><span style="color: #800000">employee</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">19</span> <span style="color: #0000ff">&lt;/</span><span style="color: #800000">department</span><span style="color: #0000ff">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./(5)微信二次开发 之 XML格式数据解析_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;<span style="font-size: 15px"> &nbsp; &nbsp; &nbsp; &nbsp;这里的xml文件放在（我本地的位置）：</span></p>
+<p><span style="font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /Users/wangxianhai/work_sts_01/parseXML/src/com/aixunma/xml/studentMsg.xml</span></p>
+<h2>6、声明XML文档内容信息的类</h2>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./(5)微信二次开发 之 XML格式数据解析_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="font-size: 15px"><span style="color: #008080"> 1</span> <span style="color: #0000ff">package</span><span style="color: #000000"> com.aixunma.xml;
+</span><span style="color: #008080"> 2</span> 
+<span style="color: #008080"> 3</span> <span style="color: #008000">/**</span>
+<span style="color: #008080"> 4</span> <span style="color: #008000"> * XML文档内容信息的对应的字段
+</span><span style="color: #008080"> 5</span> <span style="color: #008000"> * &lt;p&gt;类的描述:&lt;/p&gt;
+</span><span style="color: #008080"> 6</span> <span style="color: #008000"> * &lt;p&gt;@Description: TODO&lt;/p&gt;
+</span><span style="color: #008080"> 7</span> <span style="color: #008000"> * &lt;p&gt;</span><span style="color: #808080">@author</span><span style="color: #008000"> 小海&lt;/p&gt;
+</span><span style="color: #008080"> 8</span> <span style="color: #008000"> * &lt;p&gt;@time:2017年4月29日 下午6:04:00&lt;/p&gt;
+</span><span style="color: #008080"> 9</span> <span style="color: #008000"> * &lt;p&gt;@Vesion: 1.0&lt;/p&gt;
+</span><span style="color: #008080">10</span>  <span style="color: #008000">*/</span>
+<span style="color: #008080">11</span> <span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> XmlParam {
+</span><span style="color: #008080">12</span>     
+<span style="color: #008080">13</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span> <span style="color: #0000ff">final</span> String LABLE_EMPLOYEE = "employee"; <span style="color: #008000">//</span><span style="color: #008000"> 员工标签</span>
+<span style="color: #008080">14</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span> <span style="color: #0000ff">final</span> String LABLE_NAME = "name"; <span style="color: #008000">//</span><span style="color: #008000"> 名称标签</span>
+<span style="color: #008080">15</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span> <span style="color: #0000ff">final</span> String LABLE_SEX = "sex"; <span style="color: #008000">//</span><span style="color: #008000"> 性别标签</span>
+<span style="color: #008080">16</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span> <span style="color: #0000ff">final</span> String LABLE_PROFESSION = "profession"; <span style="color: #008000">//</span><span style="color: #008000"> 职业标签</span>
+<span style="color: #008080">17</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span> <span style="color: #0000ff">final</span> String LABLE_HOBBY = "hobby"; <span style="color: #008000">//</span><span style="color: #008000"> 爱好标签</span>
+<span style="color: #008080">18</span>     
+<span style="color: #008080">19</span>     <span style="color: #0000ff">private</span> <span style="color: #0000ff">int</span><span style="color: #000000"> number;
+</span><span style="color: #008080">20</span>     <span style="color: #0000ff">private</span><span style="color: #000000"> String name;
+</span><span style="color: #008080">21</span>     <span style="color: #0000ff">private</span><span style="color: #000000"> String sex;
+</span><span style="color: #008080">22</span>     <span style="color: #0000ff">private</span><span style="color: #000000"> String profession;
+</span><span style="color: #008080">23</span>     <span style="color: #0000ff">private</span><span style="color: #000000"> String hobby;
+</span><span style="color: #008080">24</span>     
+<span style="color: #008080">25</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">int</span><span style="color: #000000"> getNumber() {
+</span><span style="color: #008080">26</span>         <span style="color: #0000ff">return</span><span style="color: #000000"> number;
+</span><span style="color: #008080">27</span> <span style="color: #000000">    }
+</span><span style="color: #008080">28</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> setNumber(<span style="color: #0000ff">int</span><span style="color: #000000"> number) {
+</span><span style="color: #008080">29</span>         <span style="color: #0000ff">this</span>.number =<span style="color: #000000"> number;
+</span><span style="color: #008080">30</span> <span style="color: #000000">    }
+</span><span style="color: #008080">31</span>     <span style="color: #0000ff">public</span><span style="color: #000000"> String getName() {
+</span><span style="color: #008080">32</span>         <span style="color: #0000ff">return</span><span style="color: #000000"> name;
+</span><span style="color: #008080">33</span> <span style="color: #000000">    }
+</span><span style="color: #008080">34</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> setName(String name) {
+</span><span style="color: #008080">35</span>         <span style="color: #0000ff">this</span>.name =<span style="color: #000000"> name;
+</span><span style="color: #008080">36</span> <span style="color: #000000">    }
+</span><span style="color: #008080">37</span>     <span style="color: #0000ff">public</span><span style="color: #000000"> String getSex() {
+</span><span style="color: #008080">38</span>         <span style="color: #0000ff">return</span><span style="color: #000000"> sex;
+</span><span style="color: #008080">39</span> <span style="color: #000000">    }
+</span><span style="color: #008080">40</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> setSex(String sex) {
+</span><span style="color: #008080">41</span>         <span style="color: #0000ff">this</span>.sex =<span style="color: #000000"> sex;
+</span><span style="color: #008080">42</span> <span style="color: #000000">    }
+</span><span style="color: #008080">43</span>     <span style="color: #0000ff">public</span><span style="color: #000000"> String getProfession() {
+</span><span style="color: #008080">44</span>         <span style="color: #0000ff">return</span><span style="color: #000000"> profession;
+</span><span style="color: #008080">45</span> <span style="color: #000000">    }
+</span><span style="color: #008080">46</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> setProfession(String profession) {
+</span><span style="color: #008080">47</span>         <span style="color: #0000ff">this</span>.profession =<span style="color: #000000"> profession;
+</span><span style="color: #008080">48</span> <span style="color: #000000">    }
+</span><span style="color: #008080">49</span>     <span style="color: #0000ff">public</span><span style="color: #000000"> String getHobby() {
+</span><span style="color: #008080">50</span>         <span style="color: #0000ff">return</span><span style="color: #000000"> hobby;
+</span><span style="color: #008080">51</span> <span style="color: #000000">    }
+</span><span style="color: #008080">52</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> setHobby(String hobby) {
+</span><span style="color: #008080">53</span>         <span style="color: #0000ff">this</span>.hobby =<span style="color: #000000"> hobby;
+</span><span style="color: #008080">54</span> <span style="color: #000000">    }
+</span><span style="color: #008080">55</span> <span style="color: #000000">    @Override
+</span><span style="color: #008080">56</span>     <span style="color: #0000ff">public</span><span style="color: #000000"> String toString() {
+</span><span style="color: #008080">57</span>         StringBuilder builder = <span style="color: #0000ff">new</span><span style="color: #000000"> StringBuilder();
+</span><span style="color: #008080">58</span>         builder.append("number=").append(number).append("\n"<span style="color: #000000">)
+</span><span style="color: #008080">59</span>             .append("name=").append(name).append("\n"<span style="color: #000000">)
+</span><span style="color: #008080">60</span>             .append("sex=").append(sex).append("\n"<span style="color: #000000">)
+</span><span style="color: #008080">61</span>             .append("profession=").append(profession).append("\n"<span style="color: #000000">)
+</span><span style="color: #008080">62</span>             .append("hobby=").append(hobby).append("\n"<span style="color: #000000">);
+</span><span style="color: #008080">63</span>         <span style="color: #0000ff">return</span><span style="color: #000000"> builder.toString();
+</span><span style="color: #008080">64</span> <span style="color: #000000">    }
+</span><span style="color: #008080">65</span> }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./(5)微信二次开发 之 XML格式数据解析_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<h2>7、实现DOM方式解析xml</h2>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./(5)微信二次开发 之 XML格式数据解析_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="font-size: 15px"><span style="color: #008080">  1</span> <span style="color: #0000ff">package</span><span style="color: #000000"> com.aixunma.xml;
+</span><span style="color: #008080">  2</span> 
+<span style="color: #008080">  3</span> <span style="color: #0000ff">import</span><span style="color: #000000"> java.io.File;
+</span><span style="color: #008080">  4</span> 
+<span style="color: #008080">  5</span> <span style="color: #0000ff">import</span><span style="color: #000000"> javax.security.auth.login.LoginException;
+</span><span style="color: #008080">  6</span> <span style="color: #0000ff">import</span><span style="color: #000000"> javax.xml.parsers.DocumentBuilder;
+</span><span style="color: #008080">  7</span> <span style="color: #0000ff">import</span><span style="color: #000000"> javax.xml.parsers.DocumentBuilderFactory;
+</span><span style="color: #008080">  8</span> 
+<span style="color: #008080">  9</span> <span style="color: #0000ff">import</span><span style="color: #000000"> org.apache.commons.lang.StringUtils;
+</span><span style="color: #008080"> 10</span> <span style="color: #0000ff">import</span><span style="color: #000000"> org.w3c.dom.Document;
+</span><span style="color: #008080"> 11</span> <span style="color: #0000ff">import</span><span style="color: #000000"> org.w3c.dom.Element;
+</span><span style="color: #008080"> 12</span> <span style="color: #0000ff">import</span><span style="color: #000000"> org.w3c.dom.Node;
+</span><span style="color: #008080"> 13</span> <span style="color: #0000ff">import</span><span style="color: #000000"> org.w3c.dom.NodeList;
+</span><span style="color: #008080"> 14</span> 
+<span style="color: #008080"> 15</span> <span style="color: #008000">/**</span>
+<span style="color: #008080"> 16</span> <span style="color: #008000"> * 使用DOM解析xml文件
+</span><span style="color: #008080"> 17</span> <span style="color: #008000"> * &lt;p&gt;类的描述:&lt;/p&gt;
+</span><span style="color: #008080"> 18</span> <span style="color: #008000"> * &lt;p&gt;@Description: TODO&lt;/p&gt;
+</span><span style="color: #008080"> 19</span> <span style="color: #008000"> * &lt;p&gt;</span><span style="color: #808080">@author</span><span style="color: #008000"> 小海&lt;/p&gt;
+</span><span style="color: #008080"> 20</span> <span style="color: #008000"> * &lt;p&gt;@time:2017年4月29日 下午2:28:27&lt;/p&gt;
+</span><span style="color: #008080"> 21</span> <span style="color: #008000"> * &lt;p&gt;@Vesion: 1.0&lt;/p&gt;
+</span><span style="color: #008080"> 22</span>  <span style="color: #008000">*/</span>
+<span style="color: #008080"> 23</span> <span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> DomPaeseXML {
+</span><span style="color: #008080"> 24</span>     <span style="color: #008000">/**</span>
+<span style="color: #008080"> 25</span> <span style="color: #008000">     * 解析xml文档内容
+</span><span style="color: #008080"> 26</span> <span style="color: #008000">     * </span><span style="color: #808080">@return</span>
+<span style="color: #008080"> 27</span> <span style="color: #008000">     * </span><span style="color: #808080">@throws</span><span style="color: #008000"> Exception
+</span><span style="color: #008080"> 28</span>      <span style="color: #008000">*/</span>
+<span style="color: #008080"> 29</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span> String parseXMl() <span style="color: #0000ff">throws</span><span style="color: #000000"> Exception {
+</span><span style="color: #008080"> 30</span>         
+<span style="color: #008080"> 31</span>         <span style="color: #008000">//</span><span style="color: #008000"> 1、创建一个文档构建工厂对象</span>
+<span style="color: #008080"> 32</span>         <span style="color: #0000ff">final</span> DocumentBuilderFactory dbf =<span style="color: #000000"> DocumentBuilderFactory.newInstance();
+</span><span style="color: #008080"> 33</span>         
+<span style="color: #008080"> 34</span>         <span style="color: #008000">//</span><span style="color: #008000"> 2、通过工厂对象创建一个文档构造器对象</span>
+<span style="color: #008080"> 35</span>         <span style="color: #0000ff">final</span> DocumentBuilder db =<span style="color: #000000"> dbf.newDocumentBuilder();
+</span><span style="color: #008080"> 36</span>         
+<span style="color: #008080"> 37</span>         <span style="color: #008000">//</span><span style="color: #008000"> 3、声明xml文件在本地的路径,并且加载该xml文件</span>
+<span style="color: #008080"> 38</span>         <span style="color: #0000ff">final</span> String path = "/Users/wangxianhai/work_sts_01/parseXML/src/com/aixunma/xml/studentMsg.xml"<span style="color: #000000">;
+</span><span style="color: #008080"> 39</span>         <span style="color: #0000ff">final</span> File file = <span style="color: #0000ff">new</span><span style="color: #000000"> File(path);
+</span><span style="color: #008080"> 40</span>         
+<span style="color: #008080"> 41</span>         <span style="color: #008000">//</span><span style="color: #008000"> 4、通过文档构造器解析文件加载的对象成文档对象</span>
+<span style="color: #008080"> 42</span>         <span style="color: #0000ff">final</span> Document parse =<span style="color: #000000"> db.parse(file);
+</span><span style="color: #008080"> 43</span>         
+<span style="color: #008080"> 44</span>         <span style="color: #008000">//</span><span style="color: #008000"> 5、通过文档对象获取头部节点</span>
+<span style="color: #008080"> 45</span>         <span style="color: #0000ff">final</span> Element headNode =<span style="color: #000000"> parse.getDocumentElement();
+</span><span style="color: #008080"> 46</span>         
+<span style="color: #008080"> 47</span>         <span style="color: #0000ff">final</span> StringBuilder builder = <span style="color: #0000ff">new</span><span style="color: #000000"> StringBuilder();
+</span><span style="color: #008080"> 48</span>         
+<span style="color: #008080"> 49</span>         <span style="color: #008000">//</span><span style="color: #008000"> 6、通过头节遍历下面的子节点列表</span>
+<span style="color: #008080"> 50</span>         <span style="color: #0000ff">final</span> NodeList childNodes =<span style="color: #000000"> headNode.getChildNodes();
+</span><span style="color: #008080"> 51</span>         <span style="color: #0000ff">if</span> (childNodes == <span style="color: #0000ff">null</span><span style="color: #000000">) {
+</span><span style="color: #008080"> 52</span>             <span style="color: #0000ff">return</span> ""<span style="color: #000000">;
+</span><span style="color: #008080"> 53</span> <span style="color: #000000">        }
+</span><span style="color: #008080"> 54</span> <span style="color: #000000">        parseXmlToStr(childNodes, builder);
+</span><span style="color: #008080"> 55</span>         <span style="color: #0000ff">return</span><span style="color: #000000"> builder.toString();
+</span><span style="color: #008080"> 56</span> <span style="color: #000000">    }
+</span><span style="color: #008080"> 57</span>     
+<span style="color: #008080"> 58</span>     <span style="color: #008000">/**</span>
+<span style="color: #008080"> 59</span> <span style="color: #008000">     * 将节点列表遍历生成字符串
+</span><span style="color: #008080"> 60</span> <span style="color: #008000">     * </span><span style="color: #808080">@param</span><span style="color: #008000"> childNodes 节点列表
+</span><span style="color: #008080"> 61</span> <span style="color: #008000">     * </span><span style="color: #808080">@param</span><span style="color: #008000"> builder 记录节点内容
+</span><span style="color: #008080"> 62</span> <span style="color: #008000">     * </span><span style="color: #808080">@return</span>
+<span style="color: #008080"> 63</span>      <span style="color: #008000">*/</span>
+<span style="color: #008080"> 64</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span><span style="color: #000000"> StringBuilder parseXmlToStr(NodeList childNodes, StringBuilder builder) {
+</span><span style="color: #008080"> 65</span>         <span style="color: #008000">//</span><span style="color: #008000"> 判断节点列表是否为空</span>
+<span style="color: #008080"> 66</span>         <span style="color: #0000ff">if</span> (childNodes == <span style="color: #0000ff">null</span><span style="color: #000000">) {
+</span><span style="color: #008080"> 67</span>             <span style="color: #0000ff">return</span><span style="color: #000000"> builder;
+</span><span style="color: #008080"> 68</span> <span style="color: #000000">        }
+</span><span style="color: #008080"> 69</span>         
+<span style="color: #008080"> 70</span>         <span style="color: #008000">//</span><span style="color: #008000"> 遍历节点列表</span>
+<span style="color: #008080"> 71</span>         <span style="color: #0000ff">for</span> (<span style="color: #0000ff">int</span> i = 0; i &lt; childNodes.getLength(); i++<span style="color: #000000">) {
+</span><span style="color: #008080"> 72</span>             <span style="color: #008000">//</span><span style="color: #008000"> 获取子节点</span>
+<span style="color: #008080"> 73</span>             <span style="color: #0000ff">final</span> Node iemt =<span style="color: #000000"> childNodes.item(i);
+</span><span style="color: #008080"> 74</span>             <span style="color: #008000">//</span><span style="color: #008000"> 因为节点又好几种类型，需要判断属于ELEMENT_NODE类型的</span>
+<span style="color: #008080"> 75</span>             <span style="color: #0000ff">if</span> (iemt != <span style="color: #0000ff">null</span> &amp;&amp; iemt.getNodeType() ==<span style="color: #000000"> Node.ELEMENT_NODE) {
+</span><span style="color: #008080"> 76</span>                 <span style="color: #008000">//</span><span style="color: #008000"> 节点的内容值</span>
+<span style="color: #008080"> 77</span>                 <span style="color: #0000ff">final</span> String nodeValue =<span style="color: #000000"> iemt.getFirstChild().getNodeValue();
+</span><span style="color: #008080"> 78</span>                 <span style="color: #008000">//</span><span style="color: #008000"> 如果值为为空，则不获取</span>
+<span style="color: #008080"> 79</span>                 <span style="color: #0000ff">if</span><span style="color: #000000"> (StringUtils.isNotBlank(nodeValue)) {
+</span><span style="color: #008080"> 80</span>                     <span style="color: #0000ff">final</span> String nodeName =<span style="color: #000000"> iemt.getNodeName();
+</span><span style="color: #008080"> 81</span>                     builder.append(nodeName).append("\t").append(nodeValue).append("\n"<span style="color: #000000">);
+</span><span style="color: #008080"> 82</span> <span style="color: #000000">                }
+</span><span style="color: #008080"> 83</span> <span style="color: #000000">            }
+</span><span style="color: #008080"> 84</span>             
+<span style="color: #008080"> 85</span>             <span style="color: #008000">//</span><span style="color: #008000"> 再次获取子节点的子节点列表</span>
+<span style="color: #008080"> 86</span>             <span style="color: #0000ff">final</span> NodeList childNodesNext =<span style="color: #000000"> iemt.getChildNodes();
+</span><span style="color: #008080"> 87</span>             parseXmlToStr(childNodesNext, builder); <span style="color: #008000">//</span><span style="color: #008000"> 继续回调该方法，获取子节点下的子节点</span>
+<span style="color: #008080"> 88</span> <span style="color: #000000">        }
+</span><span style="color: #008080"> 89</span>         <span style="color: #0000ff">return</span><span style="color: #000000"> builder;
+</span><span style="color: #008080"> 90</span> <span style="color: #000000">    }
+</span><span style="color: #008080"> 91</span>     
+<span style="color: #008080"> 92</span>     <span style="color: #008000">//</span><span style="color: #008000"> 测试</span>
+<span style="color: #008080"> 93</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span> <span style="color: #0000ff">void</span> main(String[] args) <span style="color: #0000ff">throws</span><span style="color: #000000"> Exception {
+</span><span style="color: #008080"> 94</span>         <span style="color: #0000ff">try</span><span style="color: #000000"> {
+</span><span style="color: #008080"> 95</span>             <span style="color: #0000ff">final</span> String string =<span style="color: #000000"> parseXMl();
+</span><span style="color: #008080"> 96</span> <span style="color: #000000">            System.out.println(string);
+</span><span style="color: #008080"> 97</span>         } <span style="color: #0000ff">catch</span><span style="color: #000000"> (Exception e) {
+</span><span style="color: #008080"> 98</span>             <span style="color: #0000ff">throw</span> <span style="color: #0000ff">new</span> LoginException("解析xml文件失败"<span style="color: #000000">);
+</span><span style="color: #008080"> 99</span> <span style="color: #000000">        }
+</span><span style="color: #008080">100</span> <span style="color: #000000">    }
+</span><span style="color: #008080">101</span> }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./(5)微信二次开发 之 XML格式数据解析_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<h2>8、实现SAX方式解析xml</h2>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./(5)微信二次开发 之 XML格式数据解析_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="font-size: 15px"><span style="color: #008080">  1</span> <span style="color: #0000ff">package</span><span style="color: #000000"> com.aixunma.xml;
+</span><span style="color: #008080">  2</span> 
+<span style="color: #008080">  3</span> <span style="color: #0000ff">import</span><span style="color: #000000"> java.io.File;
+</span><span style="color: #008080">  4</span> <span style="color: #0000ff">import</span><span style="color: #000000"> java.util.ArrayList;
+</span><span style="color: #008080">  5</span> <span style="color: #0000ff">import</span><span style="color: #000000"> java.util.List;
+</span><span style="color: #008080">  6</span> 
+<span style="color: #008080">  7</span> <span style="color: #0000ff">import</span><span style="color: #000000"> javax.security.auth.login.LoginException;
+</span><span style="color: #008080">  8</span> <span style="color: #0000ff">import</span><span style="color: #000000"> javax.xml.parsers.SAXParser;
+</span><span style="color: #008080">  9</span> <span style="color: #0000ff">import</span><span style="color: #000000"> javax.xml.parsers.SAXParserFactory;
+</span><span style="color: #008080"> 10</span> 
+<span style="color: #008080"> 11</span> <span style="color: #0000ff">import</span><span style="color: #000000"> org.apache.commons.lang.math.NumberUtils;
+</span><span style="color: #008080"> 12</span> <span style="color: #0000ff">import</span><span style="color: #000000"> org.xml.sax.Attributes;
+</span><span style="color: #008080"> 13</span> <span style="color: #0000ff">import</span><span style="color: #000000"> org.xml.sax.SAXException;
+</span><span style="color: #008080"> 14</span> <span style="color: #0000ff">import</span><span style="color: #000000"> org.xml.sax.helpers.DefaultHandler;
+</span><span style="color: #008080"> 15</span> 
+<span style="color: #008080"> 16</span> <span style="color: #008000">/**</span>
+<span style="color: #008080"> 17</span> <span style="color: #008000"> * SAX解析XML文档信息
+</span><span style="color: #008080"> 18</span> <span style="color: #008000"> * &lt;p&gt;类的描述:&lt;/p&gt;
+</span><span style="color: #008080"> 19</span> <span style="color: #008000"> * &lt;p&gt;@Description: TODO&lt;/p&gt;
+</span><span style="color: #008080"> 20</span> <span style="color: #008000"> * &lt;p&gt;</span><span style="color: #808080">@author</span><span style="color: #008000"> 小海&lt;/p&gt;
+</span><span style="color: #008080"> 21</span> <span style="color: #008000"> * &lt;p&gt;@time:2017年4月29日 下午5:38:07&lt;/p&gt;
+</span><span style="color: #008080"> 22</span> <span style="color: #008000"> * &lt;p&gt;@Vesion: 1.0&lt;/p&gt;
+</span><span style="color: #008080"> 23</span>  <span style="color: #008000">*/</span>
+<span style="color: #008080"> 24</span> <span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> SaxParseXML {
+</span><span style="color: #008080"> 25</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span> String parseXml() <span style="color: #0000ff">throws</span><span style="color: #000000"> Exception {
+</span><span style="color: #008080"> 26</span>         <span style="color: #008000">//</span><span style="color: #008000"> 1、创建一个SAX解析工厂对象</span>
+<span style="color: #008080"> 27</span>         <span style="color: #0000ff">final</span> SAXParserFactory spy =<span style="color: #000000"> SAXParserFactory.newInstance();
+</span><span style="color: #008080"> 28</span>         
+<span style="color: #008080"> 29</span>         <span style="color: #008000">//</span><span style="color: #008000"> 2、通过工厂对象获取SAX解析对象</span>
+<span style="color: #008080"> 30</span>         <span style="color: #0000ff">final</span> SAXParser parser =<span style="color: #000000"> spy.newSAXParser();
+</span><span style="color: #008080"> 31</span>         
+<span style="color: #008080"> 32</span>         <span style="color: #008000">//</span><span style="color: #008000"> 3、加载xml文件</span>
+<span style="color: #008080"> 33</span>         <span style="color: #0000ff">final</span> String path = "/Users/wangxianhai/work_sts_01/parseXML/src/com/aixunma/xml/studentMsg.xml"<span style="color: #000000">;
+</span><span style="color: #008080"> 34</span>         <span style="color: #0000ff">final</span> File file = <span style="color: #0000ff">new</span><span style="color: #000000"> File(path);
+</span><span style="color: #008080"> 35</span>         
+<span style="color: #008080"> 36</span>         
+<span style="color: #008080"> 37</span>         parser.parse(file, <span style="color: #0000ff">new</span><span style="color: #000000"> MyDefaultHandler());
+</span><span style="color: #008080"> 38</span>         
+<span style="color: #008080"> 39</span>         <span style="color: #0000ff">return</span> "1"<span style="color: #000000">;
+</span><span style="color: #008080"> 40</span> <span style="color: #000000">    }
+</span><span style="color: #008080"> 41</span>     
+<span style="color: #008080"> 42</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span> <span style="color: #0000ff">void</span> main(String[] args) <span style="color: #0000ff">throws</span><span style="color: #000000"> Exception {
+</span><span style="color: #008080"> 43</span>         <span style="color: #0000ff">try</span><span style="color: #000000"> {
+</span><span style="color: #008080"> 44</span> <span style="color: #000000">            parseXml();
+</span><span style="color: #008080"> 45</span>         } <span style="color: #0000ff">catch</span><span style="color: #000000"> (Exception e) {
+</span><span style="color: #008080"> 46</span>             <span style="color: #0000ff">throw</span> <span style="color: #0000ff">new</span> LoginException("xml解析失败"<span style="color: #000000">);
+</span><span style="color: #008080"> 47</span> <span style="color: #000000">        }
+</span><span style="color: #008080"> 48</span> <span style="color: #000000">    }
+</span><span style="color: #008080"> 49</span> <span style="color: #000000">}
+</span><span style="color: #008080"> 50</span> <span style="color: #008000">//</span><span style="color: #008000"> 内部了继承SAX的DefaultHandler的类，重新下面的方法，获取相应的信息</span>
+<span style="color: #008080"> 51</span> <span style="color: #0000ff">class</span> MyDefaultHandler <span style="color: #0000ff">extends</span><span style="color: #000000"> DefaultHandler{
+</span><span style="color: #008080"> 52</span>     
+<span style="color: #008080"> 53</span>     <span style="color: #0000ff">private</span> List&lt;XmlParam&gt; xmlParamList = <span style="color: #0000ff">null</span><span style="color: #000000">;
+</span><span style="color: #008080"> 54</span>     <span style="color: #0000ff">private</span> XmlParam xmlParam = <span style="color: #0000ff">null</span><span style="color: #000000">;
+</span><span style="color: #008080"> 55</span>     <span style="color: #0000ff">private</span> String preTag = <span style="color: #0000ff">null</span>; <span style="color: #008000">//</span><span style="color: #008000"> 记录解析时的上一个节点名称</span>
+<span style="color: #008080"> 56</span>     
+<span style="color: #008080"> 57</span>     <span style="color: #008000">/**</span>
+<span style="color: #008080"> 58</span> <span style="color: #008000">     * 解析文档开始:初始化的作用
+</span><span style="color: #008080"> 59</span>      <span style="color: #008000">*/</span>
+<span style="color: #008080"> 60</span> <span style="color: #000000">    @Override
+</span><span style="color: #008080"> 61</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> startDocument () <span style="color: #0000ff">throws</span><span style="color: #000000"> SAXException {
+</span><span style="color: #008080"> 62</span>             System.out.println("-------解析xml开始-----"<span style="color: #000000">);
+</span><span style="color: #008080"> 63</span>             xmlParamList = <span style="color: #0000ff">new</span> ArrayList&lt;XmlParam&gt;<span style="color: #000000">();
+</span><span style="color: #008080"> 64</span> <span style="color: #000000">    }
+</span><span style="color: #008080"> 65</span>     
+<span style="color: #008080"> 66</span>     <span style="color: #008000">/**</span>
+<span style="color: #008080"> 67</span> <span style="color: #008000">     * 解析开始节点
+</span><span style="color: #008080"> 68</span>      <span style="color: #008000">*/</span>
+<span style="color: #008080"> 69</span> <span style="color: #000000">    @Override
+</span><span style="color: #008080"> 70</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> startElement (String uri, String localName,
+</span><span style="color: #008080"> 71</span>             String startName, Attributes attributes) <span style="color: #0000ff">throws</span><span style="color: #000000"> SAXException {        
+</span><span style="color: #008080"> 72</span>         <span style="color: #0000ff">if</span> (XmlParam.LABLE_EMPLOYEE.equals(startName)) { <span style="color: #008000">//</span><span style="color: #008000"> 判断是否是employee员工开始标签</span>
+<span style="color: #008080"> 73</span>             <span style="color: #0000ff">final</span> String attrValue = attributes.getValue("number"); <span style="color: #008000">//</span><span style="color: #008000"> 工号
+</span><span style="color: #008080"> 74</span>             <span style="color: #008000">//</span><span style="color: #008000"> 初始化xmlParam对象</span>
+<span style="color: #008080"> 75</span>             xmlParam = <span style="color: #0000ff">new</span><span style="color: #000000"> XmlParam();
+</span><span style="color: #008080"> 76</span>             xmlParam.setNumber(NumberUtils.toInt(attrValue, 0)); <span style="color: #008000">//</span><span style="color: #008000"> 转化成int类型，默认值是0表示没有暂时没有工号</span>
+<span style="color: #008080"> 77</span> <span style="color: #000000">        }
+</span><span style="color: #008080"> 78</span>         preTag = startName; <span style="color: #008000">//</span><span style="color: #008000"> 将正在解析的节点名称赋给preTag</span>
+<span style="color: #008080"> 79</span> <span style="color: #000000">    }
+</span><span style="color: #008080"> 80</span>     
+<span style="color: #008080"> 81</span>     <span style="color: #008000">/**</span>
+<span style="color: #008080"> 82</span> <span style="color: #008000">     * 解析结束节点
+</span><span style="color: #008080"> 83</span>      <span style="color: #008000">*/</span>
+<span style="color: #008080"> 84</span> <span style="color: #000000">    @Override
+</span><span style="color: #008080"> 85</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> endElement (String uri, String localName, String endName) <span style="color: #0000ff">throws</span><span style="color: #000000"> SAXException {
+</span><span style="color: #008080"> 86</span>         <span style="color: #0000ff">if</span> (XmlParam.LABLE_EMPLOYEE.equals(endName)) { <span style="color: #008000">//</span><span style="color: #008000"> 判断是否是employee员工结束标签
+</span><span style="color: #008080"> 87</span>             <span style="color: #008000">//</span><span style="color: #008000"> 将xmlParam对象加入list集合</span>
+<span style="color: #008080"> 88</span> <span style="color: #000000">            xmlParamList.add(xmlParam);
+</span><span style="color: #008080"> 89</span> <span style="color: #000000">        }
+</span><span style="color: #008080"> 90</span>         <span style="color: #008000">/*</span>
+<span style="color: #008080"> 91</span> <span style="color: #008000">         * 注意这里要将preTag为null。当执行到&lt;name&gt;小海&lt;/name&gt;的结束的时候，会调用
+</span><span style="color: #008080"> 92</span> <span style="color: #008000">         * 这个节点结束方法，如果这里不把preTag置为null，根据startElement(....)方法，preTag的值还是number，
+</span><span style="color: #008080"> 93</span> <span style="color: #008000">         * 会执行characters(char[] ch, int start, int length)这个方法
+</span><span style="color: #008080"> 94</span> <span style="color: #008000">         * 而characters(....)方法判断preTag!=null，会执行if判断的代码，这样就会把空值赋值给book
+</span><span style="color: #008080"> 95</span> <span style="color: #008000">         * 
+</span><span style="color: #008080"> 96</span> <span style="color: #008000">         * 总的来说每解析一对节点（不包括文档头节点和尾节点）执行方法顺序：
+</span><span style="color: #008080"> 97</span> <span style="color: #008000">         * startElement(...)－&gt;characters(...)-&gt;endElement(...)
+</span><span style="color: #008080"> 98</span>          <span style="color: #008000">*/</span>
+<span style="color: #008080"> 99</span>         preTag = <span style="color: #0000ff">null</span><span style="color: #000000">;
+</span><span style="color: #008080">100</span> <span style="color: #000000">    }
+</span><span style="color: #008080">101</span>     
+<span style="color: #008080">102</span>     <span style="color: #008000">/**</span>
+<span style="color: #008080">103</span> <span style="color: #008000">     * 获取节点内容
+</span><span style="color: #008080">104</span>      <span style="color: #008000">*/</span>
+<span style="color: #008080">105</span> <span style="color: #000000">    @Override
+</span><span style="color: #008080">106</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> characters(<span style="color: #0000ff">char</span>[] ch, <span style="color: #0000ff">int</span> start, <span style="color: #0000ff">int</span><span style="color: #000000"> length) {
+</span><span style="color: #008080">107</span>         <span style="color: #0000ff">if</span> (preTag != <span style="color: #0000ff">null</span><span style="color: #000000">) {
+</span><span style="color: #008080">108</span>             <span style="color: #0000ff">final</span> String content = <span style="color: #0000ff">new</span><span style="color: #000000"> String(ch, start, length);
+</span><span style="color: #008080">109</span>             <span style="color: #0000ff">if</span><span style="color: #000000"> (XmlParam.LABLE_NAME.equals(preTag)) {
+</span><span style="color: #008080">110</span> <span style="color: #000000">                xmlParam.setName(content);
+</span><span style="color: #008080">111</span>             } <span style="color: #0000ff">else</span> <span style="color: #0000ff">if</span><span style="color: #000000"> (XmlParam.LABLE_SEX.equals(preTag)) {
+</span><span style="color: #008080">112</span> <span style="color: #000000">                xmlParam.setSex(content);
+</span><span style="color: #008080">113</span>             } <span style="color: #0000ff">else</span> <span style="color: #0000ff">if</span><span style="color: #000000">(XmlParam.LABLE_PROFESSION.equals(preTag)) {
+</span><span style="color: #008080">114</span> <span style="color: #000000">                xmlParam.setProfession(content);
+</span><span style="color: #008080">115</span>             } <span style="color: #0000ff">else</span> <span style="color: #0000ff">if</span><span style="color: #000000"> (XmlParam.LABLE_HOBBY.equals(preTag)) {
+</span><span style="color: #008080">116</span> <span style="color: #000000">                xmlParam.setHobby(content);
+</span><span style="color: #008080">117</span> <span style="color: #000000">            }
+</span><span style="color: #008080">118</span> <span style="color: #000000">        }
+</span><span style="color: #008080">119</span> <span style="color: #000000">    }
+</span><span style="color: #008080">120</span>     
+<span style="color: #008080">121</span>     <span style="color: #008000">/**</span>
+<span style="color: #008080">122</span> <span style="color: #008000">     * 解析文档结束
+</span><span style="color: #008080">123</span>      <span style="color: #008000">*/</span>
+<span style="color: #008080">124</span> <span style="color: #000000">    @Override
+</span><span style="color: #008080">125</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> endDocument () <span style="color: #0000ff">throws</span><span style="color: #000000"> SAXException {
+</span><span style="color: #008080">126</span>          <span style="color: #008000">//</span><span style="color: #008000">输出数据</span>
+<span style="color: #008080">127</span>          <span style="color: #0000ff">for</span><span style="color: #000000">(XmlParam xmlParam : xmlParamList) {
+</span><span style="color: #008080">128</span> <span style="color: #000000">             System.out.println(xmlParam.toString());
+</span><span style="color: #008080">129</span> <span style="color: #000000">         }
+</span><span style="color: #008080">130</span>          System.out.println("-------解析xml结束-----"<span style="color: #000000">);
+</span><span style="color: #008080">131</span> <span style="color: #000000">    }
+</span><span style="color: #008080">132</span> }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./(5)微信二次开发 之 XML格式数据解析_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<h2>9、实现DOM4J方式解析xml</h2>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./(5)微信二次开发 之 XML格式数据解析_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="font-size: 15px"><span style="color: #008080"> 1</span> <span style="color: #0000ff">package</span><span style="color: #000000"> com.aixunma.xml;
+</span><span style="color: #008080"> 2</span> 
+<span style="color: #008080"> 3</span> <span style="color: #0000ff">import</span><span style="color: #000000"> java.io.File;
+</span><span style="color: #008080"> 4</span> <span style="color: #0000ff">import</span><span style="color: #000000"> java.util.Iterator;
+</span><span style="color: #008080"> 5</span> <span style="color: #0000ff">import</span><span style="color: #000000"> java.util.List;
+</span><span style="color: #008080"> 6</span> 
+<span style="color: #008080"> 7</span> <span style="color: #0000ff">import</span><span style="color: #000000"> org.apache.commons.lang.StringUtils;
+</span><span style="color: #008080"> 8</span> <span style="color: #0000ff">import</span><span style="color: #000000"> org.dom4j.Attribute;
+</span><span style="color: #008080"> 9</span> <span style="color: #0000ff">import</span><span style="color: #000000"> org.dom4j.Document;
+</span><span style="color: #008080">10</span> <span style="color: #0000ff">import</span><span style="color: #000000"> org.dom4j.Element;
+</span><span style="color: #008080">11</span> <span style="color: #0000ff">import</span><span style="color: #000000"> org.dom4j.io.SAXReader;
+</span><span style="color: #008080">12</span> <span style="color: #0000ff">import</span><span style="color: #000000"> org.junit.Test;
+</span><span style="color: #008080">13</span> 
+<span style="color: #008080">14</span> <span style="color: #008000">/**</span>
+<span style="color: #008080">15</span> <span style="color: #008000"> * 使用DOM4J解析XML文档、生成文档、操作节点、删除节点、添加节点
+</span><span style="color: #008080">16</span> <span style="color: #008000"> * &lt;p&gt;类的描述:&lt;/p&gt;
+</span><span style="color: #008080">17</span> <span style="color: #008000"> * &lt;p&gt;@Description: TODO&lt;/p&gt;
+</span><span style="color: #008080">18</span> <span style="color: #008000"> * &lt;p&gt;</span><span style="color: #808080">@author</span><span style="color: #008000"> 小海&lt;/p&gt;
+</span><span style="color: #008080">19</span> <span style="color: #008000"> * &lt;p&gt;@time:2017年4月29日 下午9:35:34&lt;/p&gt;
+</span><span style="color: #008080">20</span> <span style="color: #008000"> * &lt;p&gt;@Vesion: 1.0&lt;/p&gt;
+</span><span style="color: #008080">21</span>  <span style="color: #008000">*/</span>
+<span style="color: #008080">22</span> <span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> Dom4jParseXML {
+</span><span style="color: #008080">23</span>     
+<span style="color: #008080">24</span>     <span style="color: #0000ff">private</span> <span style="color: #0000ff">static</span> String PARSE_XML_PATH = "/Users/wangxianhai/work_sts_01/parseXML/src/com/aixunma/xml/studentMsg.xml"<span style="color: #000000">;
+</span><span style="color: #008080">25</span>     
+<span style="color: #008080">26</span>     <span style="color: #008000">/**</span>
+<span style="color: #008080">27</span> <span style="color: #008000">     * 解析XML文档
+</span><span style="color: #008080">28</span> <span style="color: #008000">     * </span><span style="color: #808080">@throws</span><span style="color: #008000"> Exception 
+</span><span style="color: #008080">29</span>      <span style="color: #008000">*/</span>
+<span style="color: #008080">30</span> <span style="color: #000000">    @Test
+</span><span style="color: #008080">31</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> parseXml() <span style="color: #0000ff">throws</span><span style="color: #000000"> Exception {
+</span><span style="color: #008080">32</span>         <span style="color: #008000">//</span><span style="color: #008000"> 1、创建SAXReader对象</span>
+<span style="color: #008080">33</span>         <span style="color: #0000ff">final</span> SAXReader reader = <span style="color: #0000ff">new</span><span style="color: #000000"> SAXReader();
+</span><span style="color: #008080">34</span>         
+<span style="color: #008080">35</span>         <span style="color: #008000">//</span><span style="color: #008000"> 2、通过SAXReader对象读取xml文件生成Domcument文档对象</span>
+<span style="color: #008080">36</span>         <span style="color: #0000ff">final</span> Document document = reader.read(<span style="color: #0000ff">new</span><span style="color: #000000"> File(PARSE_XML_PATH));
+</span><span style="color: #008080">37</span>         
+<span style="color: #008080">38</span>         <span style="color: #008000">//</span><span style="color: #008000"> 3、获取根节点对象</span>
+<span style="color: #008080">39</span>         <span style="color: #0000ff">final</span> Element root =<span style="color: #000000"> document.getRootElement();
+</span><span style="color: #008080">40</span>         
+<span style="color: #008080">41</span>         <span style="color: #008000">//</span><span style="color: #008000"> 4、遍历</span>
+<span style="color: #008080">42</span> <span style="color: #000000">        listNodes(root);
+</span><span style="color: #008080">43</span> <span style="color: #000000">    }
+</span><span style="color: #008080">44</span>     
+<span style="color: #008080">45</span>     <span style="color: #008000">/**</span>
+<span style="color: #008080">46</span> <span style="color: #008000">     * 遍历节点
+</span><span style="color: #008080">47</span> <span style="color: #008000">     * </span><span style="color: #808080">@param</span><span style="color: #008000"> node
+</span><span style="color: #008080">48</span>      <span style="color: #008000">*/</span>
+<span style="color: #008080">49</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> listNodes(Element node) {
+</span><span style="color: #008080">50</span>         <span style="color: #008000">//</span><span style="color: #008000"> 获取节点的名称</span>
+<span style="color: #008080">51</span>         <span style="color: #008000">/*</span><span style="color: #008000">final String nodeName = node.getName();
+</span><span style="color: #008080">52</span>         
+<span style="color: #008080">53</span> <span style="color: #008000">        System.out.println(nodeName);</span><span style="color: #008000">*/</span>
+<span style="color: #008080">54</span>         
+<span style="color: #008080">55</span>         <span style="color: #008000">//</span><span style="color: #008000"> 遍历属性节点</span>
+<span style="color: #008080">56</span>         <span style="color: #0000ff">final</span> List&lt;Attribute&gt; attributes =<span style="color: #000000"> node.attributes();
+</span><span style="color: #008080">57</span>         <span style="color: #0000ff">for</span><span style="color: #000000"> (Attribute attribute : attributes) {
+</span><span style="color: #008080">58</span>             System.out.println(attribute.getName() + "=" +<span style="color: #000000"> attribute.getText());
+</span><span style="color: #008080">59</span> <span style="color: #000000">        }
+</span><span style="color: #008080">60</span>         
+<span style="color: #008080">61</span>         <span style="color: #008000">//</span><span style="color: #008000"> 获取当前节点的内容</span>
+<span style="color: #008080">62</span>         <span style="color: #0000ff">if</span> (StringUtils.isNotBlank(node.getTextTrim())) { <span style="color: #008000">//</span><span style="color: #008000"> 内容不为空的读取</span>
+<span style="color: #008080">63</span>             System.out.println(node.getName() + "=" +<span style="color: #000000"> node.getText());
+</span><span style="color: #008080">64</span> <span style="color: #000000">        }
+</span><span style="color: #008080">65</span>         
+<span style="color: #008080">66</span>         <span style="color: #008000">//</span><span style="color: #008000">迭代该节点的所有子节点</span>
+<span style="color: #008080">67</span>         <span style="color: #0000ff">final</span> Iterator iterator =<span style="color: #000000"> node.elementIterator();
+</span><span style="color: #008080">68</span>         <span style="color: #0000ff">while</span><span style="color: #000000"> (iterator.hasNext()) {
+</span><span style="color: #008080">69</span>             Element el =<span style="color: #000000"> (Element) iterator.next();
+</span><span style="color: #008080">70</span>             listNodes(el); <span style="color: #008000">//</span><span style="color: #008000"> 使用递归</span>
+<span style="color: #008080">71</span> <span style="color: #000000">        }
+</span><span style="color: #008080">72</span> <span style="color: #000000">    }
+</span><span style="color: #008080">73</span> }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./(5)微信二次开发 之 XML格式数据解析_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<h2>10、实现JDOM方式解析xml</h2>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./(5)微信二次开发 之 XML格式数据解析_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="font-size: 15px"><span style="color: #008080"> 1</span> <span style="color: #0000ff">package</span><span style="color: #000000"> com.aixunma.xml;
+</span><span style="color: #008080"> 2</span> 
+<span style="color: #008080"> 3</span> <span style="color: #0000ff">import</span><span style="color: #000000"> java.io.File;
+</span><span style="color: #008080"> 4</span> <span style="color: #0000ff">import</span><span style="color: #000000"> java.util.List;
+</span><span style="color: #008080"> 5</span> 
+<span style="color: #008080"> 6</span> <span style="color: #0000ff">import</span><span style="color: #000000"> org.apache.commons.lang.StringUtils;
+</span><span style="color: #008080"> 7</span> <span style="color: #0000ff">import</span><span style="color: #000000"> org.jdom.Attribute;
+</span><span style="color: #008080"> 8</span> <span style="color: #0000ff">import</span><span style="color: #000000"> org.jdom.Document;
+</span><span style="color: #008080"> 9</span> <span style="color: #0000ff">import</span><span style="color: #000000"> org.jdom.Element;
+</span><span style="color: #008080">10</span> <span style="color: #0000ff">import</span><span style="color: #000000"> org.jdom.JDOMException;
+</span><span style="color: #008080">11</span> <span style="color: #0000ff">import</span><span style="color: #000000"> org.jdom.input.SAXBuilder;
+</span><span style="color: #008080">12</span> <span style="color: #0000ff">import</span><span style="color: #000000"> org.junit.Test;
+</span><span style="color: #008080">13</span> 
+<span style="color: #008080">14</span> <span style="color: #008000">/**</span>
+<span style="color: #008080">15</span> <span style="color: #008000"> * 使用JDOM解析XML文档信息
+</span><span style="color: #008080">16</span> <span style="color: #008000"> * &lt;p&gt;类的描述:&lt;/p&gt;
+</span><span style="color: #008080">17</span> <span style="color: #008000"> * &lt;p&gt;@Description: TODO&lt;/p&gt;
+</span><span style="color: #008080">18</span> <span style="color: #008000"> * &lt;p&gt;</span><span style="color: #808080">@author</span><span style="color: #008000"> 小海&lt;/p&gt;
+</span><span style="color: #008080">19</span> <span style="color: #008000"> * &lt;p&gt;@time:2017年5月1日 下午11:24:10&lt;/p&gt;
+</span><span style="color: #008080">20</span> <span style="color: #008000"> * &lt;p&gt;@Vesion: 1.0&lt;/p&gt;
+</span><span style="color: #008080">21</span>  <span style="color: #008000">*/</span>
+<span style="color: #008080">22</span> <span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> JdomParseXML {
+</span><span style="color: #008080">23</span>     
+<span style="color: #008080">24</span>     <span style="color: #0000ff">private</span> <span style="color: #0000ff">static</span> String PARSE_XML_PATH = "/Users/wangxianhai/work_sts_01/parseXML/src/com/aixunma/xml/studentMsg.xml"<span style="color: #000000">;
+</span><span style="color: #008080">25</span>     
+<span style="color: #008080">26</span>     <span style="color: #008000">/**</span>
+<span style="color: #008080">27</span> <span style="color: #008000">     * 解析XML文档
+</span><span style="color: #008080">28</span> <span style="color: #008000">     * </span><span style="color: #808080">@throws</span><span style="color: #008000"> Exception 
+</span><span style="color: #008080">29</span> <span style="color: #008000">     * </span><span style="color: #808080">@throws</span><span style="color: #008000"> JDOMException 
+</span><span style="color: #008080">30</span> <span style="color: #008000">     * </span><span style="color: #808080">@throws</span><span style="color: #008000"> Exception 
+</span><span style="color: #008080">31</span>      <span style="color: #008000">*/</span>
+<span style="color: #008080">32</span> <span style="color: #000000">    @Test
+</span><span style="color: #008080">33</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> parseXml() <span style="color: #0000ff">throws</span><span style="color: #000000"> JDOMException, Exception {
+</span><span style="color: #008080">34</span>         
+<span style="color: #008080">35</span>         <span style="color: #008000">//</span><span style="color: #008000"> 创建一个JDOM的SAX的构造器</span>
+<span style="color: #008080">36</span>         <span style="color: #0000ff">final</span> SAXBuilder builder = <span style="color: #0000ff">new</span><span style="color: #000000"> SAXBuilder();
+</span><span style="color: #008080">37</span>         
+<span style="color: #008080">38</span>         <span style="color: #008000">//</span><span style="color: #008000"> 通过构造器获取文档对象</span>
+<span style="color: #008080">39</span>         <span style="color: #0000ff">final</span> Document document = builder.build(<span style="color: #0000ff">new</span><span style="color: #000000"> File(PARSE_XML_PATH));
+</span><span style="color: #008080">40</span>         
+<span style="color: #008080">41</span>         <span style="color: #008000">//</span><span style="color: #008000"> 获取文档的根元素</span>
+<span style="color: #008080">42</span>         <span style="color: #0000ff">final</span> Element root =<span style="color: #000000"> document.getRootElement();
+</span><span style="color: #008080">43</span>         
+<span style="color: #008080">44</span>         <span style="color: #008000">//</span><span style="color: #008000"> 遍历</span>
+<span style="color: #008080">45</span> <span style="color: #000000">        listNodes(root);
+</span><span style="color: #008080">46</span> <span style="color: #000000">    }
+</span><span style="color: #008080">47</span>     
+<span style="color: #008080">48</span>     <span style="color: #008000">/**</span>
+<span style="color: #008080">49</span> <span style="color: #008000">     * 遍历节点
+</span><span style="color: #008080">50</span> <span style="color: #008000">     * </span><span style="color: #808080">@param</span><span style="color: #008000"> node
+</span><span style="color: #008080">51</span>      <span style="color: #008000">*/</span>
+<span style="color: #008080">52</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> listNodes(Element node) {
+</span><span style="color: #008080">53</span>         <span style="color: #008000">//</span><span style="color: #008000"> 获取节点的名称</span>
+<span style="color: #008080">54</span>         <span style="color: #008000">/*</span><span style="color: #008000">final String name = node.getName();
+</span><span style="color: #008080">55</span> <span style="color: #008000">        System.out.println(name);</span><span style="color: #008000">*/</span>
+<span style="color: #008080">56</span>         
+<span style="color: #008080">57</span>         <span style="color: #008000">//</span><span style="color: #008000"> 获取节点所有属性list集合</span>
+<span style="color: #008080">58</span>         <span style="color: #0000ff">final</span> List&lt;Attribute&gt; attributes =<span style="color: #000000"> node.getAttributes();
+</span><span style="color: #008080">59</span>         <span style="color: #008000">//</span><span style="color: #008000"> 遍历节点的所有属性</span>
+<span style="color: #008080">60</span>         <span style="color: #0000ff">for</span><span style="color: #000000"> (Attribute attribute : attributes) {
+</span><span style="color: #008080">61</span>             System.out.println(attribute.getName() + "=" +<span style="color: #000000"> attribute.getValue());
+</span><span style="color: #008080">62</span> <span style="color: #000000">        }
+</span><span style="color: #008080">63</span>         
+<span style="color: #008080">64</span>         <span style="color: #008000">//</span><span style="color: #008000"> 获取节点存在的内容</span>
+<span style="color: #008080">65</span>         <span style="color: #0000ff">if</span><span style="color: #000000"> (StringUtils.isNotBlank(node.getTextTrim())) {
+</span><span style="color: #008080">66</span>             System.out.println(node.getName() + "=" +<span style="color: #000000"> node.getText());
+</span><span style="color: #008080">67</span> <span style="color: #000000">        }
+</span><span style="color: #008080">68</span>         
+<span style="color: #008080">69</span>         <span style="color: #008000">//</span><span style="color: #008000"> 获取该节点下的所有子节点</span>
+<span style="color: #008080">70</span>         List&lt;Element&gt; children =<span style="color: #000000"> node.getChildren();
+</span><span style="color: #008080">71</span>         <span style="color: #0000ff">for</span><span style="color: #000000"> (Element element : children) {
+</span><span style="color: #008080">72</span>             listNodes(element); <span style="color: #008000">//</span><span style="color: #008000"> 递归调用</span>
+<span style="color: #008080">73</span> <span style="color: #000000">        }    
+</span><span style="color: #008080">74</span> <span style="color: #000000">    }
+</span><span style="color: #008080">75</span> }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./(5)微信二次开发 之 XML格式数据解析_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<h2>11、四种方式结果展示</h2>
+<p>　　<img src="./(5)微信二次开发 之 XML格式数据解析_files/785859-20170502145123679-814328105.png" alt=""></p>
+<p>　　<img src="./(5)微信二次开发 之 XML格式数据解析_files/785859-20170502145131023-888864816.png" alt=""></p>
+<p>　　<img src="./(5)微信二次开发 之 XML格式数据解析_files/785859-20170502145136976-1687664743.png" alt=""></p>
+<p>　　<img src="./(5)微信二次开发 之 XML格式数据解析_files/785859-20170502145142867-1124495088.png" alt=""></p>
+<h2>12、致谢</h2>
+<p><span style="font-size: 15px">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;感谢各位的阅读，希望对您有帮助，需要源码加QQ:963551706 谢谢！</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="font-size: 15px">&nbsp;</span></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/c-xiaohai/category/994582.html" target="_blank">XML</a>,<a href="http://www.cnblogs.com/c-xiaohai/category/993313.html" target="_blank">微信二次开发</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/c-xiaohai/tag/%E5%BE%AE%E4%BF%A1%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/">微信二次开发</a>, <a href="http://www.cnblogs.com/c-xiaohai/tag/XML/">XML</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(6796116,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;c30d02d2-cb2a-e511-b908-9dcfd8948a71&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./(5)微信二次开发 之 XML格式数据解析_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./(5)微信二次开发 之 XML格式数据解析_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/c-xiaohai/" target="_blank"><img src="./(5)微信二次开发 之 XML格式数据解析_files/20150715163343.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/c-xiaohai/">C小海</a><br>
+            <a href="http://home.cnblogs.com/u/c-xiaohai/followees">关注 - 2</a><br>
+            <a href="http://home.cnblogs.com/u/c-xiaohai/followers">粉丝 - 17</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;c30d02d2-cb2a-e511-b908-9dcfd8948a71&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(6796116,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(6796116,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/c-xiaohai/p/6782985.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/c-xiaohai/p/6782985.html" title="发布于2017-04-28 19:15">(4)微信二次开发 之 公众平台开发者模式配置与请求验证</a><br><a href="http://www.cnblogs.com/c-xiaohai/p/6849547.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/c-xiaohai/p/6849547.html" title="发布于2017-05-13 16:48">(6)微信二次开发 之 微信文本消息接口实现</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2017-05-02 14:53</span> <a href="http://www.cnblogs.com/c-xiaohai/">C小海</a> 阅读(<span id="post_view_count">2512</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=6796116" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/c-xiaohai/p/6796116.html#" onclick="AddToWz(6796116);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=337503,cb_entryId=6796116,cb_blogApp=currentBlogApp,cb_blogUserGuid='c30d02d2-cb2a-e511-b908-9dcfd8948a71',cb_entryCreatedDate='2017/5/2 14:53:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/c-xiaohai/p/6796116.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/c-xiaohai/p/6796116.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】超50万VC++源码: 大型组态工控、电力仿真CAD与GIS源码库！</a><br><a href="http://clickc.admaster.com.cn/c/a105960,b2436453,c1705,i0,m101,8a1,8b2,h" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-DevCloud&#39;)">【推荐】华为云7大明星产品0元免费使用</a><br><a href="https://cloud.tencent.com/product/tac?fromSource=gwzcw.926333.926333.926333" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-腾讯云&#39;)">【推荐】腾讯云如何降低移动开发成本</a><br><a href="http://challenge.xfyun.cn/?ch=bk" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-xfyun&#39;)">【大赛】2018首届“顶天立地”AI开发者大赛</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;C1&#39;);" href="https://cloud.tencent.com/solution/la?fromSource=gwzcw.926335.926335.926335" target="_blank"><img width="300" height="250" src="./(5)微信二次开发 之 XML格式数据解析_files/24442-20180520213658559-918592692.jpg" alt="腾讯云0518"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/597910/" target="_blank">数读私人太空竞赛：发展迅猛但载人飞行是软肋</a><br> ·  <a href="https://news.cnblogs.com/n/597909/" target="_blank">明年iPhone后置摄影头或增至3枚，这会是一个让你换机的好理由吗？</a><br> ·  <a href="https://news.cnblogs.com/n/597908/" target="_blank">抖音追击者再添一员 百度“Nani小视频”抛上万底薪争夺达人</a><br> ·  <a href="https://news.cnblogs.com/n/597907/" target="_blank">三星制定“激进计划” 要在印度市场打败小米守住领先地位</a><br> ·  <a href="https://news.cnblogs.com/n/597906/" target="_blank">Snapchat推出新滤镜，能弥补短视频在声音交互上的缺位吗</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/9667/" target="_blank"><img src="./(5)微信二次开发 之 XML格式数据解析_files/TB1iQKbhqmWBuNjy1XaXXXCbXXa-468-60.jpg" alt="" style="width: 468px; height: 60px;"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/576411/" target="_blank">你可以把编程当做一项托付终身的职业</a><br> ·  <a href="http://kb.cnblogs.com/page/596164/" target="_blank">评审的艺术——谈谈现实中的代码评审</a><br> ·  <a href="http://kb.cnblogs.com/page/577233/" target="_blank">如何高效学习</a><br> ·  <a href="http://kb.cnblogs.com/page/578689/" target="_blank">如何成为优秀的程序员？</a><br> ·  <a href="http://kb.cnblogs.com/page/594930/" target="_blank">菜鸟工程师的超神之路 -- 从校园到职场</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/c-xiaohai/">C小海</a><br>园龄：<a href="https://home.cnblogs.com/u/c-xiaohai/" title="入园时间：2015-07-15">2年10个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/c-xiaohai/followers/">17</a><br>关注：<a href="https://home.cnblogs.com/u/c-xiaohai/followees/">2</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;c30d02d2-cb2a-e511-b908-9dcfd8948a71&#39;)">+加关注</a></div><script>getFollowStatus('c30d02d2-cb2a-e511-b908-9dcfd8948a71')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/04/01&#39;);return false;">&lt;</a></td><td align="center">2018年5月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/06/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td class="CalWeekendDay" align="center">5</td></tr><tr><td class="CalWeekendDay" align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td class="CalWeekendDay" align="center">12</td></tr><tr><td class="CalWeekendDay" align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td class="CalWeekendDay" align="center">19</td></tr><tr><td class="CalWeekendDay" align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td class="CalWeekendDay" align="center">26</td></tr><tr><td class="CalWeekendDay" align="center">27</td><td align="center">28</td><td align="center">29</td><td class="CalTodayDay" align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td></tr><tr><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/c-xiaohai/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/c-xiaohai/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/c-xiaohai/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/c-xiaohai/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/c-xiaohai/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/c-xiaohai/tag/Linux/">Linux</a>(12)</li><li><a href="http://www.cnblogs.com/c-xiaohai/tag/centOS7/">centOS7</a>(8)</li><li><a href="http://www.cnblogs.com/c-xiaohai/tag/redis/">redis</a>(6)</li><li><a href="http://www.cnblogs.com/c-xiaohai/tag/%E5%BE%AE%E4%BF%A1%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/">微信二次开发</a>(6)</li><li><a href="http://www.cnblogs.com/c-xiaohai/tag/JVM/">JVM</a>(4)</li><li><a href="http://www.cnblogs.com/c-xiaohai/tag/jdk/">jdk</a>(3)</li><li><a href="http://www.cnblogs.com/c-xiaohai/tag/RocketMq/">RocketMq</a>(2)</li><li><a href="http://www.cnblogs.com/c-xiaohai/tag/Max/">Max</a>(2)</li><li><a href="http://www.cnblogs.com/c-xiaohai/tag/ngrok/">ngrok</a>(2)</li><li><a href="http://www.cnblogs.com/c-xiaohai/tag/Sharding-jdbc/">Sharding-jdbc</a>(1)</li><li><a href="http://www.cnblogs.com/c-xiaohai/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="https://www.cnblogs.com/c-xiaohai/category/1063891.html">Java(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="https://www.cnblogs.com/c-xiaohai/category/1191052.html">Java模式(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="https://www.cnblogs.com/c-xiaohai/category/1016950.html">JDK(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="https://www.cnblogs.com/c-xiaohai/category/1157237.html">JVM(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="https://www.cnblogs.com/c-xiaohai/category/959696.html">Linux(17)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="https://www.cnblogs.com/c-xiaohai/category/1005356.html">Max(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="https://www.cnblogs.com/c-xiaohai/category/1064122.html">Nginx(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="https://www.cnblogs.com/c-xiaohai/category/1005357.html">ngrok(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="https://www.cnblogs.com/c-xiaohai/category/1137122.html">Redis(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="https://www.cnblogs.com/c-xiaohai/category/1190134.html">RocketMq(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="https://www.cnblogs.com/c-xiaohai/category/1167082.html">Sharding-jdbc(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="https://www.cnblogs.com/c-xiaohai/category/964370.html">Spring Boot(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="https://www.cnblogs.com/c-xiaohai/category/1061866.html">Vmware(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="https://www.cnblogs.com/c-xiaohai/category/994582.html">XML(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="https://www.cnblogs.com/c-xiaohai/category/1063890.html">数据结构(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="https://www.cnblogs.com/c-xiaohai/category/993313.html">微信二次开发(6)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="https://www.cnblogs.com/c-xiaohai/archive/2018/04.html">2018年4月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="https://www.cnblogs.com/c-xiaohai/archive/2018/02.html">2018年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="https://www.cnblogs.com/c-xiaohai/archive/2018/01.html">2018年1月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="https://www.cnblogs.com/c-xiaohai/archive/2017/12.html">2017年12月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="https://www.cnblogs.com/c-xiaohai/archive/2017/08.html">2017年8月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="https://www.cnblogs.com/c-xiaohai/archive/2017/06.html">2017年6月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="https://www.cnblogs.com/c-xiaohai/archive/2017/05.html">2017年5月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="https://www.cnblogs.com/c-xiaohai/archive/2017/04.html">2017年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="https://www.cnblogs.com/c-xiaohai/archive/2017/03.html">2017年3月 (8)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/c-xiaohai/p/8111670.html#3916722">1. Re:Redis随笔（二）redis desktop manager 安装并且连接redis服务器</a></li>
+        <li class="recent_comment_body">@往事如烟2011你说的配置文件吗，还是配置里的信息...</li>
+        <li class="recent_comment_author">--C小海</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/c-xiaohai/p/8111670.html#3915147">2. Re:Redis随笔（二）redis desktop manager 安装并且连接redis服务器</a></li>
+        <li class="recent_comment_body">那个redis.conf 配置文件在哪里，没找到。不能注释127地址</li>
+        <li class="recent_comment_author">--往事如烟2011</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/c-xiaohai/p/7267198.html#3748202">3. Re:(23)微信二次开发 之 ngrok结合web开发者工具实现网页授权本地调试模式</a></li>
+        <li class="recent_comment_body">@久伴久伴谢谢你的指点，应该是 域名解析到服务器...</li>
+        <li class="recent_comment_author">--C小海</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/c-xiaohai/p/7267198.html#3748196">4. Re:(23)微信二次开发 之 ngrok结合web开发者工具实现网页授权本地调试模式</a></li>
+        <li class="recent_comment_body">并且域名的需要备案号的服务进行解析才可以使用<br><br>这句话是不是有毛病</li>
+        <li class="recent_comment_author">--久伴久伴</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/c-xiaohai/p/6985581.html#3712900">5. Re:Linux 多个JDK的版本 脚本切换</a></li>
+        <li class="recent_comment_body">很不错的分享，很赞。</li>
+        <li class="recent_comment_author">--zdfhello</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="https://www.cnblogs.com/c-xiaohai/p/6509641.html">1. centOS7下安装GUI图形界面(33315)</a></li><li><a href="https://www.cnblogs.com/c-xiaohai/p/6510389.html">2. Linux安装yum以及更新yum版本(11308)</a></li><li><a href="https://www.cnblogs.com/c-xiaohai/p/6509581.html">3. centOS7-配置网络地址(5928)</a></li><li><a href="https://www.cnblogs.com/c-xiaohai/p/6511294.html">4. Linux安装jdk7开发环境(5111)</a></li><li><a href="https://www.cnblogs.com/c-xiaohai/p/6796116.html">5. (5)微信二次开发 之 XML格式数据解析(2512)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="https://www.cnblogs.com/c-xiaohai/p/8111670.html">1. Redis随笔（二）redis desktop manager 安装并且连接redis服务器(2)</a></li><li><a href="https://www.cnblogs.com/c-xiaohai/p/7267198.html">2. (23)微信二次开发 之 ngrok结合web开发者工具实现网页授权本地调试模式(2)</a></li><li><a href="https://www.cnblogs.com/c-xiaohai/p/6985581.html">3. Linux 多个JDK的版本 脚本切换(1)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="https://www.cnblogs.com/c-xiaohai/p/6509641.html">1. centOS7下安装GUI图形界面(2)</a></li><li><a href="https://www.cnblogs.com/c-xiaohai/p/6985581.html">2. Linux 多个JDK的版本 脚本切换(1)</a></li><li><a href="https://www.cnblogs.com/c-xiaohai/p/6879400.html">3. (4)微信二次开发 之 ngrok在本地搭建微信开发调试环境(1)</a></li><li><a href="https://www.cnblogs.com/c-xiaohai/p/6509581.html">4. centOS7-配置网络地址(1)</a></li><li><a href="https://www.cnblogs.com/c-xiaohai/p/6509717.html">5. centOS的命令行与图形页面之间的转换(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2018 C小海
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)https://www.cnblogs.com/jiangxiaobo/p/5276482.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>layer,一个可以让你想到即可做到的javascript弹窗（层）解决方案 - jiangxiaobo - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./layer----javascript弹窗（层）_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./layer----javascript弹窗（层）_files/bundle-SimpleBlue.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./layer----javascript弹窗（层）_files/bundle-SimpleBlue-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/jiangxiaobo/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/jiangxiaobo/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/jiangxiaobo/wlwmanifest.xml">
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="./layer----javascript弹窗（层）_files/encoder.js.下载"></script><script src="./layer----javascript弹窗（层）_files/jquery-2.2.0.min.js.下载"></script>
+<script type="text/javascript">var currentBlogApp = 'jiangxiaobo', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./layer----javascript弹窗（层）_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+		
+<!--done-->
+<div class="title"><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/jiangxiaobo/">江波的博客</a></div>
+<div class="subtitle"></div>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li id="nav_sitehome"><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li id="nav_myhome"><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/jiangxiaobo/">首页</a></li>
+<li id="nav_newpost"><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li id="nav_contact"><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/jiangxiaobo">联系</a></li>
+<li id="nav_rss"><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/jiangxiaobo/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/jiangxiaobo/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li id="nav_admin"><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<!--done-->
+随笔-386&nbsp;
+文章-4&nbsp;
+评论-39&nbsp;
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/jiangxiaobo/p/5276482.html">layer,一个可以让你想到即可做到的javascript弹窗（层）解决方案</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>学习网址：<a href="http://layer.layui.com/" target="_blank">http://layer.layui.com/</a></p>
+<p>下载地址：<a href="http://res.layui.com/download/layer-v2.1.zip" target="_blank">http://res.layui.com/download/layer-v2.1.zip</a></p>
+<p>我们提到的基础参数主要指调用方法时用到的配置项，如：</p>
+<p>　　<code>layer.open({content: ''})，</code></p>
+<p><code>　　layer.msg('', {time: 3})</code>，</p>
+<p>　　其中的content和time即是基础参数，以键值形式存在，基础参数可合理应用于任何层类型中，您不需要所有都去配置，大多数都是可选的。而其中的</p>
+<p>　　layer.open、</p>
+<p>　　layer.msg、</p>
+<p>　　就是内置方法。但我们通常还会在别的js文件中扩展一些层，</p>
+<p>　　比如<code>layer.prompt()</code>即是我们的扩展方法，扩展的js文件默认不会加载，通常需进行<code>layer.config({extend: 'extend/layer.ext.js'})</code>后才可使用，而关于其中的extend下面也有讲解。</p>
+<p>&nbsp;</p>
+<h2>基础参数</h2>
+<p>type&nbsp;- 基本层类型</p>
+<p>类型：Number，默认：0</p>
+<p>layer提供了5种层类型。可传入的值有：<code>0</code>（信息框，默认）<code>1</code>（页面层）<code>2</code>（iframe层）<code>3</code>（加载层）<code>4</code>（tips层）。 若你采用<code>layer.open({type: 1})</code>方式调用，则type为必填项（信息框除外）</p>
+<p>&nbsp;</p>
+<p>title&nbsp;- 标题</p>
+<p>类型：String/Array/Boolean，默认：'信息'</p>
+<p>title支持三种类型的值，若你传入的是普通的字符串，如<code>title :'我是标题'</code>，那么只会改变标题文本；若你还需要自定义标题区域样式，那么你可以<code>title: ['文本', 'font-size:18px;']</code>，数组第二项可以写任意css样式；如果你不想显示标题栏，你可以<code>title: false</code></p>
+<p>&nbsp;</p>
+<p>content&nbsp;- 内容</p>
+<p>类型：String/DOM/Array，默认：''</p>
+<p>content可传入的值是灵活多变的，不仅可以传入普通的html内容，还可以指定DOM，更可以随着type的不同而不同。譬如：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> /!*
+<span style="color: #008080;"> 2</span> <span style="color: #000000;"> 如果是页面层
+</span><span style="color: #008080;"> 3</span>  */
+<span style="color: #008080;"> 4</span> <span style="color: #000000;">layer.open({
+</span><span style="color: #008080;"> 5</span>     type: 1<span style="color: #000000;">, 
+</span><span style="color: #008080;"> 6</span>     content: '传入任意的文本或html' <span style="color: #008000;">//</span><span style="color: #008000;">这里content是一个普通的String</span>
+<span style="color: #008080;"> 7</span> <span style="color: #000000;">});
+</span><span style="color: #008080;"> 8</span> <span style="color: #000000;">layer.open({
+</span><span style="color: #008080;"> 9</span>     type: 1<span style="color: #000000;">,
+</span><span style="color: #008080;">10</span>     content: $('#id') <span style="color: #008000;">//</span><span style="color: #008000;">这里content是一个DOM</span>
+<span style="color: #008080;">11</span> <span style="color: #000000;">});
+</span><span style="color: #008080;">12</span> <span style="color: #008000;">//</span><span style="color: #008000;">Ajax获取</span>
+<span style="color: #008080;">13</span> $.post('url', {}, <span style="color: #0000ff;">function</span><span style="color: #000000;">(str){
+</span><span style="color: #008080;">14</span> <span style="color: #000000;">    layer.open({
+</span><span style="color: #008080;">15</span>         type: 1<span style="color: #000000;">,
+</span><span style="color: #008080;">16</span>         content: str <span style="color: #008000;">//</span><span style="color: #008000;">注意，如果str是object，那么需要字符拼接。</span>
+<span style="color: #008080;">17</span> <span style="color: #000000;">    });
+</span><span style="color: #008080;">18</span> <span style="color: #000000;">});
+</span><span style="color: #008080;">19</span> 
+<span style="color: #008080;">20</span> /!*
+<span style="color: #008080;">21</span> <span style="color: #000000;"> 如果是iframe层
+</span><span style="color: #008080;">22</span>  */
+<span style="color: #008080;">23</span> <span style="color: #000000;">layer.open({
+</span><span style="color: #008080;">24</span>     type: 2<span style="color: #000000;">, 
+</span><span style="color: #008080;">25</span>     content: 'http://sentsin.com' <span style="color: #008000;">//</span><span style="color: #008000;">这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']</span>
+<span style="color: #008080;">26</span> <span style="color: #000000;">}); 
+</span><span style="color: #008080;">27</span> 
+<span style="color: #008080;">28</span> /!*
+<span style="color: #008080;">29</span> <span style="color: #000000;"> 如果是用layer.open执行tips层
+</span><span style="color: #008080;">30</span>  */
+<span style="color: #008080;">31</span> <span style="color: #000000;">layer.open({
+</span><span style="color: #008080;">32</span>     type: 4<span style="color: #000000;">,
+</span><span style="color: #008080;">33</span>     content: ['内容', '#id'] <span style="color: #008000;">//</span><span style="color: #008000;">数组第二项即吸附元素选择器或者DOM</span>
+<span style="color: #008080;">34</span> }); </pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>skin&nbsp;- 样式类名</p>
+<p>类型：String，默认：''</p>
+<p>skin不仅允许你传入layer内置的样式class名，还可以传入您自定义的class名。这是一个很好的切入点，意味着你可以借助skin轻松完成不同的风格定制。目前layer内置的skin有：<code>layui-layer-lan</code><code>layui-layer-molv</code>，未来我们还会选择性地内置更多，但更推荐您自己来定义。以下是一个自定义风格的简单例子</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #008000;">//</span><span style="color: #008000;">单个使用</span>
+<span style="color: #008080;"> 2</span> <span style="color: #000000;">layer.open({
+</span><span style="color: #008080;"> 3</span>     skin: 'demo-class'
+<span style="color: #008080;"> 4</span> <span style="color: #000000;">});
+</span><span style="color: #008080;"> 5</span> 
+<span style="color: #008080;"> 6</span> <span style="color: #008000;">//</span><span style="color: #008000;">全局使用。即所有弹出层都默认采用，但是单个配置skin的优先级更高</span>
+<span style="color: #008080;"> 7</span> <span style="color: #000000;">layer.config({
+</span><span style="color: #008080;"> 8</span>     skin: 'demo-class'
+<span style="color: #008080;"> 9</span> <span style="color: #000000;">})
+</span><span style="color: #008080;">10</span> 
+<span style="color: #008080;">11</span> <span style="color: #008000;">//</span><span style="color: #008000;">CSS </span>
+<span style="color: #008080;">12</span> body .demo-class .layui-layer-<span style="color: #000000;">title{background:#c00; color:#fff; border: none;}
+</span><span style="color: #008080;">13</span> body .demo-class .layui-layer-btn{border-<span style="color: #000000;">top:1px solid #E9E7E7}
+</span><span style="color: #008080;">14</span> body .demo-class .layui-layer-btn a{background:#333<span style="color: #000000;">;}
+</span><span style="color: #008080;">15</span> body .demo-class .layui-layer-btn .layui-layer-btn1{background:#999<span style="color: #000000;">;}
+</span><span style="color: #008080;">16</span> <span style="color: #000000;">…
+</span><span style="color: #008080;">17</span> 加上body是为了保证优先级。你可以借助Chrome调试工具，定义更多样式控制层更多的区域。   </pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>area&nbsp;- 宽高</p>
+<p>类型：String/Array，默认：'auto'</p>
+<p>在默认状态下，layer是宽高都自适应的，但当你只想定义宽度时，你可以<code>area: '500px'</code>，高度仍然是自适应的。当你宽高都要定义时，你可以<code>area: ['500px', '300px']</code></p>
+<p>&nbsp;</p>
+<p>offset&nbsp;- 坐标</p>
+<p>类型：String/Array，默认：'auto'</p>
+<p>默认垂直水平居中。但当你只想定义top时，你可以<code>offset: '100px'</code>。当您top、left都要定义时，你可以<code>offset: ['100px', '200px']</code>。除此之外，你还可以定义<code>offset: 'rb'</code>，表示右下角。其它的特殊坐标，你可以自己计算赋值。</p>
+<p>&nbsp;</p>
+<p>icon&nbsp;- 图标。信息框和加载层的私有参数</p>
+<p>类型：Number，默认：-1（信息框）/0（加载层）</p>
+<p>信息框默认不显示图标。当你想显示图标时，默认皮肤可以传入<code>0-6</code>如果是加载层，可以传入<code>0-2</code>。如：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;">1</span> <span style="color: #008000;">//</span><span style="color: #008000;">eg1</span>
+<span style="color: #008080;">2</span> layer.alert('酷毙了', {icon: 1<span style="color: #000000;">});
+</span><span style="color: #008080;">3</span> 
+<span style="color: #008080;">4</span> <span style="color: #008000;">//</span><span style="color: #008000;">eg2</span>
+<span style="color: #008080;">5</span> layer.msg('不开心。。', {icon: 5<span style="color: #000000;">});
+</span><span style="color: #008080;">6</span> 
+<span style="color: #008080;">7</span> <span style="color: #008000;">//</span><span style="color: #008000;">eg3</span>
+<span style="color: #008080;">8</span> layer.load(1); <span style="color: #008000;">//</span><span style="color: #008000;">风格1的加载</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>btn&nbsp;- 按钮</p>
+<p>类型：String/Array，默认：'确认'</p>
+<p>信息框模式时，btn默认是一个确认按钮，其它层类型则默认不显示，加载层和tips层则无效。当您只想自定义一个按钮时，你可以<code>btn: '我知道了'</code>，当你要定义两个按钮时，你可以<code>btn: ['yes', 'no']</code>。当然，你也可以定义更多按钮，比如：<code>btn: ['按钮1', '按钮2', '按钮3', …]</code>，按钮1和按钮2的回调分别是yes和cancel，而从按钮3开始，则回调为btn3: function(){}，以此类推。如：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #008000;">//</span><span style="color: #008000;">eg1           </span>
+<span style="color: #008080;"> 2</span> layer.confirm('纳尼？'<span style="color: #000000;">, {
+</span><span style="color: #008080;"> 3</span>     btn: ['按钮一', '按钮二', '按钮三'] <span style="color: #008000;">//</span><span style="color: #008000;">可以无限个按钮</span>
+<span style="color: #008080;"> 4</span>     ,btn3: <span style="color: #0000ff;">function</span><span style="color: #000000;">(index, layero){
+</span><span style="color: #008080;"> 5</span>         <span style="color: #008000;">//</span><span style="color: #008000;">按钮【按钮三】的回调</span>
+<span style="color: #008080;"> 6</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;"> 7</span> }, <span style="color: #0000ff;">function</span><span style="color: #000000;">(index, layero){
+</span><span style="color: #008080;"> 8</span>     <span style="color: #008000;">//</span><span style="color: #008000;">按钮【按钮一】的回调</span>
+<span style="color: #008080;"> 9</span> }, <span style="color: #0000ff;">function</span><span style="color: #000000;">(index){
+</span><span style="color: #008080;">10</span>     <span style="color: #008000;">//</span><span style="color: #008000;">按钮【按钮二】的回调</span>
+<span style="color: #008080;">11</span> <span style="color: #000000;">});
+</span><span style="color: #008080;">12</span> 
+<span style="color: #008080;">13</span> <span style="color: #008000;">//</span><span style="color: #008000;">eg2</span>
+<span style="color: #008080;">14</span> <span style="color: #000000;">layer.open({
+</span><span style="color: #008080;">15</span>     content: 'test'
+<span style="color: #008080;">16</span>     ,btn: ['按钮一', '按钮二', '按钮三'<span style="color: #000000;">]
+</span><span style="color: #008080;">17</span>     ,yes: <span style="color: #0000ff;">function</span>(index, layero){ <span style="color: #008000;">//</span><span style="color: #008000;">或者使用btn1</span>
+<span style="color: #008080;">18</span>         <span style="color: #008000;">//</span><span style="color: #008000;">按钮【按钮一】的回调</span>
+<span style="color: #008080;">19</span>     },cancel: <span style="color: #0000ff;">function</span>(index){ <span style="color: #008000;">//</span><span style="color: #008000;">或者使用btn2</span>
+<span style="color: #008080;">20</span>         <span style="color: #008000;">//</span><span style="color: #008000;">按钮【按钮二】的回调</span>
+<span style="color: #008080;">21</span>     },btn3: <span style="color: #0000ff;">function</span><span style="color: #000000;">(index, layero){
+</span><span style="color: #008080;">22</span>         <span style="color: #008000;">//</span><span style="color: #008000;">按钮【按钮三】的回调</span>
+<span style="color: #008080;">23</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">24</span> });</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>closeBtn&nbsp;- 关闭按钮</p>
+<p>类型：String/Boolean，默认：1</p>
+<p>layer提供了两种风格的关闭按钮，可通过配置<code>1</code>和<code>2</code>来展示，如果不显示，则<code>closeBtn: 0</code></p>
+<p>&nbsp;</p>
+<p>shade&nbsp;- 遮罩</p>
+<p>类型：String/Array/Boolean，默认：0.3</p>
+<p>即弹层外区域。默认是0.3透明度的黑色背景（'#000'）。如果你想定义别的颜色，可以<code>shade: [0.8, '#393D49']</code>；如果你不想显示遮罩，可以<code>shade: 0</code></p>
+<p>&nbsp;</p>
+<p>shadeClose&nbsp;- 是否点击遮罩关闭</p>
+<p>类型：Boolean，默认：false</p>
+<p>如果你的shade是存在的，那么你可以设定shadeClose来控制点击弹层外区域关闭。</p>
+<p>&nbsp;</p>
+<p>time&nbsp;- 自动关闭所需毫秒</p>
+<p>类型：Number，默认：0</p>
+<p>默认不会自动关闭。当你想自动关闭时，可以<code>time: 5000</code>，即代表5秒后自动关闭，注意单位是毫秒（1秒=1000毫秒）</p>
+<p>&nbsp;</p>
+<p>shift&nbsp;- 动画</p>
+<p>类型：Number，默认：0</p>
+<p>从1.9开始，我们的出场动画全部采用CSS3。这意味着除了ie6-9，其它所有浏览器都是支持的。目前shift可支持的动画类型有<code>0-6</code></p>
+<p>&nbsp;</p>
+<p>maxmin&nbsp;- 最大最小化。</p>
+<p>类型：Boolean，默认：false</p>
+<p>该参数值对<code>type:1</code>和<code>type:2</code>有效。默认不显示最大小化按钮。需要显示配置<code>maxmin: true</code>即可</p>
+<p>&nbsp;</p>
+<p>fix&nbsp;- 固定</p>
+<p>类型：Boolean，默认：true</p>
+<p>即鼠标滚动时，层是否固定在可视区域。如果不想，设置<code>fix: false</code>即可</p>
+<p>&nbsp;</p>
+<p>scrollbar&nbsp;- 是否允许浏览器出现滚动条</p>
+<p>类型：Boolean，默认：true</p>
+<p>默认允许浏览器滚动，如果设定<code>scrollbar: false</code>，则屏蔽</p>
+<p>&nbsp;</p>
+<p>maxWidth&nbsp;- 最大宽度</p>
+<p>类型：，默认：360</p>
+<p>当<code>area: 'auto'</code>时，maxWidth的设定才有效。</p>
+<p>&nbsp;</p>
+<p>zIndex&nbsp;- 层叠顺序</p>
+<p>类型：，默认：19891014</p>
+<p>一般用于解决和其它组件的层叠冲突。</p>
+<p>&nbsp;</p>
+<p>move&nbsp;- 触发拖动的元素</p>
+<p>类型：String/DOM/Boolean，默认：'.layui-layer-title'</p>
+<p>默认是触发标题区域拖拽。如果你想单独定义，指向元素的选择器或者DOM即可。如<code>move: '.mine-move'</code>。你还配置设定<code>move: false</code>来禁止拖拽</p>
+<p>&nbsp;</p>
+<p>moveType&nbsp;- 拖拽风格</p>
+<p>类型：Number，默认：0</p>
+<p>默认的拖拽风格正如你所见到的，会有个过度的透明框。但是如果你不喜欢，你可以设定<code>moveType: 1</code>切换到传统的拖拽模式</p>
+<p>&nbsp;</p>
+<p>moveOut&nbsp;- 是否允许拖拽到窗口外</p>
+<p>类型：Boolean，默认：false</p>
+<p>默认只能在窗口内拖拽，如果你想让拖到窗外，那么设定<code>moveOut: true</code>即可</p>
+<p>&nbsp;</p>
+<p>moveEnd&nbsp;- 拖动完毕后的回调方法</p>
+<p>类型：Function，默认：null</p>
+<p>默认不会触发moveEnd，如果你需要，设定<code>moveEnd: function(){}</code>即可。</p>
+<p>&nbsp;</p>
+<p>tips&nbsp;- tips方向和颜色</p>
+<p>类型：Number/Array，默认：2</p>
+<p>tips层的私有参数。支持<code>上</code><code>右</code><code>下</code><code>左</code>四个方向，通过<code>1-4</code>进行方向设定。如<code>tips: 3</code>则表示在元素的下面出现。有时你还可能会定义一些颜色，可以设定<code>tips: [1, '#c00']</code></p>
+<p>&nbsp;</p>
+<p>tipsMore&nbsp;- 是否允许多个tips</p>
+<p>类型：Boolean，默认：false</p>
+<p>允许多个意味着不会销毁之前的tips层。通过<code>tipsMore: true</code>开启</p>
+<p>&nbsp;</p>
+<p>success&nbsp;- 层弹出后的成功回调方法</p>
+<p>类型：Function，默认：null</p>
+<p>当你需要在层创建完毕时即执行一些语句，可以通过该回调。success会携带两个参数，分别是<code>当前层DOM</code><code>当前层索引</code>。如：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;">1</span> <span style="color: #000000;">layer.open({
+</span><span style="color: #008080;">2</span>     content: '测试回调'<span style="color: #000000;">,
+</span><span style="color: #008080;">3</span>     success: <span style="color: #0000ff;">function</span><span style="color: #000000;">(layero, index){
+</span><span style="color: #008080;">4</span> <span style="color: #000000;">        console.log(layero, index);
+</span><span style="color: #008080;">5</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">6</span> });      </pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>yes&nbsp;- 确定按钮回调方法</p>
+<p>类型：Function，默认：null</p>
+<p>该回调携带两个参数，分别为当前层索引、当前层DOM对象。如：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;">1</span> <span style="color: #000000;">layer.open({
+</span><span style="color: #008080;">2</span>     content: '测试回调'<span style="color: #000000;">,
+</span><span style="color: #008080;">3</span>     yes: <span style="color: #0000ff;">function</span><span style="color: #000000;">(index, layero){
+</span><span style="color: #008080;">4</span>         <span style="color: #008000;">//</span><span style="color: #008000;">do something</span>
+<span style="color: #008080;">5</span>         layer.close(index); <span style="color: #008000;">//</span><span style="color: #008000;">如果设定了yes回调，需进行手工关闭</span>
+<span style="color: #008080;">6</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">7</span> });     </pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>cancel&nbsp;- 取消和关闭按钮触发的回调</p>
+<p>类型：Function，默认：null</p>
+<p>该回调同样只携带当前层索引一个参数，无需进行手工关闭。如果不想关闭，<code>return false</code>即可，如 cancel: function(index){ return false; } 则不会关闭；</p>
+<p>&nbsp;</p>
+<p>end&nbsp;- 层销毁后触发的回调</p>
+<p>类型：Function，默认：null</p>
+<p>无论是确认还是取消，只要层被销毁了，end都会执行，不携带任何参数。</p>
+<p>&nbsp;</p>
+<p>full/min/restore&nbsp;-分别代表最大化、最小化、还原 后触发的回调</p>
+<p>类型：Function，默认：null</p>
+<p>携带一个参数，即当前层DOM</p>
+<p>&nbsp;</p>
+<h2>内置方法</h2>
+<p>layer.config(options)&nbsp;- 初始化全局配置</p>
+<p>这是一个可以重要也可以不重要的方法，重要的是，它的权利真的很大，尤其是在模块化加载layer时，你会发现你必须要用到它。它不仅可以配置一些诸如路径、加载的模块，甚至还可以决定整个弹层的默认参数。而说它不重要，是因为多数情况下，你会发现，你似乎不是那么十分需要它。但你真的需要认识一下这位伙计。</p>
+<p>如果您是采用<code>seajs</code>或者<code>requirejs</code>加载layer，你需要执行该方法来完成初始化的配置。比如：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">1</span> <span style="color: #000000;">layer.config({
+</span><span style="color: #008080;">2</span>     path: '/res/layer/' <span style="color: #008000;">//</span><span style="color: #008000;">layer.js所在的目录，可以是绝对目录，也可以是相对目录</span>
+<span style="color: #008080;">3</span> <span style="color: #000000;">});
+</span><span style="color: #008080;">4</span> <span style="color: #008000;">//</span><span style="color: #008000;">这样的话，layer就会去加载一些它所需要的配件，比如css等。  </span>
+<span style="color: #008080;">5</span> <span style="color: #008000;">//</span><span style="color: #008000;">当然，你即便不用seajs或者requirejs，也可以通过上述方式设定路径    </span></pre>
+</div>
+<p>如果你是采用&lt;script src="?a.js&amp;layer.js"&gt;这种合并的方式引入layer，那么您需要在script标签上加一个自定义属性merge="true"。如：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;">1</span> &lt;script src="?a.js&amp;layer.js" merge="true"&gt;
+<span style="color: #008080;">2</span> 
+<span style="color: #008080;">3</span> <span style="color: #000000;">这样的话，layer就不会去自动去获取路径，但你需要通过以下方式来完成初始化的配置
+</span><span style="color: #008080;">4</span> <span style="color: #000000;">layer.config({
+</span><span style="color: #008080;">5</span>     path: '/res/layer/' <span style="color: #008000;">//</span><span style="color: #008000;">layer.js所在的目录，可以是绝对目录，也可以是相对目录</span>
+<span style="color: #008080;">6</span> });</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>但layer.config的作用远不止上述这样。它还可以<code>配置layer的拓展模块</code>，以及<code>默认的基础参数</code>，如：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #000000;">layer.config({
+</span><span style="color: #008080;"> 2</span>     extend: 'extend/layer.ext.js', <span style="color: #008000;">//</span><span style="color: #008000;">注意，目录是相对layer.js根目录。如果加载多个，则 [a.js, b.js, …]</span>
+<span style="color: #008080;"> 3</span>     shift: 1, <span style="color: #008000;">//</span><span style="color: #008000;">默认动画风格</span>
+<span style="color: #008080;"> 4</span>     skin: 'layui-layer-molv' <span style="color: #008000;">//</span><span style="color: #008000;">默认皮肤</span>
+<span style="color: #008080;"> 5</span> <span style="color: #000000;">    …
+</span><span style="color: #008080;"> 6</span> <span style="color: #000000;">});
+</span><span style="color: #008080;"> 7</span> 
+<span style="color: #008080;"> 8</span> <span style="color: #008000;">//</span><span style="color: #008000;">除此之外，extend还允许你加载css。这对于layer的第三方皮肤有极大的帮助，如：</span>
+<span style="color: #008080;"> 9</span> <span style="color: #000000;">layer.config({
+</span><span style="color: #008080;">10</span> <span style="color: #000000;">    extend: [
+</span><span style="color: #008080;">11</span>         'extend/layer.ext.js'<span style="color: #000000;">,
+</span><span style="color: #008080;">12</span>         'skin/layer-ext-myskin/style.css' <span style="color: #008000;">//</span><span style="color: #008000;">layer-ext-myskin即是你拓展的皮肤文件</span>
+<span style="color: #008080;">13</span> <span style="color: #000000;">    ]
+</span><span style="color: #008080;">14</span> <span style="color: #000000;">});
+</span><span style="color: #008080;">15</span> 
+<span style="color: #008080;">16</span> <span style="color: #008000;">//</span><span style="color: #008000;">扩展css的规范：您必须在你扩展中的css文件加上这段</span>
+<span style="color: #008080;">17</span> html #layui_layer_skinlayer-ext-<span style="color: #000000;">myskinstylecss{display:none; position: absolute; width:1989px;}
+</span><span style="color: #008080;">18</span> <span style="color: #000000;">规则就是：html #layui_layer_skin{文件夹名}{文件名}css
+</span><span style="color: #008080;">19</span> skin名以文件夹名为标准。</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>layer.ready(path, callback)&nbsp;- 初始化就绪</p>
+<p>由于我们的layer内置了轻量级加载器，所以你根本不需要单独引入css等文件。但是加载总是需要过程的。当你在页面一打开就要执行弹层时，layer.ready()会是一个不错的帮手。它也可以做一些layer.config可以做的事，比如指向layer.js所在目录。但是如果你已经通过layer.config配置了path，你在使用layer.ready时，是不需要path的，如：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">1</span> <span style="color: #008000;">//</span><span style="color: #008000;">页面一打开就执行弹层</span>
+<span style="color: #008080;">2</span> layer.ready(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+</span><span style="color: #008080;">3</span>     layer.msg('很高兴一开场就见到你'<span style="color: #000000;">);
+</span><span style="color: #008080;">4</span> });  </pre>
+</div>
+<p>&nbsp;</p>
+<p>layer.open(options)&nbsp;- 原始核心方法</p>
+<p>基本上是露脸率最高的方法，不管是使用哪种方式创建层，都是走<code>layer.open()</code>，创建任何类型的弹层都会返回一个当前层索引，上述的<code>options即是基础参数</code>，另外，该文档<code>统一采用options作为基础参数的标识</code>例子：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">1</span> <span style="color: #0000ff;">var</span> index =<span style="color: #000000;"> layer.open({
+</span><span style="color: #008080;">2</span>     content: 'test'
+<span style="color: #008080;">3</span> <span style="color: #000000;">});
+</span><span style="color: #008080;">4</span> <span style="color: #008000;">//</span><span style="color: #008000;">拿到的index是一个重要的凭据，它是诸如layer.close(index)等方法的必传参数。 </span></pre>
+</div>
+<p>&nbsp;</p>
+<p>layer.alert(content, options, yes)&nbsp;- 普通信息框</p>
+<p>它的弹出似乎显得有些高调，一般用于对用户造成比较强烈的关注，类似系统alert，但却比alert更灵便。它的参数是自动向左补齐的。通过第二个参数，可以设定各种你所需要的基础参数，但如果你不需要的话，直接写回调即可。如</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #008000;">//</span><span style="color: #008000;">eg1</span>
+<span style="color: #008080;"> 2</span> layer.alert('只想简单的提示'<span style="color: #000000;">);                
+</span><span style="color: #008080;"> 3</span> <span style="color: #008000;">//</span><span style="color: #008000;">eg2</span>
+<span style="color: #008080;"> 4</span> layer.alert('加了个图标', {icon: 1}); <span style="color: #008000;">//</span><span style="color: #008000;">这时如果你也还想执行yes回调，可以放在第三个参数中。</span>
+<span style="color: #008080;"> 5</span> <span style="color: #008000;">//</span><span style="color: #008000;">eg3</span>
+<span style="color: #008080;"> 6</span> layer.alert('有了回调', <span style="color: #0000ff;">function</span><span style="color: #000000;">(index){
+</span><span style="color: #008080;"> 7</span>     <span style="color: #008000;">//</span><span style="color: #008000;">do something</span>
+<span style="color: #008080;"> 8</span>     
+<span style="color: #008080;"> 9</span> <span style="color: #000000;">    layer.close(index);
+</span><span style="color: #008080;">10</span> });     </pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>layer.confirm(content, options, yes, cancel)&nbsp;- 询问框</p>
+<p>类似系统confirm，但却远胜confirm，另外它<code>不是和系统的confirm一样阻塞</code>你需要把交互的语句放在回调体中。同样的，它的参数也是自动补齐的。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #008000;">//</span><span style="color: #008000;">eg1</span>
+<span style="color: #008080;"> 2</span> layer.confirm('is not?', {icon: 3, title:'提示'}, <span style="color: #0000ff;">function</span><span style="color: #000000;">(index){
+</span><span style="color: #008080;"> 3</span>     <span style="color: #008000;">//</span><span style="color: #008000;">do something</span>
+<span style="color: #008080;"> 4</span>     
+<span style="color: #008080;"> 5</span> <span style="color: #000000;">    layer.close(index);
+</span><span style="color: #008080;"> 6</span> <span style="color: #000000;">});
+</span><span style="color: #008080;"> 7</span> <span style="color: #008000;">//</span><span style="color: #008000;">eg2</span>
+<span style="color: #008080;"> 8</span> layer.confirm('is not?', <span style="color: #0000ff;">function</span><span style="color: #000000;">(index){
+</span><span style="color: #008080;"> 9</span>     <span style="color: #008000;">//</span><span style="color: #008000;">do something</span>
+<span style="color: #008080;">10</span>     
+<span style="color: #008080;">11</span> <span style="color: #000000;">    layer.close(index);
+</span><span style="color: #008080;">12</span> });    </pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>layer.msg(content, options, end)&nbsp;- 提示框</p>
+<p>我在源码中有了相对较大的篇幅来定制了这个msg，目的是想将其打造成露脸率最高的提示框。而事实上我的确也在大量地使用它。因为它简单，而且足够得自觉，它不仅占据很少的面积，而且默认还会3秒后<code>自动消失</code>所有这一切都决定了我对msg的爱。因此<code>我赋予了她许多可能</code>在外形方面，它坚持简陋的变化，在作用方面，他坚持零用户操作。而且它的参数也是机会自动补齐的。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #008000;">//</span><span style="color: #008000;">eg1</span>
+<span style="color: #008080;"> 2</span> layer.msg('只想弱弱提示'<span style="color: #000000;">);
+</span><span style="color: #008080;"> 3</span> <span style="color: #008000;">//</span><span style="color: #008000;">eg2</span>
+<span style="color: #008080;"> 4</span> layer.msg('有表情地提示', {icon: 6<span style="color: #000000;">}); 
+</span><span style="color: #008080;"> 5</span> <span style="color: #008000;">//</span><span style="color: #008000;">eg3</span>
+<span style="color: #008080;"> 6</span> layer.msg('关闭后想做些什么', <span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+</span><span style="color: #008080;"> 7</span>     <span style="color: #008000;">//</span><span style="color: #008000;">do something</span>
+<span style="color: #008080;"> 8</span> <span style="color: #000000;">}); 
+</span><span style="color: #008080;"> 9</span> <span style="color: #008000;">//</span><span style="color: #008000;">eg</span>
+<span style="color: #008080;">10</span> layer.msg('同上'<span style="color: #000000;">, {
+</span><span style="color: #008080;">11</span>     icon: 1<span style="color: #000000;">,
+</span><span style="color: #008080;">12</span>     time: 2000 <span style="color: #008000;">//</span><span style="color: #008000;">2秒关闭（如果不配置，默认是3秒）</span>
+<span style="color: #008080;">13</span> }, <span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+</span><span style="color: #008080;">14</span>     <span style="color: #008000;">//</span><span style="color: #008000;">do something</span>
+<span style="color: #008080;">15</span> });   </pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>layer.load(icon, options)&nbsp;- 加载层</p>
+<p>type:3的深度定制。load并不需要你传太多的参数，但如果你不喜欢默认的加载风格，你还有选择空间。icon支持传入<code>0-2</code>如果是0，无需传。另外特别注意一点：<code>load默认是不会自动关闭的</code>，因为你一般会在ajax回调体中关闭它。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;">1</span> <span style="color: #008000;">//</span><span style="color: #008000;">eg1</span>
+<span style="color: #008080;">2</span> <span style="color: #0000ff;">var</span> index =<span style="color: #000000;"> layer.load();
+</span><span style="color: #008080;">3</span> <span style="color: #008000;">//</span><span style="color: #008000;">eg2</span>
+<span style="color: #008080;">4</span> <span style="color: #0000ff;">var</span> index = layer.load(1); <span style="color: #008000;">//</span><span style="color: #008000;">换了种风格</span>
+<span style="color: #008080;">5</span> <span style="color: #008000;">//</span><span style="color: #008000;">eg3</span>
+<span style="color: #008080;">6</span> <span style="color: #0000ff;">var</span> index = layer.load(2, {time: 10*1000}); <span style="color: #008000;">//</span><span style="color: #008000;">又换了种风格，并且设定最长等待10秒 </span>
+<span style="color: #008080;">7</span> 
+<span style="color: #008080;">8</span> <span style="color: #008000;">//</span><span style="color: #008000;">关闭</span>
+<span style="color: #008080;">9</span> layer.close(index);  </pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>layer.tips(content, follow, options)&nbsp;- tips层</p>
+<p>type:4的深度定制。也是我本人比较喜欢的一个层类型，因为它拥有和msg一样的低调和自觉，而且会<code>智能定位</code>，即灵活地判断它应该出现在哪边。默认是在元素右边弹出</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #008000;">//</span><span style="color: #008000;">eg1</span>
+<span style="color: #008080;"> 2</span> layer.tips('只想提示地精准些', '#id'<span style="color: #000000;">);
+</span><span style="color: #008080;"> 3</span> <span style="color: #008000;">//</span><span style="color: #008000;">eg 2</span>
+<span style="color: #008080;"> 4</span> $('#id').on('click', <span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+</span><span style="color: #008080;"> 5</span>     <span style="color: #0000ff;">var</span> that = <span style="color: #0000ff;">this</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 6</span>     layer.tips('只想提示地精准些', that); <span style="color: #008000;">//</span><span style="color: #008000;">在元素的事件回调体中，follow直接赋予this即可</span>
+<span style="color: #008080;"> 7</span> <span style="color: #000000;">});
+</span><span style="color: #008080;"> 8</span> <span style="color: #008000;">//</span><span style="color: #008000;">eg 3</span>
+<span style="color: #008080;"> 9</span> layer.tips('在上面', '#id'<span style="color: #000000;">, {
+</span><span style="color: #008080;">10</span>     tips: 1
+<span style="color: #008080;">11</span> });</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>layer.close(index)&nbsp;- 关闭特定层</p>
+<p>关于它似乎没有太多介绍的必要，唯一让你疑惑的，可能就是这个<code>index</code>了吧</p>
+<p>事实上它非常容易得到。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #008000;">//</span><span style="color: #008000;">当你想关闭当前页的某个层时</span>
+<span style="color: #008080;"> 2</span> <span style="color: #0000ff;">var</span> index =<span style="color: #000000;"> layer.open();
+</span><span style="color: #008080;"> 3</span> <span style="color: #0000ff;">var</span> index =<span style="color: #000000;"> layer.alert();
+</span><span style="color: #008080;"> 4</span> <span style="color: #0000ff;">var</span> index =<span style="color: #000000;"> layer.load();
+</span><span style="color: #008080;"> 5</span> <span style="color: #0000ff;">var</span> index =<span style="color: #000000;"> layer.tips();
+</span><span style="color: #008080;"> 6</span> <span style="color: #008000;">//</span><span style="color: #008000;">正如你看到的，每一种弹层调用方式，都会返回一个index</span>
+<span style="color: #008080;"> 7</span> layer.close(index); <span style="color: #008000;">//</span><span style="color: #008000;">此时你只需要把获得的index，轻轻地赋予layer.close即可</span>
+<span style="color: #008080;"> 8</span> 
+<span style="color: #008080;"> 9</span> <span style="color: #008000;">//</span><span style="color: #008000;">当你在iframe页面关闭自身时</span>
+<span style="color: #008080;">10</span> <span style="color: #0000ff;">var</span> index = parent.layer.getFrameIndex(window.name); <span style="color: #008000;">//</span><span style="color: #008000;">先得到当前iframe层的索引</span>
+<span style="color: #008080;">11</span> parent.layer.close(index); <span style="color: #008000;">//</span><span style="color: #008000;">再执行关闭     </span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>layer.closeAll(type)&nbsp;- 关闭所有层</p>
+<p>如果你很懒，你<code>不想去获取index</code>你只想关闭。那么closeAll真的可以帮上你。如果你不指向层类型的话，它会销毁掉当前页所有的layer层。当然，如果你只想关闭某个类型的层，那么你可以</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;">1</span> layer.closeAll(); <span style="color: #008000;">//</span><span style="color: #008000;">疯狂模式，关闭所有层</span>
+<span style="color: #008080;">2</span> layer.closeAll('dialog'); <span style="color: #008000;">//</span><span style="color: #008000;">关闭信息框</span>
+<span style="color: #008080;">3</span> layer.closeAll('page'); <span style="color: #008000;">//</span><span style="color: #008000;">关闭所有页面层</span>
+<span style="color: #008080;">4</span> layer.closeAll('iframe'); <span style="color: #008000;">//</span><span style="color: #008000;">关闭所有的iframe层</span>
+<span style="color: #008080;">5</span> layer.closeAll('loading'); <span style="color: #008000;">//</span><span style="color: #008000;">关闭加载层</span>
+<span style="color: #008080;">6</span> layer.closeAll('tips'); <span style="color: #008000;">//</span><span style="color: #008000;">关闭所有的tips层     </span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>layer.style(index, cssStyle)&nbsp;- 重新定义层的样式</p>
+<p>cssStyle允许你传入任意的css属性</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">1</span> <span style="color: #008000;">//</span><span style="color: #008000;">重新给指定层设定width、top等</span>
+<span style="color: #008080;">2</span> <span style="color: #000000;">layer.style(index, {
+</span><span style="color: #008080;">3</span>     width: '1000px'<span style="color: #000000;">,
+</span><span style="color: #008080;">4</span>     top: '10px'
+<span style="color: #008080;">5</span> });     </pre>
+</div>
+<p>&nbsp;</p>
+<p>layer.title(title, index)&nbsp;- 改变层的标题</p>
+<p>使用方式：<code>layer.title('标题变了', index)</code></p>
+<p>&nbsp;</p>
+<p>layer.getChildFrame(selector, index)&nbsp;- 获取iframe页的DOM</p>
+<p>当你试图在当前页获取iframe页的DOM元素时，你可以用此方法。<code>selector即iframe页的选择器</code></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #000000;">layer.open({
+</span><span style="color: #008080;"> 2</span>     type: 2<span style="color: #000000;">,
+</span><span style="color: #008080;"> 3</span>     content: 'test/iframe.html'<span style="color: #000000;">,
+</span><span style="color: #008080;"> 4</span>     success: <span style="color: #0000ff;">function</span><span style="color: #000000;">(layero, index){
+</span><span style="color: #008080;"> 5</span>         <span style="color: #0000ff;">var</span> body = layer.getChildFrame('body'<span style="color: #000000;">, index);
+</span><span style="color: #008080;"> 6</span>         <span style="color: #0000ff;">var</span> iframeWin = window[layero.find('iframe')[0]['name']]; <span style="color: #008000;">//</span><span style="color: #008000;">得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();</span>
+<span style="color: #008080;"> 7</span>         console.log(body.html()) <span style="color: #008000;">//</span><span style="color: #008000;">得到iframe页的body内容</span>
+<span style="color: #008080;"> 8</span>         body.find('input').val('Hi，我是从父页来的'<span style="color: #000000;">)
+</span><span style="color: #008080;"> 9</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">10</span> });   </pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>layer.getFrameIndex(windowName)&nbsp;- 获取特定iframe层的索引</p>
+<p>此方法一般用于在iframe页关闭自身时用到。</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">1</span> <span style="color: #008000;">//</span><span style="color: #008000;">假设这是iframe页</span>
+<span style="color: #008080;">2</span> <span style="color: #0000ff;">var</span> index = parent.layer.getFrameIndex(window.name); <span style="color: #008000;">//</span><span style="color: #008000;">先得到当前iframe层的索引</span>
+<span style="color: #008080;">3</span> parent.layer.close(index); <span style="color: #008000;">//</span><span style="color: #008000;">再执行关闭     </span></pre>
+</div>
+<p>&nbsp;</p>
+<p>layer.iframeAuto(index)&nbsp;- 指定iframe层自适应</p>
+<p>调用该方法时，iframe层的高度会重新进行适应</p>
+<p>&nbsp;</p>
+<p>layer.iframeSrc(index, url)&nbsp;- //重置特定iframe url</p>
+<p>似乎不怎么常用的样子。使用方式：<code>layer.iframeSrc(index, 'http://sentsin.com')</code></p>
+<p>&nbsp;</p>
+<p>layer.setTop(layero)&nbsp;-置顶当前窗口</p>
+<p>非常强大的一个方法，虽然一般很少用。但是当你的页面有很多很多layer窗口，你需要像Window窗体那样，点击某个窗口，该窗体就置顶在上面，那么setTop可以来轻松实现。它采用巧妙的逻辑，以使这种置顶的性能达到最优</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #008000;">//</span><span style="color: #008000;">通过这种方式弹出的层，每当它被选择，就会置顶。</span>
+<span style="color: #008080;"> 2</span> <span style="color: #000000;">layer.open({
+</span><span style="color: #008080;"> 3</span>     type: 2<span style="color: #000000;">,
+</span><span style="color: #008080;"> 4</span>     shade: <span style="color: #0000ff;">false</span><span style="color: #000000;">,
+</span><span style="color: #008080;"> 5</span>     area: '500px'<span style="color: #000000;">,
+</span><span style="color: #008080;"> 6</span>     maxmin: <span style="color: #0000ff;">true</span><span style="color: #000000;">,
+</span><span style="color: #008080;"> 7</span>     content: 'http://www.layui.com'<span style="color: #000000;">,
+</span><span style="color: #008080;"> 8</span>     zIndex: layer.zIndex, <span style="color: #008000;">//</span><span style="color: #008000;">重点1</span>
+<span style="color: #008080;"> 9</span>     success: <span style="color: #0000ff;">function</span><span style="color: #000000;">(layero){
+</span><span style="color: #008080;">10</span>         layer.setTop(layero); <span style="color: #008000;">//</span><span style="color: #008000;">重点2</span>
+<span style="color: #008080;">11</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">12</span> });    </pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>layer.full()、layer.min()、layer.restore()&nbsp;- 手工执行最大小化</p>
+<p>一般用于在自定义元素上触发最大化、最小化和全屏。</p>
+<p>&nbsp;</p>
+<h2>扩展方法</h2>
+<p>请注意，扩展方法依赖于layer.ext.js，默认不会加载，必须进行以下配置才可使用：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">1</span> <span style="color: #000000;">layer.config({
+</span><span style="color: #008080;">2</span>     extend: 'extend/layer.ext.js'
+<span style="color: #008080;">3</span> });   </pre>
+</div>
+<p>&nbsp;</p>
+<p>layer.prompt(options, yes)&nbsp;- 输入层</p>
+<p>prompt的参数也是向前补齐的。options不仅可支持传入基础参数，还可以传入prompt专用的属性。当然，也可以不传。yes携带<code>value 表单值</code><code>index 索引</code><code>elem 表单元素</code></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #008000;">//</span><span style="color: #008000;">prompt层新定制的成员如下</span>
+<span style="color: #008080;"> 2</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 3</span>     formType: 1, <span style="color: #008000;">//</span><span style="color: #008000;">输入框类型，支持0（文本）默认1（密码）2（多行文本）</span>
+<span style="color: #008080;"> 4</span>     value: '', <span style="color: #008000;">//</span><span style="color: #008000;">初始时的值，默认空字符</span>
+<span style="color: #008080;"> 5</span>     maxlength: 140, <span style="color: #008000;">//</span><span style="color: #008000;">可输入文本的最大长度，默认500</span>
+<span style="color: #008080;"> 6</span> <span style="color: #000000;">}
+</span><span style="color: #008080;"> 7</span> 
+<span style="color: #008080;"> 8</span> <span style="color: #008000;">//</span><span style="color: #008000;">例子1</span>
+<span style="color: #008080;"> 9</span> layer.prompt(<span style="color: #0000ff;">function</span><span style="color: #000000;">(value, index, elem){
+</span><span style="color: #008080;">10</span>     alert(value); <span style="color: #008000;">//</span><span style="color: #008000;">得到value</span>
+<span style="color: #008080;">11</span> <span style="color: #000000;">    layer.close(index);
+</span><span style="color: #008080;">12</span> <span style="color: #000000;">});
+</span><span style="color: #008080;">13</span> <span style="color: #008000;">//</span><span style="color: #008000;">例子2</span>
+<span style="color: #008080;">14</span> <span style="color: #000000;">layer.prompt({
+</span><span style="color: #008080;">15</span>     formType: 2<span style="color: #000000;">,
+</span><span style="color: #008080;">16</span>     value: '初始值'<span style="color: #000000;">,
+</span><span style="color: #008080;">17</span>     title: '请输入值'
+<span style="color: #008080;">18</span> }, <span style="color: #0000ff;">function</span><span style="color: #000000;">(value, index, elem){
+</span><span style="color: #008080;">19</span>     alert(value); <span style="color: #008000;">//</span><span style="color: #008000;">得到value</span>
+<span style="color: #008080;">20</span> <span style="color: #000000;">    layer.close(index);
+</span><span style="color: #008080;">21</span> });</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>layer.tab(options)&nbsp;- tab层</p>
+<p>tab层只单独定制了一个成员，即<code>tab: []</code>，这个好像没有什么可介绍的，简单粗暴看例子</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #000000;">layer.tab({
+</span><span style="color: #008080;"> 2</span>     area: ['600px', '300px'<span style="color: #000000;">],
+</span><span style="color: #008080;"> 3</span> <span style="color: #000000;">    tab: [{
+</span><span style="color: #008080;"> 4</span>         title: 'TAB1'<span style="color: #000000;">, 
+</span><span style="color: #008080;"> 5</span>         content: '内容1'
+<span style="color: #008080;"> 6</span> <span style="color: #000000;">    }, {
+</span><span style="color: #008080;"> 7</span>         title: 'TAB2'<span style="color: #000000;">, 
+</span><span style="color: #008080;"> 8</span>         content: '内容2'
+<span style="color: #008080;"> 9</span> <span style="color: #000000;">    }, {
+</span><span style="color: #008080;">10</span>         title: 'TAB3'<span style="color: #000000;">, 
+</span><span style="color: #008080;">11</span>         content: '内容3'
+<span style="color: #008080;">12</span> <span style="color: #000000;">    }]
+</span><span style="color: #008080;">13</span> });            </pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>layer.photos(options)&nbsp;- 相册层</p>
+<p>相册层，也可以称之为图片查看器。它的出场动画从layer内置的动画类型中随机展现。photos支持传入json和直接读取页面图片两种方式。如果是json传入，如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>$.getJSON('/jquery/layer/test/photos.json', <span style="color: #0000ff;">function</span><span style="color: #000000;">(json){
+    layer.photos({
+        photos: json
+    });
+});
+
+</span><span style="color: #008000;">//</span><span style="color: #008000;">而返回的json需严格按照如下格式：</span>
+<span style="color: #000000;">
+{
+    </span>"title": "", <span style="color: #008000;">//</span><span style="color: #008000;">相册标题</span>
+    "id": 123, <span style="color: #008000;">//</span><span style="color: #008000;">相册id</span>
+    "start": 0, <span style="color: #008000;">//</span><span style="color: #008000;">初始显示的图片序号，默认0</span>
+    "data": [   <span style="color: #008000;">//</span><span style="color: #008000;">相册包含的图片，数组格式</span>
+<span style="color: #000000;">        {
+            </span>"alt": "图片名"<span style="color: #000000;">,
+            </span>"pid": 666, <span style="color: #008000;">//</span><span style="color: #008000;">图片id</span>
+            "src": "", <span style="color: #008000;">//</span><span style="color: #008000;">原图地址</span>
+            "thumb": "" <span style="color: #008000;">//</span><span style="color: #008000;">缩略图地址</span>
+<span style="color: #000000;">        }
+    ]
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>如果是直接从页面中获取图片，那么需要指向图片的父容器，并且你的img可以设定一些规定的属性（但不是必须的）。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #008000;">//</span><span style="color: #008000;">HTML示例</span>
+<span style="color: #008080;"> 2</span> &lt;div id="layer-photos-demo" class="layer-photos-demo"&gt;
+<span style="color: #008080;"> 3</span>     &lt;img layer-pid="图片id，可以不写" layer-src="大图地址" src="缩略图" alt="图片名"&gt;
+<span style="color: #008080;"> 4</span>     &lt;img layer-pid="图片id，可以不写" layer-src="大图地址" src="缩略图" alt="图片名"&gt;
+<span style="color: #008080;"> 5</span> &lt;/div&gt;
+<span style="color: #008080;"> 6</span> 
+<span style="color: #008080;"> 7</span> <span style="color: #008000;">//</span><span style="color: #008000;">调用示例</span>
+<span style="color: #008080;"> 8</span> layer.ready(<span style="color: #0000ff;">function</span>(){ <span style="color: #008000;">//</span><span style="color: #008000;">为了layer.ext.js加载完毕再执行</span>
+<span style="color: #008080;"> 9</span> <span style="color: #000000;">    layer.photos({
+</span><span style="color: #008080;">10</span>         photos: '#layer-photos-demo'
+<span style="color: #008080;">11</span> <span style="color: #000000;">    });
+</span><span style="color: #008080;">12</span> });     </pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>第二种方式的图片查看器显然更加简单，因为无需像第一种那样返回规定的json，但是他们还是有各自的应用场景的，你可以按照你的需求进行选择。另外，photos还有个tab回调，切换图片时触发。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;">1</span> <span style="color: #000000;">layer.photos({
+</span><span style="color: #008080;">2</span>     photos: json/选择器,
+<span style="color: #008080;">3</span>     tab: <span style="color: #0000ff;">function</span><span style="color: #000000;">(pic, layero){
+</span><span style="color: #008080;">4</span>         console.log(pic) <span style="color: #008000;">//</span><span style="color: #008000;">当前图片的一些信息</span>
+<span style="color: #008080;">5</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">6</span> });</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./layer----javascript弹窗（层）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>合理地设定基础参数，合理地选择内置方法，合理地运用拓展方法，合理的心态，合理地阅读，只要一切都在合理的前提下，你才会感知到layer许许多多令人愉悦的地方，她真的是否如你所愿，取决于你对她了解的深远。愿layer能给你的web开发带来一段美妙的旅程。相信这一版的API文档，也会给你带来全新的便捷。</p></div><div id="MySignature" style="display: block;">原创文章请随便转载。愿和大家分享，并且一起进步。-- 江 coder</div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/jiangxiaobo/category/788953.html" target="_blank">jQuery</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/jiangxiaobo/tag/jQuery%E6%8F%92%E4%BB%B6/">jQuery插件</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5276482,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;20763c20-ffd5-e511-9fc1-ac853d9f53cc&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./layer----javascript弹窗（层）_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./layer----javascript弹窗（层）_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/jiangxiaobo/" target="_blank"><img src="./layer----javascript弹窗（层）_files/20160218160843.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/jiangxiaobo/">jiangxiaobo</a><br>
+            <a href="http://home.cnblogs.com/u/jiangxiaobo/followees">关注 - 2</a><br>
+            <a href="http://home.cnblogs.com/u/jiangxiaobo/followers">粉丝 - 58</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;20763c20-ffd5-e511-9fc1-ac853d9f53cc&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(5276482,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(5276482,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/jiangxiaobo/p/5265202.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/jiangxiaobo/p/5265202.html" title="发布于2016-03-11 12:55">解决Deprecated: mysql_connect(): The mysql extension is deprecated and will be removed in the future:</a><br><a href="http://www.cnblogs.com/jiangxiaobo/p/5294146.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/jiangxiaobo/p/5294146.html" title="发布于2016-03-19 00:09">走进APICloud的世界 (1)</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2016-03-14 17:31</span> <a href="http://www.cnblogs.com/jiangxiaobo/">jiangxiaobo</a> 阅读(<span id="post_view_count">20360</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5276482" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/jiangxiaobo/p/5276482.html#" onclick="AddToWz(5276482);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=267217,cb_entryId=5276482,cb_blogApp=currentBlogApp,cb_blogUserGuid='20763c20-ffd5-e511-9fc1-ac853d9f53cc',cb_entryCreatedDate='2016/3/14 17:31:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/jiangxiaobo/p/5276482.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/jiangxiaobo/p/5276482.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】超50万VC++源码: 大型组态工控、电力仿真CAD与GIS源码库！</a><br><a href="http://clickc.admaster.com.cn/c/a105960,b2436453,c1705,i0,m101,8a1,8b2,h" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-DevCloud&#39;)">【推荐】华为云7大明星产品0元免费使用</a><br><a href="https://cloud.tencent.com/product/tac?fromSource=gwzcw.926333.926333.926333" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-腾讯云&#39;)">【推荐】腾讯云如何降低移动开发成本</a><br><a href="http://challenge.xfyun.cn/?ch=bk" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-xfyun&#39;)">【大赛】2018首届“顶天立地”AI开发者大赛</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;C1&#39;);" href="https://cloud.tencent.com/product/tac?fromSource=gwzcw.945615.945615.945615" target="_blank"><img width="300" height="250" src="./layer----javascript弹窗（层）_files/24442-20180530101048589-14642248.jpg" alt="腾讯云0530"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/597974/" target="_blank">盒马高管怼京东抄袭：无人餐厅概念跟我的一摸一样</a><br> ·  <a href="https://news.cnblogs.com/n/597973/" target="_blank">期权都是废纸？——创业公司的期权、股票与回报</a><br> ·  <a href="https://news.cnblogs.com/n/597966/" target="_blank">腾讯WeStore全国开放 以前只有对腾讯员工及访客开放</a><br> ·  <a href="https://news.cnblogs.com/n/597972/" target="_blank">京东生鲜发布2018年战略 推出生鲜“1小时达”服务</a><br> ·  <a href="https://news.cnblogs.com/n/597971/" target="_blank">戴威、李彦宏、程维哪个创业者没经历过“至暗时刻”</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/34770/" target="_blank"><img src="./layer----javascript弹窗（层）_files/TB1gBPhgZLJ8KJjy0FnXXcFDpXa-468-60.jpg" alt="" style="width: 468px; height: 60px;"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/576411/" target="_blank">你可以把编程当做一项托付终身的职业</a><br> ·  <a href="http://kb.cnblogs.com/page/596164/" target="_blank">评审的艺术——谈谈现实中的代码评审</a><br> ·  <a href="http://kb.cnblogs.com/page/577233/" target="_blank">如何高效学习</a><br> ·  <a href="http://kb.cnblogs.com/page/578689/" target="_blank">如何成为优秀的程序员？</a><br> ·  <a href="http://kb.cnblogs.com/page/594930/" target="_blank">菜鸟工程师的超神之路 -- 从校园到职场</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/jiangxiaobo/">jiangxiaobo</a><br>园龄：<a href="https://home.cnblogs.com/u/jiangxiaobo/" title="入园时间：2016-02-18">2年3个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/jiangxiaobo/followers/">58</a><br>关注：<a href="https://home.cnblogs.com/u/jiangxiaobo/followees/">2</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;20763c20-ffd5-e511-9fc1-ac853d9f53cc&#39;)">+加关注</a></div><script>getFollowStatus('20763c20-ffd5-e511-9fc1-ac853d9f53cc')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/04/01&#39;);return false;">&lt;</a></td><td align="center">2018年5月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/06/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td class="CalWeekendDay" align="center">5</td></tr><tr><td class="CalWeekendDay" align="center">6</td><td align="center">7</td><td align="center"><a href="http://www.cnblogs.com/jiangxiaobo/archive/2018/05/08.html"><u>8</u></a></td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td class="CalWeekendDay" align="center">12</td></tr><tr><td class="CalWeekendDay" align="center">13</td><td align="center">14</td><td align="center"><a href="http://www.cnblogs.com/jiangxiaobo/archive/2018/05/15.html"><u>15</u></a></td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td class="CalWeekendDay" align="center">19</td></tr><tr><td class="CalWeekendDay" align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center"><a href="http://www.cnblogs.com/jiangxiaobo/archive/2018/05/24.html"><u>24</u></a></td><td align="center"><a href="http://www.cnblogs.com/jiangxiaobo/archive/2018/05/25.html"><u>25</u></a></td><td class="CalWeekendDay" align="center">26</td></tr><tr><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/jiangxiaobo/archive/2018/05/27.html"><u>27</u></a></td><td align="center">28</td><td align="center">29</td><td class="CalTodayDay" align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td></tr><tr><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/jiangxiaobo/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/jiangxiaobo/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/jiangxiaobo/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/jiangxiaobo/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/jiangxiaobo/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/jiangxiaobo/tag/%E5%AD%A6%E4%B9%A0/">学习</a>(18)</li><li><a href="http://www.cnblogs.com/jiangxiaobo/tag/HTML5/">HTML5</a>(16)</li><li><a href="http://www.cnblogs.com/jiangxiaobo/tag/%E6%80%BB%E7%BB%93/">总结</a>(15)</li><li><a href="http://www.cnblogs.com/jiangxiaobo/tag/%E8%BD%AC%E8%BD%BD/">转载</a>(13)</li><li><a href="http://www.cnblogs.com/jiangxiaobo/tag/CSS3/">CSS3</a>(13)</li><li><a href="http://www.cnblogs.com/jiangxiaobo/tag/%E6%A6%82%E8%BF%B0/">概述</a>(6)</li><li><a href="http://www.cnblogs.com/jiangxiaobo/tag/jQuery%E6%8F%92%E4%BB%B6/">jQuery插件</a>(3)</li><li><a href="http://www.cnblogs.com/jiangxiaobo/tag/%E6%A0%B7%E5%BC%8F/">样式</a>(2)</li><li><a href="http://www.cnblogs.com/jiangxiaobo/tag/APICloud/">APICloud</a>(1)</li><li><a href="http://www.cnblogs.com/jiangxiaobo/tag/fakeLoader/">fakeLoader</a>(1)</li><li><a href="http://www.cnblogs.com/jiangxiaobo/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="https://www.cnblogs.com/jiangxiaobo/category/893188.html">2d(17)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="https://www.cnblogs.com/jiangxiaobo/category/801738.html">APICloud(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="https://www.cnblogs.com/jiangxiaobo/category/851849.html">canvas(13)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="https://www.cnblogs.com/jiangxiaobo/category/1143685.html">centos(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="https://www.cnblogs.com/jiangxiaobo/category/791645.html">CMSPRESS(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="https://www.cnblogs.com/jiangxiaobo/category/901213.html">cs2d(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="https://www.cnblogs.com/jiangxiaobo/category/788870.html">CSS(24)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="https://www.cnblogs.com/jiangxiaobo/category/915557.html">h5游戏(16)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="https://www.cnblogs.com/jiangxiaobo/category/788869.html">HTML(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="https://www.cnblogs.com/jiangxiaobo/category/789677.html">HTML5/CSS3/JavaScript讲义(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="https://www.cnblogs.com/jiangxiaobo/category/788871.html">JAVASCRIPT(60)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="https://www.cnblogs.com/jiangxiaobo/category/788953.html">jQuery(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="https://www.cnblogs.com/jiangxiaobo/category/963996.html">jquery easyui(19)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="https://www.cnblogs.com/jiangxiaobo/category/847223.html">lead.js(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="https://www.cnblogs.com/jiangxiaobo/category/901059.html">lufylegend(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="https://www.cnblogs.com/jiangxiaobo/category/788873.html">MYSQL(33)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="https://www.cnblogs.com/jiangxiaobo/category/788872.html">PHP(40)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="https://www.cnblogs.com/jiangxiaobo/category/1223398.html">redis(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="https://www.cnblogs.com/jiangxiaobo/category/841488.html">seajs(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="https://www.cnblogs.com/jiangxiaobo/category/831508.html">SQL(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="https://www.cnblogs.com/jiangxiaobo/category/846918.html">sqlite(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="https://www.cnblogs.com/jiangxiaobo/category/910700.html">svg(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="https://www.cnblogs.com/jiangxiaobo/category/794945.html">ThinkPHP3.2.3 讲义(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="https://www.cnblogs.com/jiangxiaobo/category/1113824.html">ubuntu(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_24" href="https://www.cnblogs.com/jiangxiaobo/category/819888.html">Vue.js(29)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_25" href="https://www.cnblogs.com/jiangxiaobo/category/788958.html">WebApp(13)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_26" href="https://www.cnblogs.com/jiangxiaobo/category/1222578.html">workerman(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_27" href="https://www.cnblogs.com/jiangxiaobo/category/850858.html">手记</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_28" href="https://www.cnblogs.com/jiangxiaobo/category/896675.html">外单技术(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_29" href="https://www.cnblogs.com/jiangxiaobo/category/793111.html">杂项(37)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_30" href="https://www.cnblogs.com/jiangxiaobo/category/900796.html">转载(21)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="https://www.cnblogs.com/jiangxiaobo/archive/2018/05.html">2018年5月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="https://www.cnblogs.com/jiangxiaobo/archive/2018/04.html">2018年4月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="https://www.cnblogs.com/jiangxiaobo/archive/2018/03.html">2018年3月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="https://www.cnblogs.com/jiangxiaobo/archive/2018/02.html">2018年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="https://www.cnblogs.com/jiangxiaobo/archive/2018/01.html">2018年1月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="https://www.cnblogs.com/jiangxiaobo/archive/2017/12.html">2017年12月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="https://www.cnblogs.com/jiangxiaobo/archive/2017/11.html">2017年11月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="https://www.cnblogs.com/jiangxiaobo/archive/2017/10.html">2017年10月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="https://www.cnblogs.com/jiangxiaobo/archive/2017/09.html">2017年9月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="https://www.cnblogs.com/jiangxiaobo/archive/2017/08.html">2017年8月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="https://www.cnblogs.com/jiangxiaobo/archive/2017/07.html">2017年7月 (23)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="https://www.cnblogs.com/jiangxiaobo/archive/2017/06.html">2017年6月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="https://www.cnblogs.com/jiangxiaobo/archive/2017/05.html">2017年5月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="https://www.cnblogs.com/jiangxiaobo/archive/2017/04.html">2017年4月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="https://www.cnblogs.com/jiangxiaobo/archive/2017/03.html">2017年3月 (16)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="https://www.cnblogs.com/jiangxiaobo/archive/2017/02.html">2017年2月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="https://www.cnblogs.com/jiangxiaobo/archive/2017/01.html">2017年1月 (14)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="https://www.cnblogs.com/jiangxiaobo/archive/2016/12.html">2016年12月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="https://www.cnblogs.com/jiangxiaobo/archive/2016/11.html">2016年11月 (58)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="https://www.cnblogs.com/jiangxiaobo/archive/2016/10.html">2016年10月 (53)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="https://www.cnblogs.com/jiangxiaobo/archive/2016/09.html">2016年9月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="https://www.cnblogs.com/jiangxiaobo/archive/2016/08.html">2016年8月 (18)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_22" href="https://www.cnblogs.com/jiangxiaobo/archive/2016/07.html">2016年7月 (18)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_23" href="https://www.cnblogs.com/jiangxiaobo/archive/2016/06.html">2016年6月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_24" href="https://www.cnblogs.com/jiangxiaobo/archive/2016/05.html">2016年5月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_25" href="https://www.cnblogs.com/jiangxiaobo/archive/2016/04.html">2016年4月 (26)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_26" href="https://www.cnblogs.com/jiangxiaobo/archive/2016/03.html">2016年3月 (26)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_27" href="https://www.cnblogs.com/jiangxiaobo/archive/2016/02.html">2016年2月 (12)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListWeb技术视频学习网站链接">
+<h3 class="catListTitle">Web技术视频链接</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="https://www.imooc.com/" rel="nofollow">慕课网-国内最大的IT技能学习平台</a> </li>
+<li class="c_b_p_link_desc">慕课网（IMOOC）是国内最大的IT技能学习平台。慕课网提供了丰富的移动端开发、php开发、web前端、android开发以及html5等视频教程资源公开课。并且富有交互性及趣味性，你还可以和朋友一起编程。</li>
+</ul>
+
+</div>
+
+<div class="catListWeb技术文档学习网站链接">
+<h3 class="catListTitle">Web技术文档链接</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_3_Link_0" href="https://w3school.com.cn/" rel="nofollow">w3school 在线教程</a> </li>
+<li class="c_b_p_link_desc">全球最大的中文 Web 技术教程。</li>
+<li><a id="CatList_LinkList_3_Link_1" href="https://www.runoob.com/" rel="nofollow">菜鸟教程 - 学的不仅是技术，更是梦想！</a> </li>
+<li class="c_b_p_link_desc">菜鸟教程(www.runoob.com)提供了最全的编程技术基础教程, 介绍了HTML、CSS、Javascript、Python，Java，Ruby，C，PHP , MySQL等各种编程语言的基础知识。 同时本站中也提供了大量的在线实例，通过实例，您可以更好的学习编程。..</li>
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/jiangxiaobo/p/6110020.html#3977689">1. Re:网页闯关游戏(riddle webgame)--仿微信聊天的前端页面设计和难点</a></li>
+        <li class="recent_comment_body">嗯，你这个是web端仿微信聊天，之前看到过一篇h5移动端仿微信界面实战案例：<br><a href="https://www.cnblogs.com/jiangxiaobo/p/5276482.html" target="_blank"></a><br><br></li>
+        <li class="recent_comment_author">--xiaoyan2017</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/jiangxiaobo/p/6076652.html#3928492">2. Re:Vue.2.0.5-过渡效果</a></li>
+        <li class="recent_comment_body">牛逼啊，把官方文档当做博客发布，请给出自己的见解</li>
+        <li class="recent_comment_author">--君临天下丶</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/jiangxiaobo/p/6548335.html#3918720">3. Re:jQuery中on()方法用法实例</a></li>
+        <li class="recent_comment_body">4545</li>
+        <li class="recent_comment_author">--xcm</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/jiangxiaobo/p/5424820.html#3917676">4. Re:Vue 实例</a></li>
+        <li class="recent_comment_body">简单易懂，总结到位，学习了</li>
+        <li class="recent_comment_author">--zsr1860</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/jiangxiaobo/p/5892146.html#3914343">5. Re:Ajax方式上传文件</a></li>
+        <li class="recent_comment_body">推荐一个上传控件：<a href="https://www.cnblogs.com/jiangxiaobo/p/5276482.html" target="_blank"></a></li>
+        <li class="recent_comment_author">--天马3798</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="https://www.cnblogs.com/jiangxiaobo/p/5425000.html">1. Vue 方法与事件处理器(42445)</a></li><li><a href="https://www.cnblogs.com/jiangxiaobo/p/7089345.html">2. 用命令创建MySQL数据库(36376)</a></li><li><a href="https://www.cnblogs.com/jiangxiaobo/p/5424910.html">3. Vue Class 与 Style 绑定(32213)</a></li><li><a href="https://www.cnblogs.com/jiangxiaobo/p/5425025.html">4. Vue 表单控件绑定(29482)</a></li><li><a href="https://www.cnblogs.com/jiangxiaobo/p/5892146.html">5. Ajax方式上传文件(24172)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="https://www.cnblogs.com/jiangxiaobo/p/5425000.html">1. Vue 方法与事件处理器(3)</a></li><li><a href="https://www.cnblogs.com/jiangxiaobo/p/6076652.html">2. Vue.2.0.5-过渡效果(3)</a></li><li><a href="https://www.cnblogs.com/jiangxiaobo/p/5424881.html">3. Vue 计算属性(2)</a></li><li><a href="https://www.cnblogs.com/jiangxiaobo/p/5424820.html">4. Vue 实例(2)</a></li><li><a href="https://www.cnblogs.com/jiangxiaobo/p/6025432.html">5. 原生JavaScript事件详解(1)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="https://www.cnblogs.com/jiangxiaobo/p/5669976.html">1. Chrome谷歌浏览器下不支持css字体小于12px的解决办法(5)</a></li><li><a href="https://www.cnblogs.com/jiangxiaobo/p/5425025.html">2. Vue 表单控件绑定(3)</a></li><li><a href="https://www.cnblogs.com/jiangxiaobo/p/5424856.html">3. Vue 数据绑定语法(2)</a></li><li><a href="https://www.cnblogs.com/jiangxiaobo/p/6589541.html">4. MySQL中删除重复数据只保留一条(2)</a></li><li><a href="https://www.cnblogs.com/jiangxiaobo/p/6510274.html">5. jQuery自定义事件(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2018 jiangxiaobo
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

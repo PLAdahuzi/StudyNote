@@ -1,0 +1,78 @@
+/*推荐和反对*/
+#div_digg{
+  position:fixed;
+  bottom:5px;
+  width:140px;
+  right:20px;
+  border:2px solid #6FA833;
+  padding:10px;
+  background-color:#fff;
+  border-radius:5px 5px 5px 5px !important;
+  box-shadow:0 0 0 1px #5F5A4B, 1px 1px 6px 1px rgba(10, 10, 0, 0.5);
+}
+
+.icon_favorite {
+    background: transparent url('//files.cnblogs.com/files/jackson0714/kj.gif') no-repeat 0 0;
+    padding-left: 16px;
+}
+
+/*目录a标签样式*/
+#blog_post_info_block a {
+    text-decoration: none;
+    color: #5B9DCA;
+    padding: 3px;
+}
+#cnblogs_post_body a {
+    text-decoration: none;
+    color: #2769C0;
+    padding: 1px 2px;
+}
+#cnblogs_post_body a:hover{
+    color: #fff;
+    background-color: #78AFD3;
+    padding: 1px 2px;
+}
+#cnblogs_post_body ul li {
+    list-style: inherit!important;
+    margin-bottom: 0.1em;
+}
+
+/*全文字体以及各级标题样式*/
+    #cnblogs_post_body
+    {
+        color: black;      
+        font: 0.875em/1.5em "微软雅黑" , "PTSans" , "Arial" ,sans-serif;
+        font-size: 16px;
+    }
+    #cnblogs_post_body pre
+    {
+        font: -webkit-control;
+    }
+    #cnblogs_post_body h1    {
+        background: #2B6600;
+        border-radius: 6px 6px 6px 6px;
+        box-shadow: 0 0 0 1px #5F5A4B, 1px 1px 6px 1px rgba(10, 10, 0, 0.5);
+        color: #FFFFFF;
+        font-family: "微软雅黑" , "宋体" , "黑体" ,Arial;
+        font-size: 25px;
+        font-weight: bold;
+        height: 36px;
+        line-height: 31px;
+        margin: 18px 0 !important;
+        padding: 8px 0 5px 5px;
+        text-shadow: 2px 2px 3px #222222;
+    }
+ #cnblogs_post_body h2{
+        background: #2B6695;
+        border-radius: 6px 6px 6px 6px;
+        box-shadow: 0 0 0 1px #5F5A4B, 1px 1px 6px 1px rgba(10, 10, 0, 0.5);
+        color: #FFFFFF;
+        font-family: "微软雅黑" , "宋体" , "黑体" ,Arial;
+        font-size: 15px;
+        font-weight: bold;
+        height: 24px;
+        line-height: 23px;
+        margin: 12px 0 !important;
+        padding: 5px 0 5px 10px;
+        text-shadow: 2px 2px 3px #222222;
+    }
